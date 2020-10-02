@@ -4,7 +4,7 @@ title: Import Map
 sidebar_label: Import Map
 ---
 
-A key concept in Eik is to align dependents of a module to the same version. A part of this concept is [Import Maps](https://github.com/WICG/import-maps) which make it possible to map import statements in modules.
+A key concept in Eik is to align the dependents of a module to the same version. A part of this concept is [Import Maps](https://github.com/WICG/import-maps) which makes it possible to map import statements in modules.
 
 Import Maps are a fairly new concept and will hopefully be supported in browsers in close future. Import Maps allow [ECMA Script Modules (ESM)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) "bare" import specifiers, such as `import {html, render} from 'lit-html'` which will throw when used in a browser, to work by being mapped to relative or abosulte URLs the browser can use to load the module.
 

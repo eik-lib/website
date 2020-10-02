@@ -63,7 +63,7 @@ In Eik, we utilize bare imports to align modules (ex; the applications in our ex
 
 ## Import Maps
 
-[Import Maps](https://github.com/WICG/import-maps) are a fairly new and up and coming web standard. An Import Map is a simple object mapping between a bare import statement and a legal ESM import statement. The idea is that an Import Map should be used to map bare import statements to fully qualified import statements in ESM.
+[Import Maps](https://github.com/WICG/import-maps) is fairly new and up and coming web standard. An Import Map is a simple object mapping between a bare import statement and a legal ESM import statement. The idea is that an Import Map should be used to map bare import statements to fully qualified import statements in ESM.
 
 An Import Map looks something like this:
 

@@ -110,6 +110,6 @@ In the build tool used by the applications we can now add the appropriate Eik ma
 import * as lit from '/npm/lit-html/v1/lit-html.js';
 ```
 
-Now our application defines an ESM import statement that points to the alias for lit-html which makes sure multiple applications on our site align to the same version of lit-html. By doing this, we're able to develop our application in isolation without depending or interfering with any other applications that utilise the same library.
+Now our application defines an ESM import statement that points to the alias for lit-html which makes sure multiple applications on our site align to the same version of lit-html. By doing this, we're able to develop our application in isolation without depending or interfering with any other applications that utilize the same library.
 
 The final step in this process is uploading the application code as a package to the Eik server. Which is done by the Eik client.

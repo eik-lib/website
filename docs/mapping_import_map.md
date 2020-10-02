@@ -8,7 +8,7 @@ A key concept in Eik is to align the dependents of a module to the same version.
 
 Import Maps are a fairly new concept and will hopefully be supported in browsers in the close future. Import Maps allow [ECMA Script Modules (ESM)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) "bare" import specifiers, such as `import {html, render} from 'lit-html'` which will throw when used in a browser, to work by being mapped to a relative or absolute URLs the browser can use to load the module.
 
-In other words; in a ESM we can import a module like so:
+In other words; in an ESM we can import a module like so:
 
 ```js
 import {html, render} from 'lit-html';

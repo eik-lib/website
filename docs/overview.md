@@ -104,7 +104,7 @@ In each application we can now depend on and install lit-html through NPM as is 
 import {html, render} from 'lit-html'
 ```
 
-In the build tool used by the applications we can now add the appropiate Eik mapping utility which will read a set of defined Import Maps (in our example, "site-mapping") from the Eik server and apply these Import Maps to the application code. This will map our bare import statements into legal ESM import statements pointing to the lit-html alias defined in the Import Map:
+In the build tool used by the applications we can now add the appropriate Eik mapping utility which will read a set of defined Import Maps (in our example, "site-mapping") from the Eik server and apply these Import Maps to the application code. This will map our bare import statements into legal ESM import statements pointing to the lit-html alias defined in the Import Map:
 
 ```js
 import * as lit from '/npm/lit-html/v1/lit-html.js';

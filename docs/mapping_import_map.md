@@ -14,7 +14,7 @@ In other words; in an ESM we can import a module like so:
 import {html, render} from 'lit-html';
 ```
 
-Then an Import Map can be loaded as follow in the browser:
+Then an Import Map can be loaded as following in the browser:
 
 ```html
 <script type="importmap">

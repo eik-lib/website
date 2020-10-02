@@ -8,7 +8,7 @@ Eik provides a set of build tool plugins that cater for applying Import Maps ahe
 
 The common functionallity of these plugins is that they will, if found, load the `eik.json` in a project and fetch the defined Import Maps and then apply these to the code the build tool is processing.
 
-When using a build tool to apply an Import Map ahead of time, the build process should be run before a module is published to a Eik server.
+When using a build tool to apply an Import Map ahead of time, the build process should be run before a module is published to an Eik server.
 
 ## Available plugins
 

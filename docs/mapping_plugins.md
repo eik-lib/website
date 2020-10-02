@@ -4,7 +4,7 @@ title: Build Tool Plugins
 sidebar_label: Build Tool Plugins
 ---
 
-Eik provide a set of build tool plugins which cater for applying Import Maps ahead of time. 
+Eik provides a set of build tool plugins that cater for applying Import Maps ahead of time. 
 
 The common functionallity of these plugins is that they will, if found, load the `eik.json` in a project and fetch the defined Import Maps and then apply these to the code the build tool is processing.
 

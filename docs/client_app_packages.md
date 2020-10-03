@@ -4,11 +4,11 @@ title: Application Packages
 sidebar_label: Application Packages
 ---
 
-Publishing and serving your application's client side assets is the main task Eik was designed for. Given local paths to client side bundle files you produce, Eik will package up the files and upload them to an Eik server where they will be served for use in your production applications.
+Publishing and serving your application's client-side assets is the main task Eik was designed for. Given local paths to client-side bundle files you produce, Eik will package up the files and upload them to an Eik server where they will be available for use in your production applications.
 
 ## Producing packages
 
-Use the `package` command to package and upload local JavaScript and CSS bundle files to an Eik server from where they will be served.
+Use the `package` command to package and upload local JavaScript and CSS bundle files to an Eik server.
 
 ### eik.json definitions
 

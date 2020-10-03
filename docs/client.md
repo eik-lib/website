@@ -27,7 +27,7 @@ See [the server docs](/docs/server).
 
 Set the `files` property of `eik.json` with paths to client-side
 asset files in your project (relative to the `eik.json` file) -
-e.g. if you have a `scripts.js` file in an `assets` directory, the `files` array will contain `assets/scripts.js`
+e.g. if you have a `scripts.js` file in an `assets` directory, the `files` object will contain `./assets/scripts.js`
 
 ### Step 2
 

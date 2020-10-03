@@ -27,7 +27,7 @@ See [the server docs](/docs/server).
 
 Set the `files` property of `eik.json` with paths to client-side
 asset files in your project (relative to the `eik.json` file) -
-e.g. if you have a `scripts.js` file in an `assets` directory, the `js.input` value will be `assets/scripts.js`
+e.g. if you have a `scripts.js` file in an `assets` directory, the `files` array will contain `assets/scripts.js`
 
 ### Step 2
 
@@ -148,7 +148,7 @@ Given the following line now added to `eik.json`
 
 When we run `eik publish` any "bare imports" refering to either `lit-html` or `lodash` will be mapped to the URLs in our map.
 
-In this way, you can control which version of `react` or `lit-html` or `lodash` all your apps are using. In combination with package `alias` URLs, you have a powerful way to manage key shared dependencies for your apps in production without the need to redeploy or rebundle when a new version of a dependency are released.
+In this way, you can control which version of `react` or `lit-html` or `lodash` all your apps are using. In combination with package `alias` URLs, you have a powerful way to manage key shared dependencies for your apps in production without the need to redeploy or rebundle when a new version of a dependency is released.
 
 ### Accessing meta information about a package
 

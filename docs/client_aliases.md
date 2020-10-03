@@ -6,11 +6,11 @@ sidebar_label: Aliases
 
 Aliases are general package versions that point to exact package versions.
 
-The need to redeploy your application every time you update a client side bundle can be avoided by using aliasing.
+The need to redeploy your application every time you update a client-side bundle can be avoided by using aliasing.
 
-In an application, we can reference an alias instead of a specific version and whenever we need to, we can update our alias and our application will automatically be updated.
+In an application, we can reference an alias instead of a specific version and whenever needed, we can update our alias and our application will automatically be updated.
 
-For example, an alias by the name `v1` might be set up to point to the exact package version `1.0.0`. The alias itself is independent of the version and since it is just an HTTP redirect, can be easily updated to point at a new version. 
+For example, an alias by the name `v1` might be set up to point to the exact package version `1.0.0`. The alias itself is independent of the version and since it is just an HTTP redirect, can be easily updated to point at a new version.
 
 ## Application aliases
 

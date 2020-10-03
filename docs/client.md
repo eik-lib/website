@@ -14,7 +14,7 @@ npm install -g @eik/cli
 
 ### Step 1.
 
-Generate an eik.json file in the current directory
+Generate an `eik.json` file in the current directory
 
 ```sh
 eik init
@@ -22,12 +22,12 @@ eik init
 
 Fill in the generated `eik.json` file with the necessary details.
 
-For the `server` property, you will need to have set up and know the address to, and Eik asset server.
-See [the server docs](/docs/server)
+For the `server` property, you will need to have the address to a prepared Eik asset server.
+See [the server docs](/docs/server).
 
-Set the `files` property of `eik.json` with paths to client side
-asset files in your project relative to the `eik.json` file.
-Eg. if you have a `scripts.js` file in an assets directory, the `js.input` value will be `assets/scripts.js`
+Set the `files` property of `eik.json` with paths to client-side
+asset files in your project (relative to the `eik.json` file) -
+e.g. if you have a `scripts.js` file in an `assets` directory, the `js.input` value will be `assets/scripts.js`
 
 ### Step 2
 
@@ -41,7 +41,7 @@ eik publish
 
 ### Publishing global dependencies
 
-When you wish to share a version of a module, you can use the `dependency` command to do so.
+When you want to share a version of a module, you can use the `dependency` command to do so.
 
 This feature does the following:
 
@@ -50,7 +50,7 @@ This feature does the following:
 
 #### Example use case
 
-You might decide that all teams across your organisation should use the same version of lodash via a published URL (rather than each team bundling their own version).
+You might decide that all teams across your organisation should use the same version of _lodash_ via a published URL (rather than each team bundling their own version).
 
 To do so you would run:
 
@@ -62,7 +62,7 @@ After running this, an esm friendly version of lodash will be available at the u
 `http://<asset server url>/pkg/lodash/4.17.15`
 
 It's now possible for each team to reference this globally published module directly in their
-own client side code as follows:
+own client-side code as follows:
 
 ```js
 import lodash from `http://<asset server url>/pkg/lodash/4.17.15`;
@@ -74,16 +74,16 @@ This has the benefit that if all teams are referencing lodash in this way, the b
 
 Aliasing allows you to tag specific published versions of modules with a more general tag or version that you are also able to centrally change as needed.
 
-The benefit of this is that you can alias a specific version of a dependency and then update that alias overtime as you publish new versions of the dependency and have all dependents immediately receive the change.
+The benefit of this is that you can alias a specific version of a dependency and then update that alias over time as you publish new versions of the dependency and have all dependents immediately receive the change.
 
 #### Example use case
 
-Taking the previous example 1 step further, before we saw that we could globally publish a specific version of lodash, in this case `4.17.15`.
+Taking the previous example one step further; before we saw that we could globally publish a specific version of _lodash_, in this case `4.17.15`.
 
 We can now set a major semver alias for this version:
 
 ```sh
-eik alias lodash 4.15.15 4
+eik alias lodash 4.17.15 4
 ```
 
 We can now change our import statement to:
@@ -106,11 +106,11 @@ And then update the major semver alias to the new version like so:
 eik alias lodash 4.15.16 4
 ```
 
-In this way, no client side code will need to be updated to reflect this change and it is considerably easier for multiple teams to stay in sync, using the same global shared dependency
+In this way, no client-side code will need to be updated to reflect this change, and it is considerably easier for multiple teams to stay in sync using the same global shared dependency.
 
 ### Using import maps to map "bare imports"
 
-Import maps are [an emerging standard](https://github.com/WICG/import-maps) and a way to map "bare imports" such as `foo` in the import statement `import { bar, baz } from 'foo'` to modules to be loaded. With Eik, we provide a way to upload import map files and to specify them for use in bundling. Doing so allows you to specify a common set of shared modules, whether they be `react` or `lit-html` etc.
+Import maps are [an emerging standard](https://github.com/WICG/import-maps) and a way to map "bare imports" (such as `foo`) in the import statement (e.g. - `import { bar, baz } from 'foo'`) to modules to be loaded. With Eik, we provide a way to upload import map files and to specify them for use in bundling. Doing so allows you to specify a common set of shared modules, whether they be `react` or `lit-html` etc.
 
 Making use of import maps is done as follows.
 
@@ -148,7 +148,7 @@ Given the following line now added to `eik.json`
 
 When we run `eik publish` any "bare imports" refering to either `lit-html` or `lodash` will be mapped to the URLs in our map.
 
-In this way, you can control which version of `react` or `lit-html` or `lodash` all your apps are using. In combination with package `alias` URLs, you have a powerful way to manage key shared dependencies for your apps in production without the need to redeploy or rebundle when a new version of a dependency is released.
+In this way, you can control which version of `react` or `lit-html` or `lodash` all your apps are using. In combination with package `alias` URLs, you have a powerful way to manage key shared dependencies for your apps in production without the need to redeploy or rebundle when a new version of a dependency are released.
 
 ### Accessing meta information about a package
 
@@ -233,7 +233,7 @@ This is the address to the asset server you are using. This might be a locally r
 
 ###### js
 
-This field is used to configure bundling and publishing of JavaScript assets. Use `js.input` to configure the location on disk, relative to `eik.json`, where the entrypoint for your JavaScript client side assets are located.
+This field is used to configure bundling and publishing of JavaScript assets. Use `js.input` to configure the location on disk, relative to `eik.json`, where the entrypoint for your JavaScript client-side assets are located.
 
 _scripts.js file inside assets folder_
 
@@ -247,7 +247,7 @@ _scripts.js file inside assets folder_
 
 ###### css
 
-This field is used to configure bundling and publishing of CSS assets. Use `css.input` to configure the location on disk, relative to `eik.json`, where the entrypoint for your CSS client side assets are located.
+This field is used to configure bundling and publishing of CSS assets. Use `css.input` to configure the location on disk, relative to `eik.json`, where the entrypoint for your CSS client-side assets are located.
 
 _styles.css file inside assets folder_
 
@@ -261,7 +261,7 @@ _styles.css file inside assets folder_
 
 ###### import-map
 
-This field is used to configure the location of any import map files to be used when creating bundles. The field should be an array and can hold any number of url strings pointing to locations of import-map files that will be downloaded and merged together
+This field is used to configure the location of any import map files to be used when creating bundles. The field should be an array and can hold any number of url strings pointing to locations of import-map files that will be downloaded and merged together.
 
 _defining a single import map file_
 
@@ -310,7 +310,7 @@ eik ping
 
 #### publish
 
-This command publishes the app's client side assets to an Eik server based on the values in an `eik.json` file in the current directory.
+This command publishes the app's client-side assets to an Eik server based on the values in an `eik.json` file in the current directory.
 
 The command takes the form:
 

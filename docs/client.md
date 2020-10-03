@@ -103,7 +103,7 @@ eik dependency lodash 4.17.16
 And then update the major semver alias to the new version like so:
 
 ```sh
-eik alias lodash 4.15.16 4
+eik alias lodash 4.17.16 4
 ```
 
 In this way, no client-side code will need to be updated to reflect this change, and it is considerably easier for multiple teams to stay in sync using the same global shared dependency.

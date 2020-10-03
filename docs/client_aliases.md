@@ -24,7 +24,7 @@ Creating aliases allows you to include the alias script tags in your application
 
 ### Publishing an alias
 
-You can create an alias by running the package-alias command
+You can create an alias by running the `package-alias` command
 
 ```
 eik package-alias <app name> <version> <alias>
@@ -43,7 +43,7 @@ eik version patch
 eik package
 ```
 
-The alias can then be updated with the same alias command as before giving it the newly published version
+The alias can then be updated with the same alias command as before and specifying the newly published version
 
 ```sh
 eik package-alias my-app 1.0.1 1
@@ -63,7 +63,7 @@ Creating aliases for NPM packages that have an Eik mirror allows you to include 
 
 ### Publishing an alias
 
-You can create an alias by running the npm-alias command
+You can create an alias by running the `npm-alias` command
 
 ```
 eik npm-alias <npm package name> <version> <alias>
@@ -81,7 +81,7 @@ After publishing a new version of the NPM package
 eik npm lodash 4.17.19
 ```
 
-The alias can then be updated with the same alias command as before giving it the newly published version
+The alias can then be updated with the same alias command as before and specifying the newly published version
 
 ```sh
 eik npm-alias lodash 4.17.19 4
@@ -97,7 +97,7 @@ Creating import map aliases allows you to include the import map alias in your a
 
 ### Publishing an alias
 
-You can create an alias by running the map-alias command
+You can create an alias by running the `map-alias` command
 
 ```
 eik map-alias <map name> <version> <alias>
@@ -115,7 +115,7 @@ After publishing a new version of an import map
 eik map my-map 1.0.1 ./import-map.json
 ```
 
-The alias can then be updated with the same alias command as before giving it the newly published version
+The alias can then be updated with the same alias command as before and specifying the newly published version
 
 ```sh
 eik map-alias my-map 1.0.1 1

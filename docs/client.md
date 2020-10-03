@@ -45,7 +45,7 @@ When you want to share a version of a module, you can use the `dependency` comma
 
 This feature does the following:
 
-- converts a module already published to npm to esm
+- converts a module already published to NPM to ESM
 - makes it available through the asset server
 
 #### Example use case
@@ -212,7 +212,7 @@ You will then need to set the various fields as appropriate. If you are running 
 
 ###### name
 
-All asset uploads must have a name. When publishing a dependency from npm the name will be the package name taken from the module's `package.json` file. When publishing the assets for your app, the `name` field of your project's `eik.json` file is used.
+All asset uploads must have a name. When publishing a dependency from NPM the name will be the package name taken from the module's `package.json` file. When publishing the assets for your app, the `name` field of your project's `eik.json` file is used.
 Names may contain any letters or numbers as well as the `-` and `_` characters.
 
 ```json
@@ -340,7 +340,7 @@ eik dependency [optional arguments] <name> <version>
 
 **Example**
 
-_Publishing a dependency from npm_
+_Publishing a dependency from NPM_
 
 ```bash
 eik dependency lit-html 1.1.2

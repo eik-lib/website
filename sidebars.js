@@ -2,12 +2,14 @@
 module.exports = {
   mainSidebar: {
     Overview: [
-      'overview'
+      'overview',
+      'overview_concepts',
+      'overview_eik_json',
+      'overview_caching'
     ],
     Client: [
       'client_installation',
       'client_login',
-      'client_eik_json',
       'client_app_packages',
       'client_npm_packages',
       'client_import_maps',

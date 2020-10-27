@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Eik consist of 3 main parts. First of all Eik is an [asset server](/docs/server) for serving [ECMA Script Modules (ESM)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and CSS assets. The second part of Eik is a [client](/docs/client) for easy upload and management of your assets to the Eik server. The third part is a set of mapping utils one can plug into build tools to map assets on the Eik server with each other.
+Eik consist of 3 main parts. First of all Eik is an [asset server](/docs/server) for serving [ECMA Script Modules (ESM)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and CSS assets. The second part of Eik is a [client](/docs/client) for easy upload and management of your assets to the Eik server. The third part is a set of utils one can use to align the dependents of a module to the same version.
 
 ## Introduction
 

@@ -4,6 +4,7 @@ module.exports = {
     Overview: [
       'overview',
       'overview_concepts',
+      'overview_workflow',
       'overview_eik_json',
       'overview_caching'
     ],

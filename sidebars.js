@@ -1,4 +1,3 @@
-
 module.exports = {
   mainSidebar: {
     Overview: [
@@ -11,7 +10,8 @@ module.exports = {
     Mapping: [
       'mapping_import_map',
       'mapping_browser',
-      'mapping_plugins'
+      'mapping_plugins',
+      'mapping_bundling',
     ],
     Client: [
       'client_installation',
@@ -20,7 +20,7 @@ module.exports = {
       'client_npm_packages',
       'client_import_maps',
       'client_aliases',
-      'client_putting_it_all_together'
+      'client_putting_it_all_together',
     ],
     Server: [
       'server',
@@ -28,7 +28,11 @@ module.exports = {
       'server_sink',
       'server_rest_api',
       'server_file_structure',
-      'server_metrics'
+      'server_metrics',
     ],
+    'CI Setup': [
+      'ci',
+      'travis'
+    ]
   },
 };

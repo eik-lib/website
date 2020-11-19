@@ -29,8 +29,6 @@ Then an Import Map can be loaded as following in the browser:
 When the Import Map is applied, our code will act as we have written:
 
 ```js
-import {html, render} from 'lit-html';
-
 import * as lit from 'https://cdn.eik-server.com/npm/lit-html/v1/lit-html.js'
 ```
 

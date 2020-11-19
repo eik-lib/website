@@ -24,6 +24,8 @@ module.exports = {
     ],
     Server: [
       'server',
+      'server_api',
+      'server_sink',
       'server_rest_api',
       'server_file_structure',
       'server_metrics'

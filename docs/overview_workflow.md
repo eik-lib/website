@@ -12,7 +12,7 @@ Configuration for which Eik server to use and which import maps to apply etc is 
 
 ## Ahead of time mapping
 
-When working with ahead of time mapping the workflow are as follow:
+When working with ahead of time mapping the workflow is as follow:
 
 ![Workflow of ahead of time mapping](/img/workflow_ahead_of_time_mapping.min.svg)
 

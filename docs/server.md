@@ -8,7 +8,7 @@ The Eik server is a node.js application distributed as the [`@eik/service`](http
 
 The only pre-requirement to run the Eik server is [node.js 12.x or newer](https://nodejs.org/).
 
-The fastest way to get a running instance of the Eik server is by using npx:
+The fastest way to get a running instance of the Eik server is by using NPX:
 
 ```sh
 npx @eik/service

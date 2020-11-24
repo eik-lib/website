@@ -32,7 +32,7 @@ When working with mapping in the browser the workflow is as follows:
 
 ![Workflow of abrowser mapping](/img/workflow_browser_mapping.min.svg)
 
-As previously mentioned Eik does not force a structure on how the source is organized so if your project has a build step or not is completelly optional when doing mapping in the browser. The most important part in this workflow when it comes to a build step is that the `files` field in eik.json either point to the source if there is no build step involved or to the output folder of a build step if a build step is involved.  
+As previously mentioned, Eik doesn't force any particular structure for how your source code should be organized and when it comes to mapping in the browser, the question of whether or not your project should have a build step is completely up to you. The important thing to note with regards to build steps is that the `files` field in `eik.json` must point to either your source files in the case where you have no build step or to the files in the output folder of your build step if you do.
 
 The main step in this workflow is uploading the assets to the Eik server. This is done by the [Eik client](/docs/client_app_packages).
 

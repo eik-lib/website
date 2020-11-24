@@ -24,7 +24,7 @@ The next step in the workflow is uploading the built application assets to the E
 
 Upon upload Eik will calculate integrity hashes and store these in `./eik/integrity.json`. These hashes can be used for [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) and should be used when referring to your assets in your HTML.
 
-At this point your application assets are available on the Eik server and the server side part of the application can be applied to production refering to the assets on the Eik server in the HTML. 
+At this point your application assets are available on the Eik server and the server side part of the application can be applied to production by referring to the assets on the Eik server in the HTML.
 
 ## Browser mapping
 

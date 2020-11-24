@@ -86,7 +86,7 @@ Throws if any of the health checks fails.
 
 ## Properties
 
-A Eik service instance have the following properties:
+An Eik service instance has the following properties:
 
 ### .metrics
 

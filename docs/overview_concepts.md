@@ -8,7 +8,7 @@ Eik is for serving ESM and CSS but we use the term packages when we refer what i
 
 ## Package Types
 
-Eik differentiate between types of packages it hosts. These are: Packages, NPM Packages and Import Maps. On the server the different types live under separate URL namespace to avoid conflict with each other. 
+Eik differentiates between the types of packages it hosts. These are: Packages, NPM Packages and Import Maps. On the server, these different types live under separate URL namespaces to avoid conflicts with each other. 
 
 ### Eik Packages
 

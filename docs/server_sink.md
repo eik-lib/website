@@ -61,7 +61,7 @@ The [Google Cloud Storage sink](https://github.com/eik-lib/sink-gcs) is a good e
 
 ### Constructor
 
-A sink must be an `class` which extends the [Eik sink interface](https://github.com/eik-lib/sink). There is no restrictions on what arguments, methods and properties you assign the class except that one need to implement the methods in the sink interface.
+A sink must be a `class` which extends the [Eik sink interface](https://github.com/eik-lib/sink). There are no restrictions on what arguments, methods or properties you assign the class except that you must implement the methods in the sink interface.
 
 ```js
 const Sink = require('@eik/sink');

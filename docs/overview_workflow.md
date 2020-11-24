@@ -16,7 +16,7 @@ When working with ahead of time mapping the workflow is as follow:
 
 ![Workflow of ahead of time mapping](/img/workflow_ahead_of_time_mapping.min.svg)
 
-When applying mapping ahead of time there must be a build step regardless if the source need one or not. It is in this step import statements in your assets will be rewritten with the mapping in one or more provided import maps. Eik [support multiple build tools](/docs/mapping_plugins) by providing plugins for the tools which will do this mapping. 
+When applying mapping ahead of time there must be a build step regardless if the source needs one or not. It is in this step that import statements in your assets will be rewritten with the mapping values from one or more provided import maps. Eik [supports multiple build tools](/docs/mapping_plugins) by providing plugins for these tools which will do this mapping. 
 
 When your build process run, the Eik plugin to the build tool will fetch the defined import maps from the Eik server defined for the project. When the build process is done, the built application assets should be stored in one or multiple output folders. 
 

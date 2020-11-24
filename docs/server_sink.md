@@ -12,7 +12,7 @@ To make it easy to start up an Eik server, the server is shipped with a couple o
 
 ### File system
 
-The file system sink will write files to and from the local file system. By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will on most OSes be deleted without warning by the OS at one point.
+The file system sink will write files to and from the local file system. By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point.
 
 To set an alternative path, please see the XXXXXXXXXXXXXXXXXXX configuration.
 

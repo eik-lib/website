@@ -52,7 +52,7 @@ Since packages are immutable, the Eik server will set an infinite HTTP cache con
 
 ## Aliasing
 
-Aliasing can be applied to all packages and is a way of having a static URL reference, which can change, to a version of a package. Aliases are mutable and can be set to point to different versions of a package. The alias URL will do a redirect to the full version its set to point to.
+Aliasing can be applied to all packages and is a way of having a static URL reference, which can change, to a version of a package. Aliases are mutable and can be set to point to different versions of a package. The alias URL will do a redirect to the full version that it is set to point to.
 
 Lets say we publish `lit-html`  version `1.1.1`  as an NPM package to a Eik server. It will then live on the following URL:
 

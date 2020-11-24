@@ -12,7 +12,7 @@ Eik differentiates between the types of packages it hosts. These are: Packages, 
 
 ### Eik Packages
 
-An Eik package is what many would consider to be the assets for a web site or web application. This is typically bundeled up application code which does, for many, not really make much sense to publish as a module to a public repository such as NPM.
+Eik packages are normally produced by websites and web applications. Such a package typically consists of bundled application code which, most of the time, does not really make much sense to publish as a module to a public repository such as NPM.
 
 Packages live under the [/pkg/](server_rest_api.md#packages) namespace on a Eik server.
 

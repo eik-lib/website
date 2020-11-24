@@ -20,7 +20,7 @@ Packages live under the [/pkg/](server_rest_api.md#packages) namespace on an Eik
 
 NPM packages are modules replicated from the [NPM repository](https://www.npmjs.com/) with the intention that they be loadable by browsers. This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do, with the exception that Eik does not proxy NPM modules as Unpkg and Pika do. Eik has taken a different approach and it is necessary to manually publish modules from NPM to Eik as well as do any transpiling from (for example) CommonJS to ESM as a manual process before publishing.
 
-NPM Packages live under the [/npm/](server_rest_api.md#npm-packages) namespace on a Eik server.
+NPM Packages live under the [/npm/](server_rest_api.md#npm-packages) namespace on an Eik server.
 
 ### Import Maps
 

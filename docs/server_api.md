@@ -66,7 +66,7 @@ app.register(service.api());
 
 This will mount the [Eik REST API](/docs/server_rest_api) into the Fastify application the plugin is registered to.
 
-Due to how the REST API deal with wildcards on pathnames to resolve files, it is recommended that the `ignoreTrailingSlash` option on the Fastify constructor which the plugin is registered too is set to `true`. If this is not done, file resolving might not work as expected. 
+Due to how the REST API deals with wildcards on pathnames to resolve files, it is recommended that the `ignoreTrailingSlash` option on the Fastify constructor that the plugin is registered to is set to `true`. If this is not done, file resolving might not work as expected. 
 
 ### .health() (async)
 

@@ -4,7 +4,7 @@ title: Workflow
 sidebar_label: Workflow
 ---
 
-In Eik, Import Maps and aliasing of assets is used to align the versions of libraries across multiple applications. Keeping in mind that Import Maps is a thing for the future, there are different strategies to apply mapping to assets. Depending on the strategy one choose, the workflows are a little bit different.
+In Eik, Import Maps and aliasing of assets are used to align library versions across multiple applications. Keeping in mind that import maps are a thing of the future, there are different strategies we can apply when mapping assets. Depending on the strategy choosen, the workflow will be a little bit different.
 
 Though; despite which strategy one choose, Eik does not force a structure on how the source is organized or what its written in (ex; TypeScript). There can also be multiple entry points for the source in your application.
 

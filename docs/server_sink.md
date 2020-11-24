@@ -140,7 +140,7 @@ const SinkCustom = class SinkCustom extends Sink {
 | ----------- | ------- | -------- | --------- | ---------------------------------------------------------------------------------------------------- |
 | filePath    | `null`  | `string` | `true`    | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik  |
 
-This method is called when a file is to be deleted from the storage. The method must return a `Promise` and resolve with no value when the file is deleted from the storage. Upon any errors, the promise should reject with an `Error` object
+This method is called when a file is to be deleted from storage. The method must return a `Promise` and resolve with no value when the file is deleted from storage. If any errors occur, the promise should reject with an `Error` object
 
 #### exist(filePath)
 

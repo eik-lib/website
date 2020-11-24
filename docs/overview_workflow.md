@@ -28,7 +28,7 @@ At this point your application assets are available on the Eik server and the se
 
 ## Browser mapping
 
-When working with mapping in the browser the workflow are as follow:
+When working with mapping in the browser the workflow is as follows:
 
 ![Workflow of abrowser mapping](/img/workflow_browser_mapping.min.svg)
 

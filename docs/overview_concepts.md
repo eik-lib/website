@@ -66,7 +66,7 @@ If we then create an alias for this version it will live on the following URL:
 https://eik-server.com/npm/lit-html/v1/
 ```
 
-Any request to any file under this alias will be redirected to the same path under the package version it referes too.
+Any request to any file under this alias will be redirected to the same path under the package version it refers too.
 
 A request to the following file under the alias:
 

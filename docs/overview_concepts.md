@@ -35,7 +35,7 @@ A package intended to be published to an Eik server should follow the [NPM modul
 - package name length should be greater than zero
 - all characters in a package name must be lowercase i.e., no uppercase or mixed case names are allowed
 - package name *can* consist of hyphens
-- package name must *not* contain any non-url-safe characters (since name ends up being part of a URL)
+- package name *must not* contain non-url-safe characters (since name ends up being part of a URL)
 - package name should not start with `.` or `_`
 - package name should *not* contain any leading or trailing spaces
 - package name should *not* contain any of the following characters: `~)('!*`

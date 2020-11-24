@@ -38,7 +38,7 @@ The main step in this workflow is uploading the assets to the Eik server. This i
 
 Upon upload Eik will calculate integrity hashes and store these in `./eik/integrity.json`. These hashes can be used for [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) and should be used when referring your assets in your HTML.
 
-At this point your application assets are available on the Eik server and the server side part of the application can be applied to production refering to the assets on the Eik server in the HTML.
+At this point your application assets will be available on the Eik server and the server side part of the application can be applied to production referring to the assets on the Eik server in the HTML.
 
 To apply the mapping the server side part of the application should also pull the import maps, defined in the eik.json, from the Eik server and include these in the HTML as inline script blocks as according to the specification.
 

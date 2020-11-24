@@ -30,7 +30,7 @@ Import Maps live under the [/map/](server_rest_api.md#import-maps) namespace on 
 
 ## Naming and versioning
 
-A package intended to be published to a Eik server should follow the [NPM module naming convention](https://github.com/npm/validate-npm-package-name):
+A package intended to be published to an Eik server should follow the [NPM module naming convention](https://github.com/npm/validate-npm-package-name):
 
 - package name length should be greater than zero
 - all the characters in the package name must be lowercase i.e., no uppercase or mixed case names are allowed

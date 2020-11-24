@@ -148,7 +148,7 @@ This method is called when a file is to be deleted from storage. The method must
 | ----------- | ------- | -------- | --------- | ---------------------------------------------------------------------------------------------------- |
 | filePath    | `null`  | `string` | `true`    | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik  |
 
-This method is called to check if a file exist in the storage. The method must return a `Promise` and resolve with no value when if the file exist in the storage. If the file does not exist the promise should reject with no error object. Upon any errors, the promise should reject with an `Error` object.
+This method is called to check if a file exists in storage. The method must return a `Promise` and resolve with no value if the file exists in storage. If the file does not exist the promise should reject with no error object. Upon any errors, the promise should reject with an `Error` object.
 
 ### Properties
 

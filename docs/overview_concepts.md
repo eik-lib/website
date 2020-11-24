@@ -48,7 +48,7 @@ A package intended to be published to an Eik server should follow the [NPM modul
 
 All packages published to an Eik server is immutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependency from changes which can be breaking.
 
-Since packages are imutable the Eik server will set a infinit HTTP cache control header on all files belonging to a package to utilize the usage of browser caching.
+Since packages are immutable, the Eik server will set an infinite HTTP cache control header on all files belonging to a package to make use of browser caching.
 
 ## Aliasing
 

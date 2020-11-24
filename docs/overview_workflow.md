@@ -6,7 +6,7 @@ sidebar_label: Workflow
 
 In Eik, Import Maps and aliasing of assets are used to align library versions across multiple applications. Keeping in mind that import maps are a thing of the future, there are different strategies we can apply when mapping assets. Depending on the strategy choosen, the workflow will be a little bit different.
 
-Though; despite which strategy one choose, Eik does not force a structure on how the source is organized or what its written in (ex; TypeScript). There can also be multiple entry points for the source in your application.
+N.B. Regardless of the strategy one chooses, Eik does not force any structure for how the source is organized or what language it's written in (for example TypeScript). There can also be multiple entry points for the source in your application.
 
 Configuration for what Eik server to communicate with and which import maps to apply etc are configured in [the eik.json file](/docs/overview_eik_json) despite the workflow one use but depending on the workflow there might be a difference in which module(s) in the workflow which are using the configuration.
 

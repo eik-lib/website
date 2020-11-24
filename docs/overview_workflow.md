@@ -54,4 +54,4 @@ fs.readFile('./eik.json', (err, data) => {
 });
 ```
 
-The `@eik/common` module does contain multiple [helpers methods](https://github.com/eik-lib/common#helpers) to build absolute URLs to assets from eik.json.
+The `@eik/common` module contains multiple [helper methods](https://github.com/eik-lib/common#helpers) to build absolute URLs to assets from `eik.json`.

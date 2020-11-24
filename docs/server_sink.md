@@ -18,7 +18,7 @@ To set an alternative path, please see the XXXXXXXXXXXXXXXXXXX configuration.
 
 ### In memory
 
-The in memory sink will write files to and from memory. Files written to this sink will dissapear when the Eik server is restarted. This sink is handy if one want to spin up the Eik server and run tests against the server.
+The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests against.
 
 To enable the in memory sink, please see the XXXXXXXXXXXXXXXXXXX configuration.
 

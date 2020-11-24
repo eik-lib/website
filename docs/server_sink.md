@@ -51,7 +51,7 @@ These custom sinks are available:
 
  * [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
 
-Please feel free to let us know if your have a custom sink you would like to have listen.
+Please feel free to let us know if you have a custom sink you would like to have listed.
 
 ## Implementing a custom sink
 

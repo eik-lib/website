@@ -25,7 +25,7 @@ This will install the latest Eik server and start it at [http://localhost:4001](
 
 ## Customized setup
 
-The Eik service builds upon [Fastify](https://www.fastify.io/) and is in addition to being a standalone server also exposed as a Fastify plugin. This make it extremelly felxible and easy to set up a custom Eik service.
+The Eik service builds upon [Fastify](https://www.fastify.io/) and is in addition to being a standalone server also exposed as a Fastify plugin. This makes it extremely flexible and easy to set up a custom Eik service.
 
 Example of a custom server using the sink for Google Cloud Storage and extending the HTTP API with custom ready checks:
 

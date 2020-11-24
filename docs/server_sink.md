@@ -184,7 +184,7 @@ const SinkCustom = class SinkCustom extends Sink {
 
 ### Validation
 
-Its recommended to validate the arguments for all methods. The [Eik sink interface](https://github.com/eik-lib/sink) contain static methods to do so which can be used when implementing a sink:
+We recommend you validate the arguments for all methods. The [Eik sink interface](https://github.com/eik-lib/sink) contain static methods to do so which can be used when implementing a sink:
 
 ```js
 const Sink = require('@eik/sink');

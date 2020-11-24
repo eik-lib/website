@@ -86,6 +86,6 @@ Aliasing is not automatic in Eik. Aliases must be created or updated manually wh
 
 Aliasing is tied to the semantic version of each package where the alias is the major version as a single digit pointing to a given full version of the same major version. That means that all 1.x versions of a package can have a `v1` alias and all 2.x versions of the same package can have a `v2` alias at the same time.
 
-This is a feature to make sure there is a way to publish breaking changes in a package without breaking the dependents. In semantic versioning `patch` and `minor` versions are supposed to not contain breaking changes while a `major` version can contain breaking changes so in a situation where a package introduces a breaking change it should, according to semantic versioning, be published as a new major version.
+This is a feature to make sure there is a way to publish breaking changes in a package without breaking its dependencies. In semantic versioning `patch` and `minor` versions are supposed to not contain breaking changes while a `major` version can contain breaking changes so in a situation where a package introduces a breaking change it should, according to semantic versioning, be published as a new major version.
 
 This breaks a bit with what Eik is trying to solve if we look at the challenge we painted out in our [introduction](overview.md#introduction) but handling breaking changes is probably the only exception where one should accept not to align all dependents of a package to the same version of it.

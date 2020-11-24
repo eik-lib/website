@@ -8,7 +8,7 @@ In Eik, Import Maps and aliasing of assets are used to align library versions ac
 
 N.B. Regardless of the strategy one chooses, Eik does not force any structure for how the source is organized or what language it's written in (for example TypeScript). There can also be multiple entry points for the source in your application.
 
-Configuration for what Eik server to communicate with and which import maps to apply etc are configured in [the eik.json file](/docs/overview_eik_json) despite the workflow one use but depending on the workflow there might be a difference in which module(s) in the workflow which are using the configuration.
+Configuration for which Eik server to use and which import maps to apply etc is defined in [the eik.json file](/docs/overview_eik_json). Depending on the workflow used, there may be a difference in which workflow module(s) use this configuration.
 
 ## Ahead of time mapping
 

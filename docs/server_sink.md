@@ -43,7 +43,7 @@ const app = fastify({
 app.register(service.api());
 ```
 
-A custom sink does normally take its own set of properties, such as authentication keys etc, so please see the documentation for each sink of whats required.
+A custom sink normally takes its own set of properties, such as authentication keys etc, so please see the documentation for each sink for what's required.
 
 ### Available custom sinks
 

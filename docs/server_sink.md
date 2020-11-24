@@ -114,7 +114,7 @@ const SinkCustom = class SinkCustom extends Sink {
 | ----------- | ------- | -------- | --------- | ---------------------------------------------------------------------------------------------------- |
 | filePath    | `null`  | `string` | `true`    | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik  |
 
-This method is called when a file is to be read from the storage. The method must return a `Promise` and resolve with a `ReadableStream` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
+This method is called when a file is to be read from storage. The method must return a `Promise` and resolve with a `ReadableStream` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
 
 
 ```js

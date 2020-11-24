@@ -4,7 +4,7 @@ title: Concepts
 sidebar_label: Concepts
 ---
 
-Eik is for serving ESM and CSS but we use the therm packages when we refer what is uploaded to an Eik server. A package can contain any set of files which is considered a static assets to a web site. Despite being generic in what a package can contain Eik does have a package type definition which come into play when organizing assets.
+Eik is for serving ESM and CSS but we use the term packages when we refer what is uploaded to an Eik server. A package can contain any set of files which are considered to be static assets on a web site. Despite being agnostic in its opinion about what a package can contain, Eik does have a package type definition which comes into play when organizing assets.
 
 ## Package Types
 

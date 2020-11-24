@@ -89,7 +89,7 @@ A sink must implement the following API:
 | filePath    | `null`  | `string` | `true`    | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik  |
 | contentType | `null`  | `string` | `true`    | Content type of the file                                                                             |
 
-This method is called when a file is to be written to the storage. The method must return a `Promise` and resolve with a `WritableStream` when the storage is ready to be written too. The server will pipe the byte stream of the file to this stream. Upon any errors, the promise should reject with an `Error` object
+This method is called when a file is to be written to storage. The method must return a `Promise` and resolve with a `WritableStream` when the storage is ready to be written too. The server will pipe the byte stream of the file to this stream. Upon any errors, the promise should reject with an `Error` object
 
 ```js
 const { Writable } = require('stream');

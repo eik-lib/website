@@ -46,7 +46,7 @@ A package intended to be published to an Eik server should follow the [NPM modul
     + favicon.ico
 - package name length cannot exceed 214
 
-All packages published to a Eik server is imutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependent from changes which can be breaking.
+All packages published to an Eik server is immutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependency from changes which can be breaking.
 
 Since packages are imutable the Eik server will set a infinit HTTP cache control header on all files belonging to a package to utilize the usage of browser caching.
 

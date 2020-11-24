@@ -88,4 +88,4 @@ Aliasing is tied to the semantic version of each package where the alias is the 
 
 This is a feature to make sure there is a way to publish breaking changes in a package without breaking its dependencies. In semantic versioning `patch` and `minor` versions are supposed to not contain breaking changes while a `major` version can contain breaking changes so in a situation where a package introduces a breaking change it should, according to semantic versioning, be published as a new major version.
 
-This breaks a bit with what Eik is trying to solve if we look at the challenge we painted out in our [introduction](overview.md#introduction) but handling breaking changes is probably the only exception where one should accept not to align all dependents of a package to the same version of it.
+This breaks a bit with what Eik is trying to solve if we look at the challenge we outlined in our [introduction](overview.md#introduction) but the handling of breaking changes is probably the one place where it's acceptable not to align all dependencies of a package to the same version of it.

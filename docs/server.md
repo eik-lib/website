@@ -4,7 +4,7 @@ title: Server
 sidebar_label: Server
 ---
 
-The Eik server is a node.js application distributed as the [`@eik/service`](https://www.npmjs.com/package/@eik/service) npm package. It aims to run as a service out of the box but still be flexible and customizable to suite a wide range of infrastructures and needs.
+The Eik server is a node.js application distributed as the [`@eik/service`](https://www.npmjs.com/package/@eik/service) NPM package. It aims to be runnable as a service out of the box but still be flexible and customizable enough to suite a wide range of infrastructures needs.
 
 The only pre-requirement to run the Eik server is [node.js 12.x or newer](https://nodejs.org/).
 

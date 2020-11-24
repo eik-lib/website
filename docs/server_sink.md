@@ -4,7 +4,7 @@ title: Eik server - Sink
 sidebar_label: Sink
 ---
 
-The Eik server has a file sink consept which cater for the posibillity to write files to, and read files from different storage backends by swapping out sink modules in the server. Because each sink implements the same public API it is possible to use one sink in one environment and another sink in a different environment. 
+The Eik server has a file sink concept which caters for the posibillity to write files to, and read files from different storage backends by swapping out sink modules in the server. Because each sink implements the same public API, it is possible to use one sink in one environment and a different sink in another. 
 
 ## Built in sinks
 

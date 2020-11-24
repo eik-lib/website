@@ -24,7 +24,7 @@ NPM Packages live under the [/npm/](server_rest_api.md#npm-packages) namespace o
 
 ### Import Maps
 
-Import Maps are handeled as single JSON files in Eik and not trated as a package in the therm that multiple maps are bundeled up into one package. 
+Import Maps are handled as single JSON files in Eik and not treated as a package. It's only possible to upload a single file and not a group of files like it is when uploading packages.
 
 Import Maps live under the [/map/](server_rest_api.md#import-maps) namespace on a Eik server.
 

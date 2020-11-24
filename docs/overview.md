@@ -14,7 +14,7 @@ In a moderate or large sized web site it is very common that the site is built a
 
 ![User flow](/img/overview_page_to_page_flow.min.svg)
 
-Lets say we have a site where the frontpage (`site.com`) is one application. Then we have a web shop, a second application, on `site.com/shop` and finally there is a third application handling checkout on `site.com/checkout`. A user will normally arrive at the front and move to browsing the shop and then to the checkout.
+Lets say we have a site where the front page (`site.com`) is one application. Then we have a web shop, a second application, on `site.com/shop` and finally there is a third application handling checkout on `site.com/checkout`. A user will normally arrive at the front page, move to browsing the shop and then finish at the checkout.
 
 Let's also say that all of these applications are using [lit-html](https://lit-html.polymer-project.org/) for templating in the browser. We then have different applications depending on the same library that we want to be developed and deployed to production autonomously. Problems can arise when some of these application start to depend on different versions of the same library.
 

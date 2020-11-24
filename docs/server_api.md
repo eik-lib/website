@@ -72,7 +72,7 @@ Due to how the REST API deals with wildcards on pathnames to resolve files, it i
 
 Executes a health check on the Eik service. The health check mainly determines if the service is able to execute all methods needed to function properly using the current configured sink.
 
-Its recommended to execute the health check before the service accepts HTTP traffic:
+We recommend executing the health check before the service begins accepting HTTP traffic:
 
 ```js
 const run = async () => {

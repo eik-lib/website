@@ -42,7 +42,7 @@ const service = new Service({ customSink: sink });
 
 ## API
 
-A Eik service instance have the following API:
+An Eik service instance has the following API:
 
 ### .api()
 

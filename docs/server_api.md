@@ -94,7 +94,7 @@ Property that exposes a metric stream. Please see the [metrics section](/docs/se
 
 ### .config
 
-Property that exposes the internal configuration. Can be used to retrieve internal configuration. The config is built upon [Node Convict](https://github.com/mozilla/node-convict).
+Property that exposes internal configuration. Can be used to retrieve internal configuration. Config is built upon [Node Convict](https://github.com/mozilla/node-convict).
 
 ```js
 const Service = require('@eik/service');

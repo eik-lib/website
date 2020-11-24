@@ -44,7 +44,7 @@ To apply the mapping the server side part of the application should also pull th
 
 ## Referencing assets
 
-Absolute URLs to the assets on the Eik server is possible to build by the information found in eik.json:
+Absolute URLs to the assets on the Eik server can be built from the fields found in an `eik.json` file:
 
 ```js
 fs.readFile('./eik.json', (err, data) => {

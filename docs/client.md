@@ -29,8 +29,6 @@ Set the `files` property of `eik.json` with paths to client side
 asset files in your project relative to the `eik.json` file.
 Eg. if you have a `scripts.js` file in an assets directory, the `js.input` value will be `assets/scripts.js`
 
-> 👉 Instead of specifying Eik configuration in an `eik.json` file, it is also possible to define the same values in `package.json` under an `eik` key instead.
-
 ### Step 2
 
 Run publish to publish your assets to the server
@@ -201,8 +199,6 @@ This command takes no input and creates a new `eik.json` file in the current dir
 ```
 
 You will then need to set the various fields as appropriate. If you are running a local asset server, the default server url should be `http://localhost:8080`.
-
-> 👉 Instead of specifying Eik configuration in an `eik.json` file, it is also possible to define the same values in `package.json` under an `eik` key instead.
 
 ##### eik.json properties
 

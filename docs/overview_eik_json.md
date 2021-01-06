@@ -4,11 +4,13 @@ title: The eik.json File
 sidebar_label: The eik.json File
 ---
 
-Eik packaging is configured by way of a JSON meta file called `eik.json`. Any project that publishes assets to an Eik server must provide this file and use it to configure project setup.
+Eik packaging is configured either by way of a JSON meta file called `eik.json` or by values included in a `package.json` file. Any project that publishes assets to an Eik server must provide this configuration in one (and only one) of these locations.
 
-> 👉 Instead of specifying Eik configuration in an `eik.json` file, it is also possible to define the same values in `package.json` under an `eik` key.
+### Defining Eik configuration in an eik.json file
 
-### Example eik.json file
+The most common way to configure an Eik setup is to create and populate an `eik.json` file in a project's root. Values placed in this configuration tell the Eik client where the Eik server is location, which files to package, name, version and so on.
+
+__*Example*__
 
 ```json
 {
@@ -23,9 +25,11 @@ Eik packaging is configured by way of a JSON meta file called `eik.json`. Any pr
 }
 ```
 
-### Examples defining Eik configuration in a package.json file
+### Defining Eik configuration in a package.json file
 
-Defining all properties under the `eik` property
+Instead of specifying Eik configuration in an `eik.json` file, it is also possible to define the same values in `package.json`. When doing so, the exact same configuration values can be set and everything must be placed under an `eik` key.
+
+__*Example*__
 
 ```json
 {
@@ -42,7 +46,9 @@ Defining all properties under the `eik` property
 }
 ```
 
-Sharing `name` and `version` properties already defined in `package.json`
+It is also possible to have Eik use the `package.json` `name` and `version` fields by omitting them from the configuration.
+
+__*Example*__
 
 ```json
 {

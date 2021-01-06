@@ -6,6 +6,8 @@ sidebar_label: The eik.json File
 
 Eik packaging is configured by way of a JSON meta file called `eik.json`. Any project that publishes assets to an Eik server must provide this file and use it to configure project setup.
 
+> 👉 Instead of specifying Eik configuration in an `eik.json` file, it is also possible to define the same values in `package.json` under an `eik` key.
+
 ### Example eik.json file
 
 ```json
@@ -18,6 +20,42 @@ Eik packaging is configured by way of a JSON meta file called `eik.json`. Any pr
     "index.css": "./styles.css"
   },
   "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+}
+```
+
+### Examples defining Eik configuration in a package.json file
+
+Defining all properties under the `eik` property
+
+```json
+{
+  "eik": {
+    "name": "my-app",
+    "version": "1.0.0",
+    "server": "https://assets.myeikserver.com",
+    "files": {
+      "index.js": "./scripts.js",
+      "index.css": "./styles.css"
+    },
+    "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+  }
+}
+```
+
+Sharing `name` and `version` properties already defined in `package.json`
+
+```json
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "eik": {
+    "server": "https://assets.myeikserver.com",
+    "files": {
+      "index.js": "./scripts.js",
+      "index.css": "./styles.css"
+    },
+    "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+  }
 }
 ```
 

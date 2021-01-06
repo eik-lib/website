@@ -12,7 +12,7 @@ Use the `package` command to package and upload local JavaScript and CSS bundle 
 
 ### eik.json definitions
 
-In your app's `eik.json` or `package.json` file, you use the `files` key to define local file paths to be included when packaging.
+In your app's Eik config you use the `files` key to define local file paths to be included when packaging.
 
 #### eik.json file entrypoints
 

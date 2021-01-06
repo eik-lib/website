@@ -44,7 +44,7 @@ In your app's Eik config you use the `files` key to define local file paths to b
 
 ### The publish command
 
-With entrypoints defined in `eik.json` or `package.json`, running the `eik package` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field in `eik.json`.
+With entrypoints defined in the Eik config, running the `eik package` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
 
 ```sh
 eik package

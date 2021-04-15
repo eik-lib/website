@@ -15,7 +15,7 @@ When combined with Eik's aliasing feature, this gives you a powerful way to mana
 To view subcommands and additional help in your terminal you can use
 
 ```sh
-eik npm --help
+eik npm-alias --help
 ```
 
 ## Publishing from NPM
@@ -27,7 +27,7 @@ As an example of how this works, let's publish a version of the popular `lodash`
 Call the command with the name and version of the package you want to install from NPM.
 
 ```sh
-eik npm lodash 4.17.15
+eik npm-alias lodash 4.17.15
 ```
 
 ### Install the latest version
@@ -35,7 +35,7 @@ eik npm lodash 4.17.15
 It's possible to omit the version argument to get the latest available version on NPM.
 
 ```sh
-eik npm lodash
+eik npm-alias lodash
 ```
 
 ## Accessing installed NPM packages

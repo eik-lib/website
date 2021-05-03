@@ -8,7 +8,7 @@ Publishing and serving your application's client side assets is the main task Ei
 
 ## Producing packages
 
-Use the `package` command to package and upload local JavaScript and CSS bundle files to an Eik server from where they will be served.
+Use the `publish` command to package and upload local JavaScript and CSS bundle files to an Eik server from where they will be served.
 
 ### eik.json definitions
 
@@ -18,12 +18,7 @@ In your app's Eik config you use the `files` key to define local file paths to b
 
 ```json
 {
-    "files": {
-        "./scripts.js": "./scripts.js",
-        "./scripts.js.map": "./scripts.js.map",
-        "./styles.css": "./styles.css",
-        "./styles.css.map": "./styles.css.map",
-    }
+    "files": "./scripts"
 }
 ```
 
@@ -32,79 +27,86 @@ In your app's Eik config you use the `files` key to define local file paths to b
 ```json
 {
     "eik": {
-        "files": {
-            "./scripts.js": "./scripts.js",
-            "./scripts.js.map": "./scripts.js.map",
-            "./styles.css": "./styles.css",
-            "./styles.css.map": "./styles.css.map",
-        }
+        "files": "./scripts"
     }
 }
 ```
 
 ### The publish command
 
-With entrypoints defined in the Eik config, running the `eik package` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
+With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
 
 ```sh
-eik package
+eik publish
 ```
 
 Once uploaded, the archive will be unpacked and the files served at the appropriate paths.
 
-The following example shows how entrypoint definitions correspond to final file locations:
+The following examples show how entrypoint definitions correspond to final file locations:
 
 #### Example.
 
-*Either in eik.json define...*
+```js
+// everything in the `<cwd>/folder` is uploaded to /
+files: 'folder'
 
-```json
-{
-    "server": "http://assets.myserver.com",
-    "name": "my-pack",
-    "version": "1.0.0",
-    "files": {
-        "index.js": "./scripts.js",
-        "index.js.map": "./scripts.js.map",
-        "ie11.js": "./scripts-fallback.js",
-        "ie11.js.map": "./scripts-fallback.js.map",
-        "index.css": "./styles.css",
-        "index.css.map": "./styles.css.map"
-    }
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder'
+
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder/'
+
+// everything in the `<cwd>/folder/nested` is uploaded to /
+files: './folder/nested'
+
+// everything in the `<cwd>/folder` is uploaded to / (no directory recursion)
+files: './folder/*'
+
+// everything in the `<cwd>` is uploaded to / (dont do this!)
+files: './**/*'
+
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder/**/*'
+
+// everything in the `/path/to/folder` is uploaded to /
+files: '/path/to/folder/**/*'
+
+// everything in the `/path/to/folder` is uploaded to /
+files: '/path/to/folder'
+
+files: {
+    // file `<cwd>/path/to/esm.js` is uploaded and renamed to `/script.js`
+    'script.js': './path/to/esm.js',
+
+    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js` 
+    'script.js': '/absolute/path/to/esm.js',
+
+    // everything inside `/absolute/path/to/folder` is uploaded to `/folder`
+    'folder': '/absolute/path/to/folder',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': './path/to/folder',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': 'path/to/folder',
+
+    // everything in `/absolute/path/to/folder` is uploaded to `/folder`
+    'folder': '/absolute/path/to/folder/**/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder` (but no folder recursion)
+    'folder': './path/to/folder/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': 'path/to/folder/**/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder/scripts`
+    'folder/scripts': 'path/to/folder/**/*',
 }
 ```
 
-*or in package.json define...*
-
-```json
-{
-    "eik": {
-        "name": "my-pack",
-        "version": "1.0.0",
-        "server": "http://assets.myserver.com",
-        "files": {
-            "index.js": "./scripts.js",
-            "index.js.map": "./scripts.js.map",
-            "ie11.js": "./scripts-fallback.js",
-            "ie11.js.map": "./scripts-fallback.js.map",
-            "index.css": "./styles.css",
-            "index.css.map": "./styles.css.map"
-        }
-    }
-}
-```
-
-*then run the command...*
-
-```sh
-eik package
-```
-
-*URLs after packaging will be...*
+*URLs after uploading will be something like...*
 
 * `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
 * `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js`
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js.map`
 * `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
 * `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`

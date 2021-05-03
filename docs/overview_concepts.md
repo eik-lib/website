@@ -46,7 +46,7 @@ A package intended to be published to an Eik server should follow the [NPM modul
     + favicon.ico
 - package name length cannot exceed 214
 
-All packages published to an Eik server is immutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependency from changes which can be breaking.
+All packages published to an Eik server are immutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependency from changes which can be breaking.
 
 Since packages are immutable, the Eik server will set an infinite HTTP cache control header on all files belonging to a package to make use of browser caching.
 
@@ -54,7 +54,7 @@ Since packages are immutable, the Eik server will set an infinite HTTP cache con
 
 Aliasing can be applied to all packages and is a way of having a static URL reference, which can change, to a version of a package. Aliases are mutable and can be set to point to different versions of a package. The alias URL will do a redirect to the full version that it is set to point to.
 
-Lets say we publish `lit-html`  version `1.1.1`  as an NPM package to an Eik server. It will then live on the following URL:
+Lets say we publish `lit-html`  version `1.1.1` as an NPM package to an Eik server. It will then live on the following URL:
 
 ```sh
 https://eik-server.com/npm/lit-html/1.1.1/

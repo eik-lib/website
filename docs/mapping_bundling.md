@@ -4,109 +4,87 @@ title: Bundling
 sidebar_label: Bundling
 ---
 
-Tools like [Microbundle], [Create React App][cra], [Vuex] and [Next.js] are popular for one primary reason: nobody likes configuring bundlers. We just want to write our app code and move on with our day.
+Eik is flexible with regards to how you decide to bundle your code for distribution with one caveat for JavaScript code. At the current time, since bare import mapping requires ESM bundler output, bundlers that do not yet output ESM such as Webpack cannot make use of bare import mapping. Since in large part, the real advantage of using Eik stems from this feature, it's best if you can use a bundler with first class ESM output support. For now, we recommend choosing Rollup or ESBuild. Next.js users are stuck with webpack which unfortunately means that for the current moment they will not be able to use bare import mapping. We hope this situation to improve in the near future.
 
-## Why we forked [microbundle]
+## Bundling - an example using Rollup and PostCSS
 
-We love [microbundle] <3. But it doesn't support import maps. We [forked it][eik-microbundle] to add that functionality. We're currently experimenting and discovering the optimal way of generating import mapped esm bundles as well as IE11 fallback bundles. The long term goal is to land contributions to [microbundle] so we can one day delete our [fork][eik-microbundle].
+### Install dependencies
 
-## Using [@eik/microbundle][eik-microbundle]
+Install the following dev dependencies...
 
-Installing from npm:
-
-```sh
-npm install @eik/microbundle
+```
+npm i -D @eik/postcss-plugin @eik/rollup-plugin @rollup/plugin-commonjs @rollup/plugin-node-resolve postcss postcss-cli postcss-import rollup rollup-plugin-terser cssnano
 ```
 
-Since we intend to one day delete our fork, we use the same name for our binary command as [microbundle]:
+### Eik.json
 
-```sh
-microbundle --help
+Ensure you have an `eik.json` file in your project root or added to `package.json` and that you have specified valid import map files in the `import-map` section.
+
 ```
-
-Beyond implementing the rollup plugin for eik import mapping, there are some differences in our fork from the original. Pay attention to the readme for eik microbundle for up to date information on those.
-
-## Bundling applications
-
-In this guide "applications" are projects with a `package.json` that publishes assets to eik, but not to npm.
-For these use cases we can use the simple setup, given this `package.json`:
-
-```json
 {
-  "scripts": {
-    "build": "npm run build:esm && npm run build:ie11",
-    "build:esm": "microbundle index.js -o dist/esm.js --no-pkg-main --import-map auto -f modern",
-    "build:ie11": "microbundle index.js -o dist/ie11.js --no-pkg-main --external none -f iife"
-  },
-  "dependencies": {
-    "@eik/microbundle": "^0.2.10"
-  },
-  "devDependencies": {
-    "@eik/cli": "^1.4.3"
-  }
-}
-```
-
-And an `eik.json` like:
-
-```json
-{
+  "name": "<name>",
   "version": "1.0.0",
-  "name": "my-pack",
-  "files": {
-    "/": "./dist/*"
-  },
-  "import-map": ["..."]
+  "server": "https://<your Eik server address>",
+  "type": "package",
+  "files": "./dist",
+  "import-map": "https://<your Eik server address>/map/<your import map name>/v1"
 }
 ```
 
-You'll have `esm.js`, `esm.css` and `ie11.js` generated for you when you run `npm run build` and then run `eik version && eik publish`. Ready to be used like this:
+### Rollup
 
-```html
-<link
-  href="http://assets.myserver.com/pkg/my-pack/1.0.0/esm.css"
-  rel="stylesheet"
-/>
-<script
-  src="http://assets.myserver.com/pkg/my-pack/1.0.0/esm.js"
-  type="module"
-></script>
-<script
-  src="http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js"
-  nomodule
-></script>
+Create a Rollup configuration file in the root of your project called `rollup.config.js`
+
+```js
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { terser } from "rollup-plugin-terser";
+import commonjs from '@rollup/plugin-commonjs';
+import plugin from "@eik/rollup-plugin";
+
+export default {
+  input: 'path/to/your/script.js',
+  plugins: [
+      nodeResolve(),
+      commonjs({ include: /node_modules/ }),
+      plugin(),
+      terser({ format: { comments: false } })
+  ],
+  output: [
+      { 
+          sourcemap: true,
+          format: 'esm',
+          file: 'dist/script.js',
+      },
+  ],
+};
 ```
 
-## Bundling libraries
+### Post CSS
 
-Libraries that are published to both eik and npm need should use this setup (this example uses TypeScript):
+Create a PostCSS configuration file in the root of your project called `postcss.config.js`
+
+```js
+module.exports = () => ({
+    plugins: [
+        require('@eik/postcss-plugin')(),
+        require('postcss-import')(),
+        require('cssnano')({ preset: 'default' }),
+    ],
+});
+```
+
+### Scripts
+
+Add bundling scripts to your `package.json` file. Be sure to change the path to your css file entrypoint.
 
 ```json
 {
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "files": ["dist/"],
   "scripts": {
-    "prebuild": "npx rimraf dist/** dist-eik/**",
-    "build": "npm run build:dist && npm run build:eik-esm && npm run build:eik-ie11",
-    "build:dist": "microbundle src/index.ts -o ./dist/index.js -f cjs && microbundle src/index.ts -o ./dist/index.esm.js -f esm --no-pkg-main",
-    "build:eik-esm": "microbundle src/index.ts -o ./dist-eik/esm.js --no-pkg-main --import-map auto -f modern",
-    "build:eik-ie11": "microbundle src/index.ts -o ./dist-eik/ie11.js --no-pkg-main --external none -f iife"
-    "publish:eik": "eik login -k $EIK_SERVER_KEY && eik publish"
-  },
-  "typings": "dist/index.d.ts",
-  "devDependencies": {
-    "@eik/cli": "1.4.3",
-    "@eik/microbundle": "^0.2.10",
-    "rimraf": "^3.0.2"
+    "build:css": "postcss ./path/to/styles.css > ./dist/styles.css",
+    "build:js": "rollup -c",
+    "build": "npm run build:js && npm run build:css",
+    "watch:js": "rollup -cw",
+    "watch:css": "postcss -w ./path/to/styles.css > ./dist/styles.css"
   }
 }
 ```
-
-What's important to note here is the usage of `--no-pkg-main` to bypass the filename template feature of microbundle, which works sligtly differently in our fork and might change in the future. Using `--no-pkg-main` ensures it'll always work.
-
-[eik-microbundle]: https://github.com/eik-lib/microbundle#readme
-[microbundle]: https://github.com/developit/microbundle#readme
-[cra]: https://create-react-app.dev/
-[vuex]: https://vuex.vuejs.org/
-[next.js]: https://nextjs.org/

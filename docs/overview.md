@@ -16,7 +16,7 @@ In a moderate or large sized web site it is very common that the site is built a
 
 Lets say we have a site where the front page (`site.com`) is one application. Then we have a web shop, a second application, on `site.com/shop` and finally there is a third application handling checkout on `site.com/checkout`. A user will normally arrive at the front page, move to browsing the shop and then finish at the checkout.
 
-Let's also say that all of these applications are using [lit-html](https://lit-html.polymer-project.org/) for templating in the browser. We then have different applications depending on the same library that we want to be developed and deployed to production autonomously. Problems can arise when some of these application start to depend on different versions of the same library.
+Let's also say that all of these applications are using [lit-html](https://lit-html.polymer-project.org/) for templating in the browser. We then have different applications depending on the same library that we want to be developed and deployed to production autonomously. Problems can arise when some of these applications start to depend on different versions of the same library.
 
 ![Non-optimised loading of assets](/img/overview_page_to_page_diff_versions.min.svg)
 
@@ -24,14 +24,14 @@ Our challenge is to avoid the end user having to end up downloading different ve
 
 ![Optimised loading of assets](/img/overview_page_to_page_same_versions.min.svg)
 
-The Eik solution is to make all applications point to the same version of the same library in production despite that the applications are developed using different patch or minor version. If the library then has appropriate HTTP cache headers, the browser will do the rest and make sure the library is loaded over the wire only once during the user's visit to our site.
+The Eik solution is to make all applications point to the same version of the same library in production despite the fact that the applications are developed using different patch or minor version. If the library then has appropriate HTTP cache headers, the browser will do the rest and make sure the library is loaded over the wire only once during the user's visit to our site.
 
 
 ## How Eik works
 
-The main role of the Eik server is to serve static assets uploaded to the server. Upon upload, assets will be given a new versioned pathname for each upload and are considered immutable. A change in an asset is a new version on the Eik server. By doing so, served assets can be cached forever in the end users browser.
+The main role of the Eik server is to serve static assets uploaded to it. Upon upload, assets will be given a new versioned pathname for each upload (assets at any given path are immutible and will never change). A change to an asset is published as a new version to a new URL on the Eik server. By doing this, served assets can be cached forever in the end users browser.
 
-The Eik server also has the concept called an alias. An alias is a non immutable pathname which can be set to redirect requests to it, to an immutable asset pathname. 
+The Eik server also has a concept called an alias. An alias is a non immutable pathname which can be set to redirect requests sent to it, to an immutable asset pathname. 
 
 For example, let us say that we upload lit-html version 1.1.1 to an Eik server. This version of lit-html will then live on the immutable URL `/npm/lit-html/1.1.1`. We can then set an alias for lit-html and this alias will be on the non immutable pathname `/npm/lit-html/v1`. Any request to any file under the alias at `/npm/lit-html/v1` will then be redirected to the matching file under `/npm/lit-html/1.1.1`.
 
@@ -69,7 +69,7 @@ In Eik, we utilize bare imports to align modules (ex; the applications in our ex
 
 ## Import Maps
 
-[Import Maps](https://github.com/WICG/import-maps) is fairly new and up and coming web standard. An Import Map is a simple object mapping between a bare import statement and a legal ESM import statement. The idea is that an Import Map should be used to map bare import statements to fully qualified import statements in ESM.
+[Import Maps](https://github.com/WICG/import-maps) are a fairly new and up and coming web standard. An Import Map is a simple object mapping between a bare import statement and a legal ESM import statement. The idea is that an Import Map should be used to map bare import statements to fully qualified import statements in ESM.
 
 An Import Map looks something like this:
 
@@ -82,7 +82,7 @@ An Import Map looks something like this:
 
 Eik has support for storing Import Maps under a dedicated namespace. Import Maps are versioned and immutable and can be aliased in the same way that assets can.
 
-Eik's mapping utils is used to apply Import Maps to assets during bundling.
+Eik's mapping utils are used to apply Import Maps to assets during bundling.
 
 ## Mapping it together
 

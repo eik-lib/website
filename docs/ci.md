@@ -12,7 +12,7 @@ The process for publishing new asset versions from CI is as follows:
 
 1. Login to the Eik server
 1. Run the `eik version` command
-2. Run the `eik package` command
+2. Run the `eik publish` command
 3. Commit new version change to `eik.json`
 4. Push the change back to the repository
 

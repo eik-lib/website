@@ -10,13 +10,9 @@ In the following example, the `@podium/browser` package will be set up as a depe
 
 ## Publish from NPM
 
-Publish an Eik mirror of the NPM package `@podium/browser`. Eik installs a local copy of the module, bundles it into a single ESM friendly file and uploads it to an Eik server ready for use.
+Publish a version of `@podium/browser` to your Eik server using the `npm` namespace. The process for this is essentially the same as for any other package that you publish except for that you should set the `eik.json` file's `type` field to `npm`.
 
-```sh
-eik npm @podium/browser 1.0.0-beta.2
-```
-
-`@podium/browser` should now be available at `https://myeikserver.com/npm/@podium/browser/1.0.0-beta.2/index.js`
+Once you have done this, you should have a version of `@podium/browser` available at a URL similar to `https://myeikserver.com/npm/@podium/browser/1.0.0-beta.2/index.js`
 
 ## Alias NPM package
 
@@ -67,11 +63,9 @@ eik.json
 {
     "server": "https://myeikserver.com",
     "name": "my-app",
+    "type": "package",
     "version": "1.0.0",
-    "files": {
-        "./esm.js": "./bundle.js",
-        "./esm.js.map": "./bundle.js.map",
-    },
+    "files": "./dist",
     "import-map": "https://myeikserver.com/map/my-map/v1"
 }
 ```
@@ -80,22 +74,22 @@ eik.json
 
 This assumes you are already familiar with using Rollup and the instructions here only show how to augment an existing setup.
 
-Add `@eik/rollup-plugin-import-map` to your rollup config file
+Add `@eik/rollup-plugin` to your rollup config file
 
 ```sh
-npm install -D @eik/rollup-plugin-import-map
+npm install -D @eik/rollup-plugin
 ```
 
 ```js
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
-import eik from '@eik/rollup-plugin-import-map';
+import eik from '@eik/rollup-plugin';
 
 export default {
     input: './src/index.js',
     output: {
-        file: './bundle.js',
+        file: './dist/bundle.js',
         format: 'es',
         sourcemap: true,
     },
@@ -108,12 +102,10 @@ export default {
 };
 ```
 
-*n.b.* The `js` field in `eik.json` is set to read `bundle.js` which is produced by the rollup build.
-
 ## publish bundled code to Eik server
 
 ```sh
-eik package
+eik publish
 ```
 
 ## Consuming an application bundle
@@ -121,7 +113,7 @@ eik package
 The application bundle can be included in an HTML page using a script tag like so
 
 ```html
-<script src="https://myeikserver.com/pkg/my-app/1.0.0/esm.js" type="module" defer></script>
+<script src="https://myeikserver.com/pkg/my-app/1.0.0/bundle.js" type="module" defer></script>
 ```
 
 Any bare references to `@podium/browser` will have been replaced with absolute URLs to the Eik server.

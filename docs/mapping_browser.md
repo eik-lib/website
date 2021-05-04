@@ -6,7 +6,7 @@ sidebar_label: Browser Support
 
 Eventually, browsers will support Import Maps but currently (October 2020) no browser is shipped with Import Map enabled. 
 
-Chromium based browsers does ship support for Import Maps as an [experimental feature](https://www.chromestatus.com/feature/5315286962012160) which has to be turned on by enabling the Experimental Productivity Features flag in Chromium based browsers:
+Chromium based browsers do ship support for Import Maps as an [experimental feature](https://www.chromestatus.com/feature/5315286962012160) which has to be turned on by enabling the Experimental Productivity Features flag in Chromium based browsers:
 
  - [Chrome](chrome://flags/#enable-experimental-productivity-features)
  - [Brave](brave://flags/#enable-experimental-productivity-features)

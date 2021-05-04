@@ -1,51 +1,29 @@
 ---
 id: client_npm_packages
-title: ESM Friendly NPM Packages
-sidebar_label: NPM Packages
+title: NPM scoped Packages
+sidebar_label: NPM Scoped Packages
 ---
 
-One task Eik can perform is to take packages that have been published to NPM and create and serve ESM friendly versions for you to use in your app packages.
-
-This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do except that Eik will automatically transpile [common js](https://en.wikipedia.org/wiki/CommonJS) packages into an ESM version (as well as a fallback version for older browsers) before serving.
+One task you may wish to perform is to take packages that have been published to NPM and create and serve ESM friendly versions for use as across your team or organisation.
 
 When combined with Eik's aliasing feature, this gives you a powerful way to manage dependency versions across multiple applications.
 
-## The eik npm command
+## The eik type field
 
-To view subcommands and additional help in your terminal you can use
+The only difference from publishing application packages is the use of an `npm` namespace which can be set using the `type` field in `eik.json` or the `package.json` `eik` field.
 
-```sh
-eik npm --help
+```json
+{
+    "type": "npm"
+}
 ```
 
-## Publishing from NPM
+## Publishing
 
-As an example of how this works, let's publish a version of the popular `lodash` package to Eik.
+Once the type field has been set, simply run the `eik publish` command as you would usually.
 
-### Install a specific version 
-
-Call the command with the name and version of the package you want to install from NPM.
-
-```sh
-eik npm lodash 4.17.15
 ```
-
-### Install the latest version
-
-It's possible to omit the version argument to get the latest available version on NPM.
-
-```sh
-eik npm lodash
-```
-
-## Accessing installed NPM packages
-
-### The Eik meta command
-
-To view publish information, you can use the `eik meta` command.
-
-```sh
-eik meta lodash
+eik publish
 ```
 
 ### Server URLs

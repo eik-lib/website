@@ -4,11 +4,11 @@ title: The eik.json File
 sidebar_label: The eik.json File
 ---
 
-Eik packaging is configured either by way of a JSON meta file called `eik.json` or by values included in a `package.json` file. Any project that publishes assets to an Eik server must provide this configuration in one (and only one) of these locations.
+Eik packaging is configured either by way of a JSON meta file called `eik.json` or by values included in `package.json`. Any project that publishes assets to an Eik server must provide this configuration in one (and only one) of these ways.
 
 ### Defining Eik configuration in an eik.json file
 
-The most common way to configure an Eik setup is to create and populate an `eik.json` file in a project's root. Values placed in this configuration tell the Eik client where the Eik server is location, which files to package, name, version and so on.
+The most common way to configure an Eik setup is to create and populate an `eik.json` file in the project's root. Values placed in this configuration tell the Eik client where the Eik server is located, which files to package, its name, version and so on.
 
 __*Example*__
 
@@ -17,10 +17,7 @@ __*Example*__
   "name": "my-app",
   "version": "1.0.0",
   "server": "https://assets.myeikserver.com",
-  "files": {
-    "index.js": "./scripts.js",
-    "index.css": "./styles.css"
-  },
+  "files": "./dist",
   "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
 }
 ```
@@ -37,16 +34,13 @@ __*Example*__
     "name": "my-app",
     "version": "1.0.0",
     "server": "https://assets.myeikserver.com",
-    "files": {
-      "index.js": "./scripts.js",
-      "index.css": "./styles.css"
-    },
+    "files": "./dist",
     "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
   }
 }
 ```
 
-It is also possible to have Eik use the `package.json` `name` and `version` fields by omitting them from the configuration.
+It is also possible to have Eik use the `package.json` `name` and `version` fields by omitting them from the Eik configuration.
 
 __*Example*__
 
@@ -56,11 +50,7 @@ __*Example*__
   "version": "1.0.0",
   "eik": {
     "server": "https://assets.myeikserver.com",
-    "files": {
-      "index.js": "./scripts.js",
-      "index.css": "./styles.css"
-    },
-    "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+    "files": "./dist"
   }
 }
 ```
@@ -124,36 +114,50 @@ See the [server docs](/docs/server) for how to setup and configure an Eik server
 
 * required
 
-Defines JavaScript and CSS file entrypoints to publish. This can be a string defining a single entrypoint or it can be an object that maps publish paths to local file system file locations. 
+Defines JavaScript and CSS file entrypoints to publish. This can be a string defining a single entrypoint or folder, or it can be an object that maps publish paths to local file system file locations.
 
 See [application packages](/docs/client_app_packages) for more information.
 
+#### Entrypoint path
+
+The simplest way to specify files is with a path to a folder to upload. Everything within the folder will be uploaded as is and filenames will be preserved.
+
+If the following folder contains the files, `esm.js`, and `styles.css` then:
+
+```json
+{
+  "files": "path/to/files"
+}
+```
+
+will result in 3 files at the following locations:
+
+* `/pkg/<name>/<version>/eik.json`
+* `/pkg/<name>/<version>/esm.js`
+* `/pkg/<name>/<version>/styles.css`
+
 #### Entrypoint file mappings
 
-An object must be provided to define any number of JavaScript files to be included when publishing. Object keys define publish locations on the Eik server and object values define the local file entrypoint locations. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
+Instead of a string, an object can be provided to define any number of JavaScript files to be included when publishing. Object keys define publish locations on the Eik server and object values define the local file entrypoint locations and may include globbing. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
 
 The following defines several JavaScript and CSS entrypoints and their locations on the server where they will be published to. 
 
 ```json
 {
   "files": {
-    "./esm.js": "./esm.js",
-    "./esm.js.map": "./esm.js.map",
-    "./ie11.js": "./ie11.js",
-    "./ie11.js.map": "./ie11.js.map",
-    "./styles.css": "./styles.css",
-    "./styles.css.map": "./styles.css.map",
+    "./esm.js": "path/to/esm.js",
+    "./esm.js.map": "path/to/esm.js.map",
+    "./styles.css": "path/to/styles.css",
+    "./styles.css.map": "path/to/styles.css.map",
   }
 }
 ```
 
-This will result in 7 files at the following locations:
+This will result in files at the following locations:
 
 * `/pkg/<name>/<version>/eik.json`
 * `/pkg/<name>/<version>/esm.js`
 * `/pkg/<name>/<version>/esm.js.map`
-* `/pkg/<name>/<version>/ie11.js`
-* `/pkg/<name>/<version>/ie11.js.map`
 * `/pkg/<name>/<version>/styles.css`
 * `/pkg/<name>/<version>/styles.css.map`
 

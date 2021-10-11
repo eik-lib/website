@@ -13,7 +13,7 @@ jobs:
     - name: install node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '12.x'
+        node-version: '16.x'
     - name: npm install
       run: npm install
     - name: npm run deploy
@@ -25,3 +25,4 @@ jobs:
       env:
         CI: true
         GIT_USER: trygve-lie
+        DEPLOYMENT_BRANCH: main

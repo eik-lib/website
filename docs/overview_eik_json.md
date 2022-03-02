@@ -17,10 +17,7 @@ __*Example*__
   "name": "my-app",
   "version": "1.0.0",
   "server": "https://assets.myeikserver.com",
-  "files": {
-    "index.js": "./scripts.js",
-    "index.css": "./styles.css"
-  },
+  "files": "./dist",
   "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
 }
 ```
@@ -37,10 +34,7 @@ __*Example*__
     "name": "my-app",
     "version": "1.0.0",
     "server": "https://assets.myeikserver.com",
-    "files": {
-      "index.js": "./scripts.js",
-      "index.css": "./styles.css"
-    },
+    "files": "./dist",
     "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
   }
 }
@@ -56,10 +50,7 @@ __*Example*__
   "version": "1.0.0",
   "eik": {
     "server": "https://assets.myeikserver.com",
-    "files": {
-      "index.js": "./scripts.js",
-      "index.css": "./styles.css"
-    },
+    "files": "./dist",
     "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
   }
 }
@@ -124,38 +115,57 @@ See the [server docs](/docs/server) for how to setup and configure an Eik server
 
 * required
 
-Defines JavaScript and CSS file entrypoints to publish. This can be a string defining a single entrypoint or it can be an object that maps publish paths to local file system file locations. 
+Defines JavaScript and CSS file entrypoints to publish. This can be a string defining a folder or a single entrypoint or it can be an object that maps publish paths to local file system file locations.
 
-See [application packages](/docs/client_app_packages) for more information.
+#### Defining "files"
 
-#### Entrypoint file mappings
-
-An object must be provided to define any number of JavaScript files to be included when publishing. Object keys define publish locations on the Eik server and object values define the local file entrypoint locations. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
-
-The following defines several JavaScript and CSS entrypoints and their locations on the server where they will be published to. 
+The following specifies that all files in the `dist` folder should be uploaded to the Eik server. Note that relative paths and absolute paths can be used as well.
 
 ```json
 {
-  "files": {
-    "./esm.js": "./esm.js",
-    "./esm.js.map": "./esm.js.map",
-    "./ie11.js": "./ie11.js",
-    "./ie11.js.map": "./ie11.js.map",
-    "./styles.css": "./styles.css",
-    "./styles.css.map": "./styles.css.map",
-  }
+  "files": "./dist",
 }
 ```
 
-This will result in 7 files at the following locations:
+Nested folders are also supported:
 
-* `/pkg/<name>/<version>/eik.json`
-* `/pkg/<name>/<version>/esm.js`
-* `/pkg/<name>/<version>/esm.js.map`
-* `/pkg/<name>/<version>/ie11.js`
-* `/pkg/<name>/<version>/ie11.js.map`
-* `/pkg/<name>/<version>/styles.css`
-* `/pkg/<name>/<version>/styles.css.map`
+```json
+{
+  "files": "./dist/assets",
+}
+```
+
+You can use glob syntax to decide which files to include:
+
+```json
+{
+  "files": "./dist/**/*.js",
+}
+```
+
+Additionally, `files` can be an object instead of a string and mappings can be provided. This makes it possible to specify exact files to upload and even rename them in the process.
+Absolute and relative paths as well as glob syntax are also supported when defining file mappings in this way.
+
+```js
+files: {
+    // file `./path/to/esm.js` is uploaded and renamed to `/script.js`
+    'script.js': './path/to/esm.js',
+
+    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js` 
+    'script.js': '/absolute/path/to/esm.js',
+
+    // everything in `./path/to/folder` is uploaded to `/folder`
+    'folder': './path/to/folder',
+
+    // everything in `./path/to/folder` is uploaded to `/folder` (but no folder recursion)
+    'folder': './path/to/folder/*',
+
+    // everything in `./path/to/folder` is uploaded to `/folder/scripts`
+    'folder/scripts': 'path/to/folder/**/*',
+}
+```
+
+Keys (eg. "scripts.js") define publish locations on the Eik server and values (eg. "./path/to/esm.js") define the local file entrypoint locations. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
 
 See [application packages](/docs/client_app_packages) for more information.
 

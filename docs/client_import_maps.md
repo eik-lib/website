@@ -97,7 +97,10 @@ import React from 'https://assets.myeikserver.com/npm/react/16.17.4/index.js';
 
 We currently support the following plugins
 
-* Rollup: [@eik/rollup-plugin-import-map](https://github.com/eik-lib/rollup-plugin-import-map)
+* Rollup: [@eik/rollup-plugin](https://github.com/eik-lib/rollup-plugin)
+* Esbuild: [@eik/esbuild-plugin](https://github.com/eik-lib/esbuild-plugin)
+* PostCSS: [@eik/postcss-plugin](https://github.com/eik-lib/postcss-plugin)
+* Webpack: [@eik/webpack-plugin](https://github.com/eik-lib/webpack-plugin)
 
 ## Usage with Aliases
 

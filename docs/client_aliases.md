@@ -40,7 +40,7 @@ After publishing a new version of a package `1.0.1`
 
 ```sh
 eik version patch
-eik package
+eik publish
 ```
 
 The alias can then be updated with the same alias command as before giving it the newly published version
@@ -75,13 +75,7 @@ eik npm-alias lodash 4.17.18 4
 
 ### Updating an alias
 
-After publishing a new version of the NPM package
-
-```sh
-eik npm lodash 4.17.19
-```
-
-The alias can then be updated with the same alias command as before giving it the newly published version
+After publishing a new version of the NPM package the alias can then be updated with the same alias command as before giving it the newly published version
 
 ```sh
 eik npm-alias lodash 4.17.19 4

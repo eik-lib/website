@@ -4,38 +4,48 @@ title: ESM Friendly NPM Packages
 sidebar_label: NPM Packages
 ---
 
-One task Eik can perform is to take packages that have been published to NPM and create and serve ESM friendly versions for you to use in your app packages.
+One task Eik can be used for is to serve packages that have been published to NPM as served, ESM friendly versions for you to use in your app packages.
 
-This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do except that Eik will automatically transpile [common js](https://en.wikipedia.org/wiki/CommonJS) packages into an ESM version (as well as a fallback version for older browsers) before serving.
+This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do except that by serving these directly from Eik you are not dependent on a third party service and you can maintain more fine grained control over package versioning.
 
 When combined with Eik's aliasing feature, this gives you a powerful way to manage dependency versions across multiple applications.
 
-## The eik npm command
+## The eik type field
 
-To view subcommands and additional help in your terminal you can use
+While not strictly necessary, to avoid clashes with your own app packages, Eik provides a namespace specifically for NPM packages. To use this `npm` namespace, simply set the `type` field in `eik.json` to `npm` like so:
 
-```sh
-eik npm --help
+```json
+{
+    "name": "lit",
+    "server": "https://myeikserver.com",
+    "version": "1.0.0",
+    "type": "npm",
+    "files": "./dist"
+}
 ```
 
-## Publishing from NPM
+When you do so, running the `npm publish` command will publish all files under the `npm` path on the Eik server.
 
-As an example of how this works, let's publish a version of the popular `lodash` package to Eik.
+### Server URLs
 
-### Install a specific version 
+Package URLs follow a specific format which are predictable so you can import any published packages into your application code via its URL.
 
-Call the command with the name and version of the package you want to install from NPM.
+#### Package URL format
 
-```sh
-eik npm lodash 4.17.15
+```
+http(s)://<server origin>/npm/<package name>/<package version>/<filename>.<extension>
 ```
 
-### Install the latest version
+If we were to run publish using the `eik.json` file definition above, resulting URLs would look like something like:
 
-It's possible to omit the version argument to get the latest available version on NPM.
+```
+https://myeikserver.com/npm/lit/1.0.0/index.js
+```
 
-```sh
-eik npm lodash
+#### ESM Imports
+
+```js
+import lodash from 'https://myeikserver.com/npm/lit/1.0.0/index.js'
 ```
 
 ## Accessing installed NPM packages
@@ -45,21 +55,6 @@ eik npm lodash
 To view publish information, you can use the `eik meta` command.
 
 ```sh
-eik meta lodash
+eik meta lit
 ```
 
-### Server URLs
-
-Package URLs follow a specific format which are predictable so you can import any published packages into your application code via its URL.
-
-#### Package URL format
-
-```
-http(s)://<server origin>/npm/<package name>/<package version>/index.js
-```
-
-#### ESM Imports
-
-```js
-import lodash from 'https://myeikserver.com/npm/lodash/4.17.15/index.js'
-```

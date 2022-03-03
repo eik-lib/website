@@ -40,11 +40,11 @@ eik login --server https://assets.myeikserver2.com --key ######
 So long as the client is logged in to a single server, all subsequent commands will know which server to use and provide credentials automatically.
 
 ```sh
-eik npm lodash
+eik publish
 ```
 
 *N.B.* If the client is authenticated with more than one server, it may be necessary to tell the client which server to use when using commands since the client will not decide which authenticated server to give precedence to. The `--server` (or `-s` for short) flag can be used to do this.
 
 ```sh
-eik npm lodash --server https://assets.myeikserver.com
+eik publish --server https://assets.myeikserver.com
 ```

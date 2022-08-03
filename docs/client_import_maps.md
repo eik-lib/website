@@ -7,7 +7,7 @@ sidebar_label: Import Maps
 Common dependencies can be separated out of your application bundles by the use of import maps.
 Import maps map "bare" imports in your code to common dependencies at published URLs.
 
-By creating and maintaining import maps, perhaps per team, across an entire organisation perhaps both, however you like, you can define which specific version of a dependency should be used across a number of applications. 
+By creating and maintaining import maps, perhaps per team, across an entire organisation perhaps both, however you like, you can define which specific version of a dependency should be used across a number of applications.
 
 Apps use the import map by fetching it from its published URL when they perform a client side code build and then dependencies will automatically be mapped to the endorsed version's URL.
 
@@ -16,7 +16,7 @@ Apps use the import map by fetching it from its published URL when they perform 
 A "bare" import is an import that is not specified as an absolute or a relative URL such as:
 
 ```js
-import React from 'react';
+import React from "react";
 ```
 
 An import like this has no meaning and your browser will not know what to do with it. However, writing code like this is common since bundlers like [rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) resolve these during bundling.
@@ -39,18 +39,36 @@ If we create an import map JSON file named `import-map.json` with the following 
 
 ```json
 {
-    "imports": {
-        "react": "https://assets.myeikserver.com/npm/react/16.17.4/index.js"
-    }
+  "imports": {
+    "react": "https://assets.myeikserver.com/npm/react/16.17.4/index.js"
+  }
 }
 ```
+
+## Enclosing import maps
+
+Ensure that your import map is enclosed in a folder with an `eik.json` file that specifies the `type` of `map`. The Eik configuration object should look something like the following example:
+
+```json
+{
+  "name": "my-map",
+  "type": "map",
+  "version": "1.0.0",
+  "server": "http://localhost",
+  "files": "./import-map.json"
+}
+```
+
+_Note that the `files` key points to our import map._
 
 ## Publishing import maps
 
 We can publish it to an Eik server with the following command:
 
+**NB!** It is important to note that for the following command to work, you must specify the type `map` in the Eik configuration file or append `--type map` to the publish command.
+
 ```sh
-eik map my-map 1.0.0 ./import-map.json
+eik publish
 ```
 
 Each import map is uniquely identified by a name and a version and will be uploaded and then served by the Eik server at a path of the form `/map/<name>/<version>` so in the case above, the import map will be published to `/map/my-map/1.0.0` on the Eik server. We can publish updates simply by specifying a newer version that any previously published. Eg. `1.0.1`.
@@ -63,7 +81,7 @@ You can specify which named version of an import map your application should use
 
 ```json
 {
-    "import-map": "http://assets.myserver.com/map/my-map/1.0.0"
+  "import-map": "http://assets.myserver.com/map/my-map/1.0.0"
 }
 ```
 
@@ -74,37 +92,37 @@ Bundler plugins (see below) use this field to automatically detect which import 
 Since import maps map "bare" import specifiers in applications to URLs, in our application we should continue to write import statements of the form:
 
 ```js
-import React from 'react';
+import React from "react";
 ```
 
 However, since import maps are not yet supported in browsers natively, it is necessary to use plugins during bundling to replace bare specifiers with URLs at bundle time.
 
-When the bundler runs, bare import specifiers will be replaced with URLs by whichever plugin you are using. 
+When the bundler runs, bare import specifiers will be replaced with URLs by whichever plugin you are using.
 
 For example, using the import map above, any import statements using bare imports to refer to react will be changed from:
 
 ```js
-import React from 'react';
+import React from "react";
 ```
 
 to:
 
 ```js
-import React from 'https://assets.myeikserver.com/npm/react/16.17.4/index.js';
+import React from "https://assets.myeikserver.com/npm/react/16.17.4/index.js";
 ```
 
 ## Supported plugins
 
 We currently support the following plugins
 
-* Rollup: [@eik/rollup-plugin](https://github.com/eik-lib/rollup-plugin)
-* Esbuild: [@eik/esbuild-plugin](https://github.com/eik-lib/esbuild-plugin)
-* PostCSS: [@eik/postcss-plugin](https://github.com/eik-lib/postcss-plugin)
-* Webpack: [@eik/webpack-plugin](https://github.com/eik-lib/webpack-plugin)
+- Rollup: [@eik/rollup-plugin](https://github.com/eik-lib/rollup-plugin)
+- Esbuild: [@eik/esbuild-plugin](https://github.com/eik-lib/esbuild-plugin)
+- PostCSS: [@eik/postcss-plugin](https://github.com/eik-lib/postcss-plugin)
+- Webpack: [@eik/webpack-plugin](https://github.com/eik-lib/webpack-plugin)
 
 ## Usage with Aliases
 
-For even more flexibility, consider using import maps in conjunction with [aliases](/docs/client_aliases). 
+For even more flexibility, consider using import maps in conjunction with [aliases](/docs/client_aliases).
 
-* Alias the latest version of React and put the alias into an import map so that upgrading React across all apps using the import map is as simple as updating the Alias
-* Alias the latest version of the import map so that applications will automatically get changes when they perform bundles after the alias has been updated (no need to go in and manually update eik.json in each app)
+- Alias the latest version of React and put the alias into an import map so that upgrading React across all apps using the import map is as simple as updating the Alias
+- Alias the latest version of the import map so that applications will automatically get changes when they perform bundles after the alias has been updated (no need to go in and manually update eik.json in each app)

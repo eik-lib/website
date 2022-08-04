@@ -41,13 +41,13 @@ Set the `package.json` name and version to match `@podium/browser` and add some 
 
 ```json
 {
-    "name": "@podium/browser",
-    "version": "1.2.1",
-    "eik": {
-        "server": "https://myeikserver.com",
-        "files": "./dist",
-        "type": "npm"
-    }
+  "name": "@podium/browser",
+  "version": "1.2.1",
+  "eik": {
+    "server": "https://myeikserver.com",
+    "files": "./dist",
+    "type": "npm"
+  }
 }
 ```
 
@@ -91,16 +91,27 @@ Create an import map JSON file that uses the `podium/browser` alias `v1` rather 
 
 ```json
 {
-    "imports": {
-        "@podium/browser": "https://myeikserver.com/npm/@podium/browser/v1/index.js"
-    }
+  "imports": {
+    "@podium/browser": "https://myeikserver.com/npm/@podium/browser/v1/index.js"
+  }
 }
 ```
 
 And then publish the import map to the Eik server
 
+_Eik config_
+
+```json
+{
+  "name": "my-map",
+  "type": "map",
+  "version": "1.0.1",
+  "files": "./import-map.json"
+}
+```
+
 ```sh
-eik map my-map 1.0.0 ./import-map.json
+eik publish
 ```
 
 The import map should now be available at `https://myeikserver.com/map/my-map/1.0.0`
@@ -123,11 +134,11 @@ Create an `eik.json` file describing the apps asset setup and enter the import m
 
 ```json
 {
-    "server": "https://myeikserver.com",
-    "name": "my-app",
-    "version": "1.0.0",
-    "files": "./dist",
-    "import-map": "https://myeikserver.com/map/my-map/v1"
+  "server": "https://myeikserver.com",
+  "name": "my-app",
+  "version": "1.0.0",
+  "files": "./dist",
+  "import-map": "https://myeikserver.com/map/my-map/v1"
 }
 ```
 
@@ -142,28 +153,23 @@ npm install -D @eik/rollup-plugin
 ```
 
 ```js
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import babel from '@rollup/plugin-babel';
-import eik from '@eik/rollup-plugin';
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import babel from "@rollup/plugin-babel";
+import eik from "@eik/rollup-plugin";
 
 export default {
-    input: './src/index.js',
-    output: {
-        file: './dist/index.js',
-        format: 'es',
-        sourcemap: true,
-    },
-    plugins: [
-        eik(),
-        resolve(),
-        commonjs(),
-        babel(),
-    ],
+  input: "./src/index.js",
+  output: {
+    file: "./dist/index.js",
+    format: "es",
+    sourcemap: true,
+  },
+  plugins: [eik(), resolve(), commonjs(), babel()],
 };
 ```
 
-*n.b.* The `files` field in `eik.json` is set to read `./dist/index.js` which is produced by the rollup build.
+_n.b._ The `files` field in `eik.json` is set to read `./dist/index.js` which is produced by the rollup build.
 Also note that you are not required to use Rollup at all. You could use Esbuild or Webpack for example.
 
 ### Publish bundled code to the Eik server
@@ -177,7 +183,11 @@ eik publish
 The application bundle can be included in an HTML page using a script tag like so
 
 ```html
-<script src="https://myeikserver.com/pkg/my-app/1.0.0/index.js" type="module" defer></script>
+<script
+  src="https://myeikserver.com/pkg/my-app/1.0.0/index.js"
+  type="module"
+  defer
+></script>
 ```
 
 Any bare references to `@podium/browser` will have been replaced with absolute URLs to the Eik server.

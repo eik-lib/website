@@ -134,8 +134,19 @@ Given the following import map file `import-map.json`
 
 The following command will upload the import map file `./import-map.json` in the current directory using the name `my-import-map` and the version `1.0.0`
 
+_Eik config_
+
+```json
+{
+  "name": "my-import-map",
+  "type": "map",
+  "version": "1.0.1",
+  "files": "./import-map.json"
+}
+```
+
 ```sh
-eik map my-import-map 1.0.0 ./import-map.json
+eik publish
 ```
 
 Given the following line now added to `eik.json`
@@ -165,16 +176,16 @@ eik meta lodash 4.17.16
 
 ### Command Summary
 
-| command    | aliases | description                                                     |
-| ---------- | ------- | --------------------------------------------------------------- |
-| init       | i       | Create an eik.json file in the current directory             |
-| login      |         | Authenticates client with eik server                            |
-| ping       |         | Pings eik server                                                |
-| publish    | p, pub  | Publish an app bundle                                           |
-| dependency | d, dep  | Publish a dependency bundle                                     |
-| map        | m       | Sets or deletes a "bare" import entry in an import-map file     |
-| alias      | a       | Sets a major semver alias for a given dependency or map         |
-| meta       | show    | Retrieves meta information for a package                        |
+| command    | aliases | description                                                 |
+| ---------- | ------- | ----------------------------------------------------------- |
+| init       | i       | Create an eik.json file in the current directory            |
+| login      |         | Authenticates client with eik server                        |
+| ping       |         | Pings eik server                                            |
+| publish    | p, pub  | Publish an app bundle                                       |
+| dependency | d, dep  | Publish a dependency bundle                                 |
+| map        | m       | Sets or deletes a "bare" import entry in an import-map file |
+| alias      | a       | Sets a major semver alias for a given dependency or map     |
+| meta       | show    | Retrieves meta information for a package                    |
 
 ### Commands Overview
 
@@ -202,13 +213,13 @@ You will then need to set the various fields as appropriate. If you are running 
 
 ##### eik.json properties
 
-| property     | description                                                         |
-| ------------ | ------------------------------------------------------------------- |
-| name         | App name, must be unique to the Eik server                          |
-| server       | Address to the asset server                                         |
-| js           | Configuration for JavaScript assets                                 |
-| css          | Configuration for CSS assets                                        |
-| import-map   | Specify import maps to be used to map bare imports during bundling  |
+| property   | description                                                        |
+| ---------- | ------------------------------------------------------------------ |
+| name       | App name, must be unique to the Eik server                         |
+| server     | Address to the asset server                                        |
+| js         | Configuration for JavaScript assets                                |
+| css        | Configuration for CSS assets                                       |
+| import-map | Specify import maps to be used to map bare imports during bundling |
 
 ###### name
 
@@ -318,6 +329,8 @@ The command takes the form:
 eik publish [optional arguments]
 ```
 
+It uses the `type` field in the `eik.json` to determine what type of asset is being uploaded. Available values are `package`, `map` and `npm`, where `package` is the default value.
+
 **Example**
 
 _Publishing app assets to server_
@@ -370,32 +383,6 @@ eik alias lit-html 1.1.2 1
 
 ...will create or update the `lit-html` alias `1` to point at `lit-html` version `1.1.2`
 
-#### map
-
-This command uploads an import map json file you have created locally to the server. You must upload the file with a `name` and a `version` and the file must be of the form:
-
-```json
-{
-  "imports": {
-    "<dependency name 1>": "url to dependency",
-    "<dependency name 2>": "url to dependency"
-  }
-}
-```
-
-_Note_ The argument `server` is taken from `eik.json` if such a file is present in the current directory. If not, you will need to specify this value with the command line flag `--server`.
-
-The command takes the form:
-
-```sh
-eik map [optional arguments] <name> <version> <path to file>
-```
-
-```bash
-eik map my-import-map 1.0.0 ./import-map.json
-# eik map --server http://assets.examplecdn.com my-import-map 1.0.0 ./import-map.json
-```
-
 #### meta
 
 This command fetches and displays meta information about a package from the server
@@ -430,14 +417,14 @@ const result = await new cli.Init(options).run();
 
 #### options
 
-| name    | description                           | type   | default         | required |
-| ------- | ------------------------------------- | ------ | --------------- | -------- |
-| logger  | log4j compliant logger object         | object | `null`          | no       |
-| cwd     | path to current working directory     | string | `process.cwd()` | no       |
-| name    | app name                              | string | `''`            | no       |
-| server  | URL to asset server                   | string | `''`            | no       |
-| js      | path to client side script entrypoint | string | `''`            | no       |
-| css     | path to client side style entrypoint  | string | `''`            | no       |
+| name   | description                           | type   | default         | required |
+| ------ | ------------------------------------- | ------ | --------------- | -------- |
+| logger | log4j compliant logger object         | object | `null`          | no       |
+| cwd    | path to current working directory     | string | `process.cwd()` | no       |
+| name   | app name                              | string | `''`            | no       |
+| server | URL to asset server                   | string | `''`            | no       |
+| js     | path to client side script entrypoint | string | `''`            | no       |
+| css    | path to client side style entrypoint  | string | `''`            | no       |
 
 ### publish
 
@@ -448,16 +435,16 @@ const result = await new cli.publish.App(options).run();
 
 #### options
 
-| name    | description                           | type     | default         | required |
-| ------- | ------------------------------------- | -------- | --------------- | -------- |
-| logger  | log4j compliant logger object         | object   | `null`          | no       |
-| cwd     | path to current working directory     | string   | `process.cwd()` | no       |
-| name    | app name                              | string   |                 | yes      |
-| server  | URL to asset server                   | string   |                 | yes      |
-| js      | path to client side script entrypoint | string   |                 | yes      |
-| css     | path to client side style entrypoint  | string   |                 | yes      |
-| map     | array of urls of import map files     | string[] | `[]`            | no       |
-| dryRun  | exit early and print results          | boolean  | false           | no       |
+| name   | description                           | type     | default         | required |
+| ------ | ------------------------------------- | -------- | --------------- | -------- |
+| logger | log4j compliant logger object         | object   | `null`          | no       |
+| cwd    | path to current working directory     | string   | `process.cwd()` | no       |
+| name   | app name                              | string   |                 | yes      |
+| server | URL to asset server                   | string   |                 | yes      |
+| js     | path to client side script entrypoint | string   |                 | yes      |
+| css    | path to client side style entrypoint  | string   |                 | yes      |
+| map    | array of urls of import map files     | string[] | `[]`            | no       |
+| dryRun | exit early and print results          | boolean  | false           | no       |
 
 ### dependency
 
@@ -468,14 +455,14 @@ const result = await new cli.publish.Dependency(options).run();
 
 #### options
 
-| name    | description                       | type     | default         | required |
-| ------- | --------------------------------- | -------- | --------------- | -------- |
-| logger  | log4j compliant logger object     | object   | `null`          | no       |
-| cwd     | path to current working directory | string   | `process.cwd()` | no       |
-| name    | app name                          | string   |                 | yes      |
-| server  | URL to asset server               | string   |                 | yes      |
-| map     | array of urls of import map files | string[] | `[]`            | no       |
-| dryRun  | exit early and print results      | boolean  | false           | no       |
+| name   | description                       | type     | default         | required |
+| ------ | --------------------------------- | -------- | --------------- | -------- |
+| logger | log4j compliant logger object     | object   | `null`          | no       |
+| cwd    | path to current working directory | string   | `process.cwd()` | no       |
+| name   | app name                          | string   |                 | yes      |
+| server | URL to asset server               | string   |                 | yes      |
+| map    | array of urls of import map files | string[] | `[]`            | no       |
+| dryRun | exit early and print results      | boolean  | false           | no       |
 
 ### map
 
@@ -504,13 +491,13 @@ const result = await new cli.Alias(options).run();
 
 #### options
 
-| name    | description                             | type   | default | choices      | required |
-| ------- | --------------------------------------- | ------ | ------- | ------------ | -------- |
-| logger  | log4j compliant logger object           | object | `null`  |              | no       |
-| server  | URL to asset server                     | string |         |              | yes      |
-| type    | type of resource to alias               | string |         | `pkg`, `map` | yes      |
-| name    | app name                                | string |         |              | yes      |
-| alias   | major number of a semver version number | string |         |              | yes      |
+| name   | description                             | type   | default | choices      | required |
+| ------ | --------------------------------------- | ------ | ------- | ------------ | -------- |
+| logger | log4j compliant logger object           | object | `null`  |              | no       |
+| server | URL to asset server                     | string |         |              | yes      |
+| type   | type of resource to alias               | string |         | `pkg`, `map` | yes      |
+| name   | app name                                | string |         |              | yes      |
+| alias  | major number of a semver version number | string |         |              | yes      |
 
 ### meta
 
@@ -519,8 +506,8 @@ const cli = require("@eik/cli");
 const result = await new cli.Meta(options).run();
 ```
 
-| name    | description                   | type   | default | choices | required |
-| ------- | ----------------------------- | ------ | ------- | ------- | -------- |
-| logger  | log4j compliant logger object | object | `null`  |         | no       |
-| server  | URL to asset server           | string |         |         | yes      |
-| name    | package name                  | string |         |         | yes      |
+| name   | description                   | type   | default | choices | required |
+| ------ | ----------------------------- | ------ | ------- | ------- | -------- |
+| logger | log4j compliant logger object | object | `null`  |         | no       |
+| server | URL to asset server           | string |         |         | yes      |
+| name   | package name                  | string |         |         | yes      |

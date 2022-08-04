@@ -23,7 +23,7 @@ An import like this has no meaning and your browser will not know what to do wit
 
 ## About import maps
 
-Import maps are an [emerging standard](https://github.com/WICG/import-maps) that allow control over what URLs get fetched by JavaScript import statements and import() expressions allowing "bare import specifiers", such as `import moment from "moment"`, to work in the browser (without a build step). By following this emerging standard, it will eventually be possible to use import maps in Eik apps without the need to support them during bundling. For now, however, it is necessary to use a plugin such as `rollup-plugin-eik-import-maps` when bundling to replace "bare imports" with values in import map files.
+Import maps are an [emerging standard](https://github.com/WICG/import-maps) that allow control over what URLs get fetched by JavaScript import statements and import() expressions allowing "bare import specifiers", such as `import moment from "moment"`, to work in the browser (without a build step). By following this emerging standard, it will eventually be possible to use import maps in Eik apps without the need to support them during bundling. For now, however, it is necessary to use a plugin such as `@eik/rollup-plugin` when bundling to replace "bare imports" with values in import map files.
 
 ## Example use cases
 
@@ -35,7 +35,7 @@ For an organisation with many web applications, each with a lot of pages, all us
 
 An import map is just a JSON file that's served at a specific URL. Eik includes support for uploading and versioning import maps.
 
-If we create an import map JSON file named `import-map.json` with the following contents:
+If we create an import map JSON file named `import-map.json` with the following content:
 
 ```json
 {
@@ -71,7 +71,7 @@ We can publish it to an Eik server with the following command:
 eik publish
 ```
 
-Each import map is uniquely identified by a name and a version and will be uploaded and then served by the Eik server at a path of the form `/map/<name>/<version>` so in the case above, the import map will be published to `/map/my-map/1.0.0` on the Eik server. We can publish updates simply by specifying a newer version that any previously published. Eg. `1.0.1`.
+Each import map is uniquely identified by a name and a version and will be uploaded and then served by the Eik server at a path of the form `/map/<name>/<version>` so in the case above, the import map will be published to `/map/my-map/1.0.0` on the Eik server. We can publish updates simply by specifying a newer version than any previously published. Eg. `1.0.1`.
 
 ## Using published import maps
 
@@ -119,6 +119,7 @@ We currently support the following plugins
 - Esbuild: [@eik/esbuild-plugin](https://github.com/eik-lib/esbuild-plugin)
 - PostCSS: [@eik/postcss-plugin](https://github.com/eik-lib/postcss-plugin)
 - Webpack: [@eik/webpack-plugin](https://github.com/eik-lib/webpack-plugin)
+* Rollup: [@eik/rollup-plugin](https://github.com/eik-lib/rollup-plugin)
 
 ## Usage with Aliases
 

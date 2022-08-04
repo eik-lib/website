@@ -1,30 +1,30 @@
 ---
 id: client_npm_packages
-title: ESM Friendly NPM Packages
-sidebar_label: NPM Packages
+title: NPM scoped Packages
+sidebar_label: NPM Scoped Packages
 ---
 
-One task Eik can be used for is to serve packages that have been published to NPM as served, ESM friendly versions for you to use in your app packages.
-
-This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do except that by serving these directly from Eik you are not dependent on a third party service and you can maintain more fine grained control over package versioning.
+One task you may wish to perform is to take packages that have been published to NPM and create and serve ESM friendly versions for use as across your team or organisation.
 
 When combined with Eik's aliasing feature, this gives you a powerful way to manage dependency versions across multiple applications.
 
 ## The eik type field
 
-While not strictly necessary, to avoid clashes with your own app packages, Eik provides a namespace specifically for NPM packages. To use this `npm` namespace, simply set the `type` field in `eik.json` to `npm` like so:
+The only difference from publishing application packages is the use of an `npm` namespace which can be set using the `type` field in `eik.json` or the `package.json` `eik` field.
 
 ```json
 {
-    "name": "lit",
-    "server": "https://myeikserver.com",
-    "version": "1.0.0",
-    "type": "npm",
-    "files": "./dist"
+    "type": "npm"
 }
 ```
 
-When you do so, running the `npm publish` command will publish all files under the `npm` path on the Eik server.
+## Publishing
+
+Once the type field has been set, simply run the `eik publish` command as you would usually.
+
+```
+eik publish
+```
 
 ### Server URLs
 
@@ -33,28 +33,11 @@ Package URLs follow a specific format which are predictable so you can import an
 #### Package URL format
 
 ```
-http(s)://<server origin>/npm/<package name>/<package version>/<filename>.<extension>
-```
-
-If we were to run publish using the `eik.json` file definition above, resulting URLs would look like something like:
-
-```
-https://myeikserver.com/npm/lit/1.0.0/index.js
+http(s)://<server origin>/npm/<package name>/<package version>/index.js
 ```
 
 #### ESM Imports
 
 ```js
-import lodash from 'https://myeikserver.com/npm/lit/1.0.0/index.js'
+import lodash from 'https://myeikserver.com/npm/lodash/4.17.15/index.js'
 ```
-
-## Accessing installed NPM packages
-
-### The Eik meta command
-
-To view publish information, you can use the `eik meta` command.
-
-```sh
-eik meta lit
-```
-

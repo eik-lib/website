@@ -12,13 +12,13 @@ Use the `publish` command to package and upload local JavaScript and CSS bundle 
 
 ### eik.json definitions
 
-In your app's Eik config you use the `files` key to define a local path or paths to be included when publishing.
+In your app's Eik config you use the `files` key to define local file paths to be included when packaging.
 
 #### eik.json file entrypoints
 
 ```json
 {
-  "files": "./dist"
+    "files": "./scripts"
 }
 ```
 
@@ -26,15 +26,15 @@ In your app's Eik config you use the `files` key to define a local path or paths
 
 ```json
 {
-  "eik": {
-    "files": "./dist"
-  }
+    "eik": {
+        "files": "./scripts"
+    }
 }
 ```
 
 ### The publish command
 
-With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field. The type of package uploaded depends on the `type` field specified in the config, which defalts to `package`, but other possible values are `npm` and `map`.
+With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
 
 ```sh
 eik publish
@@ -42,54 +42,71 @@ eik publish
 
 Once uploaded, the archive will be unpacked and the files served at the appropriate paths.
 
-The following example shows how entrypoint definitions correspond to final file locations:
+The following examples show how entrypoint definitions correspond to final file locations:
 
 #### Example.
 
-Given the following local files:
+```js
+// everything in the `<cwd>/folder` is uploaded to /
+files: 'folder'
 
-- `./dist/index.js`
-- `./dist/index.js.map`
-- `./dist/ie11.js`
-- `./dist/ie11.js.map`
-- `./dist/index.css`
-- `./dist/index.css.map`
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder'
 
-And the following eik.json definition:
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder/'
 
-```json
-{
-  "server": "http://assets.myserver.com",
-  "name": "my-pack",
-  "version": "1.0.0",
-  "files": "./dist"
+// everything in the `<cwd>/folder/nested` is uploaded to /
+files: './folder/nested'
+
+// everything in the `<cwd>/folder` is uploaded to / (no directory recursion)
+files: './folder/*'
+
+// everything in the `<cwd>` is uploaded to / (dont do this!)
+files: './**/*'
+
+// everything in the `<cwd>/folder` is uploaded to /
+files: './folder/**/*'
+
+// everything in the `/path/to/folder` is uploaded to /
+files: '/path/to/folder/**/*'
+
+// everything in the `/path/to/folder` is uploaded to /
+files: '/path/to/folder'
+
+files: {
+    // file `<cwd>/path/to/esm.js` is uploaded and renamed to `/script.js`
+    'script.js': './path/to/esm.js',
+
+    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js` 
+    'script.js': '/absolute/path/to/esm.js',
+
+    // everything inside `/absolute/path/to/folder` is uploaded to `/folder`
+    'folder': '/absolute/path/to/folder',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': './path/to/folder',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': 'path/to/folder',
+
+    // everything in `/absolute/path/to/folder` is uploaded to `/folder`
+    'folder': '/absolute/path/to/folder/**/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder` (but no folder recursion)
+    'folder': './path/to/folder/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder`
+    'folder': 'path/to/folder/**/*',
+
+    // everything in `<cwd>/path/to/folder` is uploaded to `/folder/scripts`
+    'folder/scripts': 'path/to/folder/**/*',
 }
 ```
 
-Or the following package.json definition:
+*URLs after uploading will be something like...*
 
-```json
-{
-  "eik": {
-    "name": "my-pack",
-    "version": "1.0.0",
-    "server": "http://assets.myserver.com",
-    "files": "./dist"
-  }
-}
-```
-
-When running the following command:
-
-```sh
-eik publish
-```
-
-Then the published URLs will be:
-
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js.map`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`

@@ -27,7 +27,13 @@ See [the server docs](/docs/server)
 
 Set the `files` property of `eik.json` with paths to client side
 asset files in your project relative to the `eik.json` file.
-Eg. if you have a `scripts.js` file in an assets directory, the `js.input` value will be `assets/scripts.js`
+Eg. if you have files to include in an `assets` directory, you could set the `files` value to be `assets`
+
+```json
+{
+  "files": "assets"
+}
+```
 
 ### Step 2
 
@@ -213,13 +219,14 @@ You will then need to set the various fields as appropriate. If you are running 
 
 ##### eik.json properties
 
-| property   | description                                                        |
-| ---------- | ------------------------------------------------------------------ |
-| name       | App name, must be unique to the Eik server                         |
-| server     | Address to the asset server                                        |
-| js         | Configuration for JavaScript assets                                |
-| css        | Configuration for CSS assets                                       |
-| import-map | Specify import maps to be used to map bare imports during bundling |
+| property   | description                                                            |
+| ---------- | ---------------------------------------------------------------------- |
+| name       | App name, must be unique to the Eik server                             |
+| type       | Package type. Can be "package", "npm", or "map", defaults to "package" |
+| server     | Address to the asset server                                            |
+| js         | Configuration for JavaScript assets                                    |
+| css        | Configuration for CSS assets                                           |
+| import-map | Specify import maps to be used to map bare imports during bundling     |
 
 ###### name
 
@@ -229,6 +236,16 @@ Names may contain any letters or numbers as well as the `-` and `_` characters.
 ```json
 {
   "name": "my-awesome-app"
+}
+```
+
+###### type
+
+Changes what namespace that a package is published under. Applications should use "package" (the default). When mirroring packages from the NPM repository, use "npm". Import maps use "map".
+
+```json
+{
+  "type": "package"
 }
 ```
 

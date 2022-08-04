@@ -55,7 +55,7 @@ And now `v1` will point to `1.0.1` instead of `1.0.0`
 
 ### Using an aliased version
 
-Creating aliases for NPM packages that have an Eik mirror allows you to include the alias script tags in your application without needing to update the script tag every time you publish a new bundle version.
+Creating aliases for NPM scoped packages allows you to include the alias script tags in your application without needing to update the script tag every time you publish a new bundle version.
 
 ```js
 <script type="module" defer src="https://myeikserver.com/npm/lodash/v4/index.js">
@@ -75,7 +75,7 @@ eik npm-alias lodash 4.17.18 4
 
 ### Updating an alias
 
-After publishing a new version of the NPM package the alias can then be updated with the same alias command as before giving it the newly published version
+After publishing a new version of an NPM scoped package, the alias can then be updated with the same alias command as before giving it the newly published version
 
 ```sh
 eik npm-alias lodash 4.17.19 4
@@ -120,7 +120,7 @@ _Eik config_
 eik publish
 ```
 
-The alias can then be updated with the same alias command as before giving it the newly published version
+After publishing a new version of an import map, the alias can then be updated with the same alias command as before giving it the newly published version
 
 ```sh
 eik map-alias my-map 1.0.1 1

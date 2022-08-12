@@ -80,7 +80,7 @@ https://myeikserver.com/npm/@podium/browser/1.2.1/index.js
 Next, we need to create an alias pointing to the exact version of `@podium/browser` that we published to Eik. In this case, `1.2.1` will be aliased to `v1`.
 
 ```sh
-eik npm-alias @podium/browser 1.2.1 1
+eik alias @podium/browser 1.2.1 1
 ```
 
 An alias for `@podium/browser` should now be available at `https://myeikserver.com/npm/@podium/browser/v1/index.js`
@@ -120,8 +120,10 @@ The import map should now be available at `https://myeikserver.com/map/my-map/1.
 
 Create an alias of the import map for use when packaging application code.
 
+**NB!** Your Eik config must specify the `type` of `map`, like displayed above.
+
 ```sh
-eik map-alias my-map 1.0.0 1
+eik alias my-map 1.0.0 1
 ```
 
 An alias for the import map `my-map` version `1.0.0` should now be available at `https://myeikserver.com/map/my-map/v1`

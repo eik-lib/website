@@ -184,7 +184,7 @@ eik meta lodash 4.17.16
 | publish    | p, pub  | Publish an app bundle                                       |
 | dependency | d, dep  | Publish a dependency bundle                                 |
 | map        | m       | Sets or deletes a "bare" import entry in an import-map file |
-| alias      | a       | Sets a major semver alias for a given dependency or map     |
+| alias      | a       | Sets a major semver alias for a given package or map     |
 | meta       | show    | Retrieves meta information for a package                    |
 
 ### Commands Overview

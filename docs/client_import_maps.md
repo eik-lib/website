@@ -7,7 +7,7 @@ sidebar_label: Import Maps
 Common dependencies can be separated out of your application bundles by the use of import maps.
 Import maps map "bare" imports in your code to common dependencies at published URLs.
 
-By creating and maintaining import maps, perhaps per team, across an entire organisation perhaps both, however you like, you can define which specific version of a dependency should be used across a number of applications.
+By creating and maintaining import maps, you can define which specific version of a dependency should be used across a number of applications. How you organise your import maps within your organisation is up to you and your organisational structure. It's common to maintain organisation wide import maps so that all applications are aligned on the same versions of dependencies but you could also consider team specific import maps as well.
 
 Apps use the import map by fetching it from its published URL when they perform a client side code build and then dependencies will automatically be mapped to the endorsed version's URL.
 

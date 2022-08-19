@@ -34,7 +34,7 @@ In your app's Eik config you use the `files` key to define a local path or paths
 
 ### The publish command
 
-With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field. The type of package uploaded depends on the `type` field specified in the config, which defalts to `package`, but other possible values are `npm` and `map`.
+With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field. The type of package uploaded depends on the `type` field specified in the config. Possible values are `package`, `npm` and `map` with `package` being the default.
 
 ```sh
 eik publish

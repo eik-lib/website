@@ -18,7 +18,7 @@ In your app's Eik config you use the `files` key to define local file paths to b
 
 ```json
 {
-    "files": "./scripts"
+  "files": "./scripts"
 }
 ```
 
@@ -26,15 +26,15 @@ In your app's Eik config you use the `files` key to define local file paths to b
 
 ```json
 {
-    "eik": {
-        "files": "./scripts"
-    }
+  "eik": {
+    "files": "./scripts"
+  }
 }
 ```
 
 ### The publish command
 
-With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
+With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field. The type of package uploaded depends on the `type` field specified in the config. Possible values are `package`, `npm` and `map` with `package` being the default.
 
 ```sh
 eik publish
@@ -78,7 +78,7 @@ files: {
     // file `<cwd>/path/to/esm.js` is uploaded and renamed to `/script.js`
     'script.js': './path/to/esm.js',
 
-    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js` 
+    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js`
     'script.js': '/absolute/path/to/esm.js',
 
     // everything inside `/absolute/path/to/folder` is uploaded to `/folder`
@@ -104,9 +104,9 @@ files: {
 }
 ```
 
-*URLs after uploading will be something like...*
+_URLs after uploading will be something like..._
 
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
-* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`
+- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
+- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
+- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
+- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`

@@ -18,7 +18,7 @@ In your app's Eik config you use the `files` key to define a local path or paths
 
 ```json
 {
-  "files": "./dist"
+    "files": "./dist"
 }
 ```
 
@@ -26,15 +26,15 @@ In your app's Eik config you use the `files` key to define a local path or paths
 
 ```json
 {
-  "eik": {
-    "files": "./dist"
-  }
+    "eik": {
+        "files": "./dist"
+    }
 }
 ```
 
 ### The publish command
 
-With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field. The type of package uploaded depends on the `type` field specified in the config. Possible values are `package`, `npm` and `map` with `package` being the default.
+With entrypoints defined in the Eik config, running the `eik publish` command will assemble files (specified by entrypoints) into an archive and upload the archive to the Eik server defined by the `server` field.
 
 ```sh
 eik publish
@@ -48,21 +48,21 @@ The following example shows how entrypoint definitions correspond to final file 
 
 Given the following local files:
 
-- `./dist/index.js`
-- `./dist/index.js.map`
-- `./dist/ie11.js`
-- `./dist/ie11.js.map`
-- `./dist/index.css`
-- `./dist/index.css.map`
+* `./dist/index.js`
+* `./dist/index.js.map`
+* `./dist/ie11.js`
+* `./dist/ie11.js.map`
+* `./dist/index.css`
+* `./dist/index.css.map`
 
 And the following eik.json definition:
 
 ```json
 {
-  "server": "http://assets.myserver.com",
-  "name": "my-pack",
-  "version": "1.0.0",
-  "files": "./dist"
+    "server": "http://assets.myserver.com",
+    "name": "my-pack",
+    "version": "1.0.0",
+    "files": "./dist"
 }
 ```
 
@@ -70,12 +70,12 @@ Or the following package.json definition:
 
 ```json
 {
-  "eik": {
-    "name": "my-pack",
-    "version": "1.0.0",
-    "server": "http://assets.myserver.com",
-    "files": "./dist"
-  }
+    "eik": {
+        "name": "my-pack",
+        "version": "1.0.0",
+        "server": "http://assets.myserver.com",
+        "files": "./dist"
+    }
 }
 ```
 
@@ -87,9 +87,9 @@ eik publish
 
 Then the published URLs will be:
 
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js.map`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
-- `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.js.map`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/ie11.js.map`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css`
+* `http://assets.myserver.com/pkg/my-pack/1.0.0/index.css.map`

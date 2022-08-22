@@ -86,6 +86,14 @@ Defines the value that will be used on the Eik server to configure the namespace
 
 See [application packages](/docs/client_app_packages) for more information.
 
+### type
+
+- optional
+
+Defines the package type that is used when uploading assets to the Eik server.
+
+Possible values are `package` (default), `map` or `npm`.
+
 ### version
 
 * required

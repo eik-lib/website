@@ -38,8 +38,19 @@ Create an import map JSON file that uses the `podium/browser` alias `v1` rather 
 
 And then publish the import map to an Eik server
 
+_Eik config_
+
+```json
+{
+  "name": "my-map",
+  "type": "map",
+  "version": "1.0.1",
+  "files": "./import-map.json"
+}
+```
+
 ```sh
-eik map my-map 1.0.0 ./import-map.json
+eik publish
 ```
 
 The import map should now be available at `https://myeikserver.com/map/my-map/1.0.0`

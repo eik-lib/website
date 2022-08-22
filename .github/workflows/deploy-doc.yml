@@ -9,11 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: install node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '12.x'
+        node-version: '16.x'
     - name: npm install
       run: npm install
     - name: npm run deploy
@@ -25,3 +25,4 @@ jobs:
       env:
         CI: true
         GIT_USER: trygve-lie
+        DEPLOYMENT_BRANCH: main

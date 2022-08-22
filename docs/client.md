@@ -140,8 +140,19 @@ Given the following import map file `import-map.json`
 
 The following command will upload the import map file `./import-map.json` in the current directory using the name `my-import-map` and the version `1.0.0`
 
+_Eik config_
+
+```json
+{
+  "name": "my-import-map",
+  "type": "map",
+  "version": "1.0.1",
+  "files": "./import-map.json"
+}
+```
+
 ```sh
-eik map my-import-map 1.0.0 ./import-map.json
+eik publish
 ```
 
 Given the following line now added to `eik.json`
@@ -335,6 +346,8 @@ The command takes the form:
 eik publish [optional arguments]
 ```
 
+It uses the `type` field in the `eik.json` to determine what type of asset is being uploaded. Available values are `package`, `map` and `npm`, where `package` is the default value.
+
 **Example**
 
 _Publishing app assets to server_
@@ -386,32 +399,6 @@ eik alias lit-html 1.1.2 1
 ```
 
 ...will create or update the `lit-html` alias `1` to point at `lit-html` version `1.1.2`
-
-#### map
-
-This command uploads an import map json file you have created locally to the server. You must upload the file with a `name` and a `version` and the file must be of the form:
-
-```json
-{
-  "imports": {
-    "<dependency name 1>": "url to dependency",
-    "<dependency name 2>": "url to dependency"
-  }
-}
-```
-
-_Note_ The argument `server` is taken from `eik.json` if such a file is present in the current directory. If not, you will need to specify this value with the command line flag `--server`.
-
-The command takes the form:
-
-```sh
-eik map [optional arguments] <name> <version> <path to file>
-```
-
-```bash
-eik map my-import-map 1.0.0 ./import-map.json
-# eik map --server http://assets.examplecdn.com my-import-map 1.0.0 ./import-map.json
-```
 
 #### meta
 

@@ -42,3 +42,9 @@ So long as the client is logged in to a single server, all subsequent commands w
 ```sh
 eik publish
 ```
+
+*N.B.* If the client is authenticated with more than one server, it may be necessary to tell the client which server to use when using commands since the client will not decide which authenticated server to give precedence to. The `--server` (or `-s` for short) flag can be used to do this.
+
+```sh
+eik publish --server https://assets.myeikserver.com
+```

@@ -14,6 +14,7 @@ When using a build tool to apply an Import Map ahead of time, the build process 
 
 The following build tool plugins are available:
 
- - [Rollup](https://github.com/eik-lib/import-map-rollup-plugin)
+ - [ESBuild](https://github.com/eik-lib/esbuild-plugin)
  - [PostCSS](https://github.com/eik-lib/import-map-postcss-plugin)
+ - [Rollup](https://github.com/eik-lib/import-map-rollup-plugin)
  

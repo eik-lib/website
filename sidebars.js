@@ -11,7 +11,6 @@ module.exports = {
       'mapping_import_map',
       'mapping_browser',
       'mapping_plugins',
-      'mapping_bundling',
     ],
     Client: [
       'client_installation',

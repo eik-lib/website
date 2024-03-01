@@ -32,7 +32,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} - FINN.no.`,
     },
     prism: {
-      theme: require('prism-react-renderer/themes/github'),
+      theme: require('prism-react-renderer').themes.github,
     },
   },
   presets: [

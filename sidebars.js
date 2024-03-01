@@ -5,7 +5,6 @@ module.exports = {
       'overview_concepts',
       'overview_workflow',
       'overview_eik_json',
-      'overview_caching'
     ],
     Mapping: [
       'mapping_import_map',

@@ -16,9 +16,9 @@ __*Example*__
 {
   "name": "my-app",
   "version": "1.0.0",
-  "server": "https://assets.myeikserver.com",
-  "files": "./dist",
-  "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+  "server": "https://assets.myserver.com",
+  "files": "./public",
+  "import-map": "https://assets.myserver.com/map/my-map/1.0.0"
 }
 ```
 
@@ -33,9 +33,9 @@ __*Example*__
   "eik": {
     "name": "my-app",
     "version": "1.0.0",
-    "server": "https://assets.myeikserver.com",
-    "files": "./dist",
-    "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+    "server": "https://assets.myserver.com",
+    "files": "./public",
+    "import-map": "https://assets.myserver.com/map/my-map/1.0.0"
   }
 }
 ```
@@ -49,9 +49,9 @@ __*Example*__
   "name": "my-app",
   "version": "1.0.0",
   "eik": {
-    "server": "https://assets.myeikserver.com",
-    "files": "./dist",
-    "import-map": "https://assets.myeikserver.com/map/my-map/1.0.0"
+    "server": "https://assets.myserver.com",
+    "files": "./public",
+    "import-map": "https://assets.myserver.com/map/my-map/1.0.0"
   }
 }
 ```
@@ -79,7 +79,7 @@ Once generated, it's necessary to add information about the Eik server URL for t
 
 ## eik.json file fields
 
-### name  
+### name
 
 * required
 
@@ -119,11 +119,11 @@ Defines JavaScript and CSS file entrypoints to publish. This can be a string def
 
 #### Defining "files"
 
-The following specifies that all files in the `dist` folder should be uploaded to the Eik server. Note that relative paths and absolute paths can be used as well.
+The following specifies that all files in the `public` folder should be uploaded to the Eik server. Note that relative paths and absolute paths can be used as well.
 
 ```json
 {
-  "files": "./dist",
+  "files": "./public",
 }
 ```
 
@@ -131,7 +131,7 @@ Nested folders are also supported:
 
 ```json
 {
-  "files": "./dist/assets",
+  "files": "./public/assets",
 }
 ```
 
@@ -139,7 +139,7 @@ You can use glob syntax to decide which files to include:
 
 ```json
 {
-  "files": "./dist/**/*.js",
+  "files": "./public/**/*.js",
 }
 ```
 
@@ -151,7 +151,7 @@ files: {
     // file `./path/to/esm.js` is uploaded and renamed to `/script.js`
     'script.js': './path/to/esm.js',
 
-    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js` 
+    // file `/absolute/path/to/esm.js` is uploaded and renamed to `/script.js`
     'script.js': '/absolute/path/to/esm.js',
 
     // everything in `./path/to/folder` is uploaded to `/folder`

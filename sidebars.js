@@ -6,12 +6,8 @@ module.exports = {
       'overview_workflow',
       'overview_eik_json',
     ],
-    Mapping: [
-      'mapping_import_map',
-      'mapping_browser',
-      'mapping_plugins',
-    ],
     Client: [
+      'client',
       'client_installation',
       'client_login',
       'client_app_packages',
@@ -19,6 +15,11 @@ module.exports = {
       'client_import_maps',
       'client_aliases',
       'client_putting_it_all_together',
+    ],
+    Mapping: [
+      'mapping_import_map',
+      'mapping_browser',
+      'mapping_plugins',
     ],
     Server: [
       'server',

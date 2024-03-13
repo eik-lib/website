@@ -1,35 +1,38 @@
 ---
 id: client
-title: Client
-sidebar_label: Client
+title: Publishing to Eik
+sidebar_label: Publishing to Eik
 ---
 
-## Installation
+## Install the Eik CLI
 
-```sh
-npm install -g @eik/cli
-```
+See [Installation](./client_installation.md) for how to set up the CLI you will need for publishing.
 
-## Quickstart guide
+## Configure Eik
 
-### Step 1.
-
-Generate an eik.json file in the current directory
+Generate an `eik.json` file in the current directory:
 
 ```sh
 eik init
 ```
 
-Fill in the generated `eik.json` file with the necessary details.
+Set the URL to your Eik server as the `server` property. See [the server docs](/docs/server) if you need to set up a server.
 
-For the `server` property, you will need to have set up and know the address to, and Eik asset server.
-See [the server docs](/docs/server)
+### Configure which files to publish
 
 Set the `files` property of `eik.json` with paths to client side
-asset files in your project relative to the `eik.json` file.
-Eg. if you have a `scripts.js` file in an assets directory, the `js.input` value will be `assets/scripts.js`
+asset files or directories in your project relative to the `eik.json` file.
 
-### Step 2
+```json
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "server": "https://assets.myserver.com",
+  "files": "./public"
+}
+```
+
+## Publish
 
 Run publish to publish your assets to the server
 
@@ -37,7 +40,7 @@ Run publish to publish your assets to the server
 eik publish
 ```
 
-## Additional tasks
+## Next steps
 
 ### Publishing global dependencies
 

@@ -17,10 +17,10 @@ While not strictly necessary, to avoid clashes with your own app packages, Eik p
 ```json
 {
     "name": "lit",
-    "server": "https://myeikserver.com",
+    "server": "https://assets.myserver.com",
     "version": "1.0.0",
     "type": "npm",
-    "files": "./dist"
+    "files": "./public"
 }
 ```
 

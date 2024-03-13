@@ -17,22 +17,36 @@
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
+.cta {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.4rem;
+  margin-bottom: 4.2rem;
 }
 
-.featureImage {
-  height: 200px;
-  width: 200px;
+.indexCtas {
+  --ifm-button-size-multiplier: 1.6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.indexCtas a:first-of-type {
+  margin-right: 1rem;
+}
+
+
+.indexCtas a,
+.indexCtas a:hover {
+  color: var(--ifm-color-content);
+}
+
+.indexCtas a:first-of-type,
+.indexCtas a:first-of-type:hover {
+  color: black;
 }
 
 .topImage {

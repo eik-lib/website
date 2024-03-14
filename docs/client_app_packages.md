@@ -18,7 +18,7 @@ In your app's Eik config you use the `files` key to define a local path or paths
 
 ```json
 {
-    "files": "./dist"
+    "files": "./public"
 }
 ```
 
@@ -27,7 +27,7 @@ In your app's Eik config you use the `files` key to define a local path or paths
 ```json
 {
     "eik": {
-        "files": "./dist"
+        "files": "./public"
     }
 }
 ```
@@ -48,12 +48,12 @@ The following example shows how entrypoint definitions correspond to final file 
 
 Given the following local files:
 
-* `./dist/index.js`
-* `./dist/index.js.map`
-* `./dist/ie11.js`
-* `./dist/ie11.js.map`
-* `./dist/index.css`
-* `./dist/index.css.map`
+* `./public/index.js`
+* `./public/index.js.map`
+* `./public/ie11.js`
+* `./public/ie11.js.map`
+* `./public/index.css`
+* `./public/index.css.map`
 
 And the following eik.json definition:
 
@@ -62,7 +62,7 @@ And the following eik.json definition:
     "server": "http://assets.myserver.com",
     "name": "my-pack",
     "version": "1.0.0",
-    "files": "./dist"
+    "files": "./public"
 }
 ```
 
@@ -74,7 +74,7 @@ Or the following package.json definition:
         "name": "my-pack",
         "version": "1.0.0",
         "server": "http://assets.myserver.com",
-        "files": "./dist"
+        "files": "./public"
     }
 }
 ```

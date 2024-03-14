@@ -44,8 +44,8 @@ Set the `package.json` name and version to match `@podium/browser` and add some 
     "name": "@podium/browser",
     "version": "1.2.1",
     "eik": {
-        "server": "https://myeikserver.com",
-        "files": "./dist",
+        "server": "https://assets.myserver.com",
+        "files": "./public",
         "type": "npm"
     }
 }
@@ -53,10 +53,10 @@ Set the `package.json` name and version to match `@podium/browser` and add some 
 
 ### Run a build to bundle up @podium/browser into a single file
 
-We can use Rollup to bundle up the code from `@podium/browser` into a single file and place it into the `dist` directory ready for upload like so:
+We can use Rollup to bundle up the code from `@podium/browser` into a single file and place it into the `public` directory ready for upload like so:
 
 ```
-npx rollup -f es -o ./dist/index.js ./node_modules/@podium/browser/src/index.js
+npx rollup -f es -o ./public/index.js ./node_modules/@podium/browser/src/index.js
 ```
 
 N.B. We ensure that ESM is preserved with the `-f es` flag.
@@ -123,11 +123,11 @@ Create an `eik.json` file describing the apps asset setup and enter the import m
 
 ```json
 {
-    "server": "https://myeikserver.com",
+    "server": "https://assets.myserver.com",
     "name": "my-app",
     "version": "1.0.0",
-    "files": "./dist",
-    "import-map": "https://myeikserver.com/map/my-map/v1"
+    "files": "./public",
+    "import-map": "https://assets.myserver.com/map/my-map/v1"
 }
 ```
 
@@ -150,7 +150,7 @@ import eik from '@eik/rollup-plugin';
 export default {
     input: './src/index.js',
     output: {
-        file: './dist/index.js',
+        file: './public/index.js',
         format: 'es',
         sourcemap: true,
     },
@@ -163,7 +163,7 @@ export default {
 };
 ```
 
-*n.b.* The `files` field in `eik.json` is set to read `./dist/index.js` which is produced by the rollup build.
+*n.b.* The `files` field in `eik.json` is set to read `./public/index.js` which is produced by the rollup build.
 Also note that you are not required to use Rollup at all. You could use Esbuild or Webpack for example.
 
 ### Publish bundled code to the Eik server

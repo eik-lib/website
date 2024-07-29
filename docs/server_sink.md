@@ -10,32 +10,21 @@ The Eik server has a file sink concept which caters for the posibillity to write
 
 To make it easy to start up an Eik server, the server is shipped with a couple of built in sinks. The file system sink is the default sink in use when a server is started without specifying a sink.
 
-<!--
 ### File system
 
-The file system sink will write files to and from the local file system. By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point.
+This is the default sink when you start the Eik server. The file system sink will write files to and from the local file system.
 
-To set an alternative path, please see the XXXXXXXXXXXXXXXXXXX configuration.
--->
+By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point. To configure a different folder, use the `SINK_PATH` environment variable.
+
+```sh
+SINK_PATH=/var/persistent/storage/eik node server.js
+```
 
 ### In memory
 
 The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests against.
 
-```js
-import fastify from "fastify";
-import Service from "@eik/service";
-import Sink from "@eik/sink-memory";
-
-const sink = new Sink();
-const service = new Service({ customSink: sink });
-
-const app = fastify({
-  ignoreTrailingSlash: true,
-});
-
-app.register(service.api());
-```
+To use it, set the `SINK_TYPE` environment variable to `mem`.
 
 ## Custom sinks
 
@@ -65,6 +54,7 @@ A custom sink normally takes its own set of properties, such as authentication k
 These custom sinks are available:
 
 - [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
+- [Memory](https://github.com/eik-lib/sink-memory) (like the built-in, but usable with the `customSink` option rather than an environment variable)
 
 Please feel free to let us know if you have a custom sink you would like to have listed.
 

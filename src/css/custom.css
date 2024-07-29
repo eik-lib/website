@@ -16,14 +16,17 @@
   --ifm-color-primary-lighter: rgb(247, 245, 45);
   --ifm-color-primary-lightest: rgb(247, 250, 60);
   */
-  --ifm-color-primary: #f7c800;
-  --ifm-color-primary-dark: #deb400;
-  --ifm-color-primary-darker: #d2aa00;
-  --ifm-color-primary-darkest: #ad8c00;
-  --ifm-color-primary-light: #ffd211;
-  --ifm-color-primary-lighter: #ffd41d;
-  --ifm-color-primary-lightest: #ffdb42;
-  --ifm-code-font-size: 95%;
+
+  --eik-brand-color: #f7c800;
+}
+
+.hero--primary {
+  --ifm-hero-background-color: var(--eik-brand-color);
+}
+
+:where(.button--primary) {
+  --ifm-button-background-color: var(--eik-brand-color);
+  --ifm-button-border-color: var(--eik-brand-color);
 }
 
 .docusaurus-highlight-code-line {

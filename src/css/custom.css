@@ -7,17 +7,9 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  /*
-  --ifm-color-primary: #f7df1eff;
-  --ifm-color-primary-dark: rgb(247, 223, 30);
-  --ifm-color-primary-darker: rgb(247, 215, 15);
-  --ifm-color-primary-darkest: rgb(247, 200, 0);
-  --ifm-color-primary-light: rgb(247, 223, 30);
-  --ifm-color-primary-lighter: rgb(247, 245, 45);
-  --ifm-color-primary-lightest: rgb(247, 250, 60);
-  */
-
   --eik-brand-color: #f7c800;
+  --eik-brand-color-darker: #deb400;
+  --eik-brand-color-lighter: #ffd41d;
 }
 
 .hero--primary {
@@ -27,6 +19,13 @@
 :where(.button--primary) {
   --ifm-button-background-color: var(--eik-brand-color);
   --ifm-button-border-color: var(--eik-brand-color);
+}
+
+.button--primary.button--active,
+.button--primary:active,
+:where(.button--primary):not(.button--outline):hover {
+  --ifm-button-background-color: var(--eik-brand-color-darker);
+  --ifm-button-border-color: var(--eik-brand-color-darker);
 }
 
 .docusaurus-highlight-code-line {

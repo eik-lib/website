@@ -19,25 +19,32 @@ const service = new Service(options);
 
 An Object containing misc configuration. The following values can be provided:
 
-| option     | default | type     | required | details       |
-| ---------- | ------- | -------- | -------- | ------------- |
-| customSink | `null`  | `object` | `false`  | A custom sink |
+| option                 | default                | type     | required | details                                                                                                   |
+| ---------------------- | ---------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `sink`                 | `null`                 | `object` | `false`  | The [sink](/docs/server_sink) you want to use.                                                            |
+| `customSink`           | `null`                 | `object` | `false`  | Deprecated. Use `sink` instead.                                                                           |
+| `aliasCacheControl`    | `public, max-age=1200` | `string` | `false`  | Set a custom `cache-control` HTTP response header for the GET request to an alias.                        |
+| `notFoundCacheControl` | `public, max-age=5`    | `string` | `false`  | Set a custom `cache-control` HTTP response header for the GET requests that respond with a 404 Not Found. |
 
-#### customSink
+#### sink
 
-A custom sink. The sink must extend the [sink interface](https://github.com/eik-lib/sink).
-
-Example using the [Google Cloud Storage sink](https://github.com/eik-lib/sink-gcs):
+Your wanted [sink](/docs/server_sink) implementation for storing assets.
 
 ```js
 import Service from "@eik/service";
 import Sink from "@eik/sink-gcs";
 
 // Set up the Google Cloud Storage sink
-const sink = new Sink();
+const sink = new Sink({
+  credentials: {
+    client_email: "a@email.address",
+    private_key: "[ ...snip... ]",
+    projectId: "myProject",
+  },
+});
 
 // Set up the Eik service as a plugin
-const service = new Service({ customSink: sink });
+const service = new Service({ sink });
 ```
 
 ## API
@@ -53,7 +60,7 @@ import fastify from "fastify";
 import Service from "@eik/service";
 
 // Set up the Eik service as a plugin
-const service = new Service({ customSink: sink });
+const service = new Service({ sink });
 
 // Set up Fastify
 const app = fastify({
@@ -119,4 +126,4 @@ service.logger.info(`Server is running in ${service.config.get("env")} mode`);
 
 ### .sink
 
-Property that exposes the currently used sink. Please see the [sink section](/docs/server_metrics) for further documentation.
+Property that exposes the currently used sink. Please see the [sink section](/docs/server_sink) for further documentation.

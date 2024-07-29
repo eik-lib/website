@@ -6,29 +6,9 @@ sidebar_label: Sink
 
 The Eik server has a file sink concept which caters for the posibillity to write files to, and read files from different storage backends by swapping out sink modules in the server. Because each sink implements the same public API, it is possible to use one sink in one environment and a different sink in another.
 
-## Built in sinks
+## Sinks
 
-To make it easy to start up an Eik server, the server is shipped with a couple of built in sinks. The file system sink is the default sink in use when a server is started without specifying a sink.
-
-### File system
-
-This is the default sink when you start the Eik server. The file system sink will write files to and from the local file system.
-
-By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point. To configure a different folder, use the `SINK_PATH` environment variable.
-
-```sh
-SINK_PATH=/var/persistent/storage/eik node server.js
-```
-
-### In memory
-
-The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests against.
-
-To use it, set the `SINK_TYPE` environment variable to `mem`.
-
-## Custom sinks
-
-A custom sink is normally pulled in as a dependent module and passed on to the `customSink` property on the constructor of the @eik/service in a [custom server setup](/docs/server#customized-setup).
+A sink is normally pulled in as a dependent module and passed on to the `sink` property on the constructor of the `@eik/service` in a [custom server setup](/docs/server#customized-setup).
 
 Example of using the sink for Google Cloud Storage:
 
@@ -37,8 +17,14 @@ import fastify from "fastify";
 import Service from "@eik/service";
 import Sink from "@eik/sink-gcs";
 
-const sink = new Sink();
-const service = new Service({ customSink: sink });
+const sink = new Sink({
+  credentials: {
+    client_email: "a@email.address",
+    private_key: "[ ...snip... ]",
+    projectId: "myProject",
+  },
+});
+const service = new Service({ sink });
 
 const app = fastify({
   ignoreTrailingSlash: true,
@@ -47,22 +33,21 @@ const app = fastify({
 app.register(service.api());
 ```
 
-A custom sink normally takes its own set of properties, such as authentication keys etc, so please see the documentation for each sink for what's required.
+A sink normally takes its own set of properties, such as authentication keys etc, so please see the documentation for each sink for what's required.
 
-### Available custom sinks
+### Available sinks
 
-These custom sinks are available:
+These sinks are available:
 
 - [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
-- [Memory](https://github.com/eik-lib/sink-memory) (like the built-in, but usable with the `customSink` option rather than an environment variable)
+- [File system](https://github.com/eik-lib/sink-file-system)
+- [Memory](https://github.com/eik-lib/sink-memory)
 
 Please feel free to let us know if you have a custom sink you would like to have listed.
 
 ## Implementing a custom sink
 
-Implementing a custom sink is fairly stright forward. A custom sink must extend the [Eik sink interface](https://github.com/eik-lib/sink) and implement all the methods in the public API and its public properties. If this is not done, the custom sink will not be usable in the Eik server since validation depends upon the extension of the interface.
-
-The [Google Cloud Storage sink](https://github.com/eik-lib/sink-gcs) is a good example to look at when implementing a custom sink.
+A custom sink must extend the [Eik sink interface](https://github.com/eik-lib/sink) and implement all the methods in the public API and its public properties. If this is not done, the custom sink will not be usable in the Eik server since validation depends upon the extension of the interface
 
 ### Constructor
 
@@ -97,19 +82,19 @@ A sink must implement the following API:
 This method is called when a file is to be written to storage. The method must return a `Promise` and resolve with a `WritableStream` when the storage is ready to be written too. The server will pipe the byte stream of the file to this stream. Upon any errors, the promise should reject with an `Error` object
 
 ```js
-import { Writable } from 'node:stream';
-import Sink from '@eik/sink';
+import { Writable } from "node:stream";
+import Sink from "@eik/sink";
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    write() {
-        return new Promise(resolve, reject) {
-            const to = new Writable();
-            resolve(to);
-        }
-    }
+export class SinkCustom extends Sink {
+  constructor() {
+    super();
+  }
+  write() {
+    return new Promise((resolve, reject) => {
+      const to = new Writable();
+      resolve(to);
+    });
+  }
 }
 ```
 
@@ -119,22 +104,27 @@ const SinkCustom = class SinkCustom extends Sink {
 | -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
 | filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
 
-This method is called when a file is to be read from storage. The method must return a `Promise` and resolve with a `ReadableStream` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
+This method is called when a file is to be read from storage. The method must return a `Promise` and resolve with a `ReadFile` from `@eik/common` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
 
 ```js
-import { Readable } from 'node:stream';
-import Sink from '@eik/sink';
+import { Readable } from "node:stream";
+import { ReadFile } from "@eik/common";
+import Sink from "@eik/sink";
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    read() {
-        return new Promise(resolve, reject) {
-            const to = new Readable();
-            resolve(to);
-        }
-    }
+export class SinkCustom extends Sink {
+  constructor() {
+    super();
+  }
+  read() {
+    return new Promise((resolve, reject) => {
+      const to = new ReadFile({
+        mimeType,
+        etag,
+      });
+      to.stream = new Readable();
+      resolve(to);
+    });
+  }
 }
 ```
 
@@ -165,24 +155,24 @@ A getter for a [metric stream](https://github.com/metrics-js/client). The metric
 Example:
 
 ```js
-import Metrics from @metrics/client';
-import Sink from @eik/sink';
+import Metrics from "@metrics/client";
+import Sink from "@eik/sink";
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-        this._metrics = new Metrics();
-        this._counter = this._metrics.counter({
-            name: 'eik_custom_sink',
-            description: 'Counter measuring access to the custom sink',
-        });
-    }
-    write(filePath, contentType) {
-        return new Promise(resolve, reject) {
-            this._counter.inc();
-
-        }
-    }
+export class SinkCustom extends Sink {
+  constructor() {
+    super();
+    this._metrics = new Metrics();
+    this._counter = this._metrics.counter({
+      name: "eik_custom_sink",
+      description: "Counter measuring access to the custom sink",
+    });
+  }
+  write(filePath, contentType) {
+    return new Promise((resolve, reject) => {
+      this._counter.inc();
+      resolve();
+    });
+  }
 }
 ```
 
@@ -191,24 +181,23 @@ const SinkCustom = class SinkCustom extends Sink {
 We recommend you validate the arguments for all methods. The [Eik sink interface](https://github.com/eik-lib/sink) contain static methods to do so which can be used when implementing a sink:
 
 ```js
-import Sink from @eik/sink';
+import Sink from "@eik/sink";
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    write(filePath, contentType) {
-        return new Promise(resolve, reject) {
-            try {
-                super.constructor.validateFilePath(filePath);
-                super.constructor.validateContentType(contentType);
-            } catch (error) {
-                reject(error);
-                return;
-            }
-
-        }
-    }
+export class SinkCustom extends Sink {
+  constructor() {
+    super();
+  }
+  write(filePath, contentType) {
+    return new Promise((resolve, reject) => {
+      try {
+        Sink.validateFilePath(filePath);
+        Sink.validateContentType(contentType);
+      } catch (error) {
+        reject(error);
+        return;
+      }
+    });
+  }
 }
 ```
 
@@ -217,3 +206,29 @@ const SinkCustom = class SinkCustom extends Sink {
 A sink should take care of protecting against [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal). It should not be possible to access files outside the `root` of the file structure in Eik by passing in a hostile pathname through the REST API of Eik. Each `filePath` argument on each method should be checked for such.
 
 Please see OWASPs guide on preventing [Path Traversal](https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include.md).
+
+## Built in sinks
+
+:::warning
+
+This feature has been deprecated. Please pass in the sink you want to use with the `sink` constructor option.
+
+:::
+
+To make it easy to start up an Eik server, the server is shipped with a couple of built in sinks. The file system sink is the default sink in use when a server is started without specifying a sink.
+
+### File system
+
+This is the default sink when you start the Eik server. The file system sink will write files to and from the local file system.
+
+By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point. To configure a different folder, use the `SINK_PATH` environment variable.
+
+```sh
+SINK_PATH=/var/persistent/storage/eik node server.js
+```
+
+### In memory
+
+The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests against.
+
+To use it, set the `SINK_TYPE` environment variable to `mem`.

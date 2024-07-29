@@ -11,7 +11,7 @@ The Eik service is distributed as a [Fastify](https://www.fastify.io/) plugin an
 Create a new Eik service instance.
 
 ```js
-const Service = require('@eik/service');
+import Service from "@eik/service";
 const service = new Service(options);
 ```
 
@@ -19,9 +19,9 @@ const service = new Service(options);
 
 An Object containing misc configuration. The following values can be provided:
 
-| option     | default | type     | required  | details                                                             |
-| ---------- | ------- | -------- | --------- | ------------------------------------------------------------------- |
-| customSink | `null`  | `object` | `false`   | A custom sink                                                       |
+| option     | default | type     | required | details       |
+| ---------- | ------- | -------- | -------- | ------------- |
+| customSink | `null`  | `object` | `false`  | A custom sink |
 
 #### customSink
 
@@ -30,11 +30,11 @@ A custom sink. The sink must extend the [sink interface](https://github.com/eik-
 Example using the [Google Cloud Storage sink](https://github.com/eik-lib/sink-gcs):
 
 ```js
-const Service = require('@eik/service');
-const Sink = require('@eik/sink-gcs');
+import Service from "@eik/service";
+import Sink from "@eik/sink-gcs";
 
 // Set up the Google Cloud Storage sink
-const sink = new Sink(...);
+const sink = new Sink();
 
 // Set up the Eik service as a plugin
 const service = new Service({ customSink: sink });
@@ -49,15 +49,15 @@ An Eik service instance has the following API:
 The Eik service as a [Fastify plugin](https://www.fastify.io/docs/latest/Plugins/). The returned function must be passed on to the Fastify `.register()` method:
 
 ```js
-const fastify = require('fastify');
-const Service = require('@eik/service');
+import fastify from "fastify";
+import Service from "@eik/service";
 
 // Set up the Eik service as a plugin
 const service = new Service({ customSink: sink });
 
 // Set up Fastify
 const app = fastify({
-    ignoreTrailingSlash: true,
+  ignoreTrailingSlash: true,
 });
 
 // Register the Eik service in Fastify
@@ -66,7 +66,7 @@ app.register(service.api());
 
 This will mount the [Eik REST API](/docs/server_rest_api) into the Fastify application the plugin is registered to.
 
-Due to how the REST API deals with wildcards on pathnames to resolve files, it is recommended that the `ignoreTrailingSlash` option on the Fastify constructor that the plugin is registered to is set to `true`. If this is not done, file resolving might not work as expected. 
+Due to how the REST API deals with wildcards on pathnames to resolve files, it is recommended that the `ignoreTrailingSlash` option on the Fastify constructor that the plugin is registered to is set to `true`. If this is not done, file resolving might not work as expected.
 
 ### .health() (async)
 
@@ -76,9 +76,12 @@ We recommend executing the health check before the service begins accepting HTTP
 
 ```js
 const run = async () => {
-    await service.health();
-    await app.listen(service.config.get('http.port'), service.config.get('http.address'));
-}
+  await service.health();
+  await app.listen(
+    service.config.get("http.port"),
+    service.config.get("http.address"),
+  );
+};
 run();
 ```
 
@@ -97,10 +100,10 @@ Property that exposes a metric stream. Please see the [metrics section](/docs/se
 Property that exposes internal configuration. Can be used to retrieve internal configuration. Config is built upon [Node Convict](https://github.com/mozilla/node-convict).
 
 ```js
-const Service = require('@eik/service');
+import Service from "@eik/service";
 
 const service = new Service();
-service.logger.info(`Server is running in ${service.config.get('env')} mode`);
+service.logger.info(`Server is running in ${service.config.get("env")} mode`);
 ```
 
 ### .logger
@@ -108,10 +111,10 @@ service.logger.info(`Server is running in ${service.config.get('env')} mode`);
 Property that exposes the internal logger. Can be used to do additional logging. The internal logger is [Pino](https://github.com/pinojs/pino).
 
 ```js
-const Service = require('@eik/service');
+import Service from "@eik/service";
 
 const service = new Service();
-service.logger.info(`Server is running in ${service.config.get('env')} mode`);
+service.logger.info(`Server is running in ${service.config.get("env")} mode`);
 ```
 
 ### .sink

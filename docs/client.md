@@ -168,16 +168,16 @@ eik meta lodash 4.17.16
 
 ### Command Summary
 
-| command    | aliases | description                                                     |
-| ---------- | ------- | --------------------------------------------------------------- |
-| init       | i       | Create an eik.json file in the current directory             |
-| login      |         | Authenticates client with eik server                            |
-| ping       |         | Pings eik server                                                |
-| publish    | p, pub  | Publish an app bundle                                           |
-| dependency | d, dep  | Publish a dependency bundle                                     |
-| map        | m       | Sets or deletes a "bare" import entry in an import-map file     |
-| alias      | a       | Sets a major semver alias for a given dependency or map         |
-| meta       | show    | Retrieves meta information for a package                        |
+| command    | aliases | description                                                 |
+| ---------- | ------- | ----------------------------------------------------------- |
+| init       | i       | Create an eik.json file in the current directory            |
+| login      |         | Authenticates client with eik server                        |
+| ping       |         | Pings eik server                                            |
+| publish    | p, pub  | Publish an app bundle                                       |
+| dependency | d, dep  | Publish a dependency bundle                                 |
+| map        | m       | Sets or deletes a "bare" import entry in an import-map file |
+| alias      | a       | Sets a major semver alias for a given dependency or map     |
+| meta       | show    | Retrieves meta information for a package                    |
 
 ### Commands Overview
 
@@ -205,13 +205,13 @@ You will then need to set the various fields as appropriate. If you are running 
 
 ##### eik.json properties
 
-| property     | description                                                         |
-| ------------ | ------------------------------------------------------------------- |
-| name         | App name, must be unique to the Eik server                          |
-| server       | Address to the asset server                                         |
-| js           | Configuration for JavaScript assets                                 |
-| css          | Configuration for CSS assets                                        |
-| import-map   | Specify import maps to be used to map bare imports during bundling  |
+| property   | description                                                        |
+| ---------- | ------------------------------------------------------------------ |
+| name       | App name, must be unique to the Eik server                         |
+| server     | Address to the asset server                                        |
+| js         | Configuration for JavaScript assets                                |
+| css        | Configuration for CSS assets                                       |
+| import-map | Specify import maps to be used to map bare imports during bundling |
 
 ###### name
 
@@ -427,63 +427,63 @@ All of the commands described above can be used programmatically by importing th
 ### init
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.Init(options).run();
 ```
 
 #### options
 
-| name    | description                           | type   | default         | required |
-| ------- | ------------------------------------- | ------ | --------------- | -------- |
-| logger  | log4j compliant logger object         | object | `null`          | no       |
-| cwd     | path to current working directory     | string | `process.cwd()` | no       |
-| name    | app name                              | string | `''`            | no       |
-| server  | URL to asset server                   | string | `''`            | no       |
-| js      | path to client side script entrypoint | string | `''`            | no       |
-| css     | path to client side style entrypoint  | string | `''`            | no       |
+| name   | description                           | type   | default         | required |
+| ------ | ------------------------------------- | ------ | --------------- | -------- |
+| logger | log4j compliant logger object         | object | `null`          | no       |
+| cwd    | path to current working directory     | string | `process.cwd()` | no       |
+| name   | app name                              | string | `''`            | no       |
+| server | URL to asset server                   | string | `''`            | no       |
+| js     | path to client side script entrypoint | string | `''`            | no       |
+| css    | path to client side style entrypoint  | string | `''`            | no       |
 
 ### publish
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.publish.App(options).run();
 ```
 
 #### options
 
-| name    | description                           | type     | default         | required |
-| ------- | ------------------------------------- | -------- | --------------- | -------- |
-| logger  | log4j compliant logger object         | object   | `null`          | no       |
-| cwd     | path to current working directory     | string   | `process.cwd()` | no       |
-| name    | app name                              | string   |                 | yes      |
-| server  | URL to asset server                   | string   |                 | yes      |
-| js      | path to client side script entrypoint | string   |                 | yes      |
-| css     | path to client side style entrypoint  | string   |                 | yes      |
-| map     | array of urls of import map files     | string[] | `[]`            | no       |
-| dryRun  | exit early and print results          | boolean  | false           | no       |
+| name   | description                           | type     | default         | required |
+| ------ | ------------------------------------- | -------- | --------------- | -------- |
+| logger | log4j compliant logger object         | object   | `null`          | no       |
+| cwd    | path to current working directory     | string   | `process.cwd()` | no       |
+| name   | app name                              | string   |                 | yes      |
+| server | URL to asset server                   | string   |                 | yes      |
+| js     | path to client side script entrypoint | string   |                 | yes      |
+| css    | path to client side style entrypoint  | string   |                 | yes      |
+| map    | array of urls of import map files     | string[] | `[]`            | no       |
+| dryRun | exit early and print results          | boolean  | false           | no       |
 
 ### dependency
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.publish.Dependency(options).run();
 ```
 
 #### options
 
-| name    | description                       | type     | default         | required |
-| ------- | --------------------------------- | -------- | --------------- | -------- |
-| logger  | log4j compliant logger object     | object   | `null`          | no       |
-| cwd     | path to current working directory | string   | `process.cwd()` | no       |
-| name    | app name                          | string   |                 | yes      |
-| server  | URL to asset server               | string   |                 | yes      |
-| map     | array of urls of import map files | string[] | `[]`            | no       |
-| dryRun  | exit early and print results      | boolean  | false           | no       |
+| name   | description                       | type     | default         | required |
+| ------ | --------------------------------- | -------- | --------------- | -------- |
+| logger | log4j compliant logger object     | object   | `null`          | no       |
+| cwd    | path to current working directory | string   | `process.cwd()` | no       |
+| name   | app name                          | string   |                 | yes      |
+| server | URL to asset server               | string   |                 | yes      |
+| map    | array of urls of import map files | string[] | `[]`            | no       |
+| dryRun | exit early and print results      | boolean  | false           | no       |
 
 ### map
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.publish.Map(options).run();
 ```
 
@@ -501,29 +501,29 @@ const result = await new cli.publish.Map(options).run();
 ### alias
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.Alias(options).run();
 ```
 
 #### options
 
-| name    | description                             | type   | default | choices      | required |
-| ------- | --------------------------------------- | ------ | ------- | ------------ | -------- |
-| logger  | log4j compliant logger object           | object | `null`  |              | no       |
-| server  | URL to asset server                     | string |         |              | yes      |
-| type    | type of resource to alias               | string |         | `pkg`, `map` | yes      |
-| name    | app name                                | string |         |              | yes      |
-| alias   | major number of a semver version number | string |         |              | yes      |
+| name   | description                             | type   | default | choices      | required |
+| ------ | --------------------------------------- | ------ | ------- | ------------ | -------- |
+| logger | log4j compliant logger object           | object | `null`  |              | no       |
+| server | URL to asset server                     | string |         |              | yes      |
+| type   | type of resource to alias               | string |         | `pkg`, `map` | yes      |
+| name   | app name                                | string |         |              | yes      |
+| alias  | major number of a semver version number | string |         |              | yes      |
 
 ### meta
 
 ```js
-const cli = require("@eik/cli");
+import cli from "@eik/cli";
 const result = await new cli.Meta(options).run();
 ```
 
-| name    | description                   | type   | default | choices | required |
-| ------- | ----------------------------- | ------ | ------- | ------- | -------- |
-| logger  | log4j compliant logger object | object | `null`  |         | no       |
-| server  | URL to asset server           | string |         |         | yes      |
-| name    | package name                  | string |         |         | yes      |
+| name   | description                   | type   | default | choices | required |
+| ------ | ----------------------------- | ------ | ------- | ------- | -------- |
+| logger | log4j compliant logger object | object | `null`  |         | no       |
+| server | URL to asset server           | string |         |         | yes      |
+| name   | package name                  | string |         |         | yes      |

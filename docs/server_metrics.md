@@ -5,15 +5,15 @@ sidebar_label: Metrics
 ---
 
 The Eik server exposes a [metric stream](https://github.com/metrics-js/client) which emits internal metrics
-on the server. These metrics are intended to give numbers on how the server as an application is behaving and 
-performing and is an important tool in the toolbox for monitoring the servers health status. These metrics do 
+on the server. These metrics are intended to give numbers on how the server as an application is behaving and
+performing and is an important tool in the toolbox for monitoring the servers health status. These metrics do
 not provide statistics on assets uploaded to the asset server.
 
-The metrics the server provides are not bound to any particular metric system so it's possible to provide the metrics to 
+The metrics the server provides are not bound to any particular metric system so it's possible to provide the metrics to
 any monitoring system as preferred. The metric stream emits a set of generic metric objects that can be altered and
 piped as desired.
 
-Please see [@metrics/client](https://github.com/metrics-js/client) for examples of how to consume these metrics in 
+Please see [@metrics/client](https://github.com/metrics-js/client) for examples of how to consume these metrics in
 your preferred monitoring system.
 
 ## Usage
@@ -21,21 +21,21 @@ your preferred monitoring system.
 The `@eik/service` module exposes a `.metric` property. This property holds a plain Node.js object stream which
 emits the metrics as objects on the stream.
 
-This stream can be piped into a metrics consumer or any other Node.js writable / transform stream for further 
+This stream can be piped into a metrics consumer or any other Node.js writable / transform stream for further
 processing.
 
 Example of metrics being piped into a prometheus consumer:
 
 ```js
-const MetricsConsumer = require('@metrics/prometheus-consumer');
-const prometheus = require('prom-client');
-const Service = require('@eik/service');
-const fastify = require('fastify');
+import MetricsConsumer from "@metrics/prometheus-consumer";
+import prometheus from "prom-client";
+import Service from "@eik/service";
+import fastify from "fastify";
 
 const service = new Service();
 
 const metricsConsumer = new MetricsConsumer({
-    client: prometheus,
+  client: prometheus,
 });
 
 service.metrics.pipe(metricsConsumer);
@@ -43,26 +43,26 @@ service.metrics.pipe(metricsConsumer);
 const app = fastify();
 app.register(service.api());
 
-app.get('/_/metrics', (request, reply) => {
-    reply.type(metricsConsumer.registry.contentType);
-    reply.send(metricsConsumer.registry.metrics());
+app.get("/_/metrics", (request, reply) => {
+  reply.type(metricsConsumer.registry.contentType);
+  reply.send(metricsConsumer.registry.metrics());
 });
 
 const run = async () => {
-    await app.listen(8080, '0.0.0.0');
-}
+  await app.listen(8080, "0.0.0.0");
+};
 run();
 ```
 
 ## Metrics
 
-Each metric provided by the server has a unique `name` and a `type` defining what type (counter, histogram, etc) of 
+Each metric provided by the server has a unique `name` and a `type` defining what type (counter, histogram, etc) of
 metric it is.
 
 The server exposes these metrics:
 
 | Name                          | Type      | Description                                                                                    |
-|-------------------------------|-----------|------------------------------------------------------------------------------------------------|
+| ----------------------------- | --------- | ---------------------------------------------------------------------------------------------- |
 | eik_core_auth_post_handler    | histogram | Time taken in a [login](server_rest_api.md#login) method                                       |
 | eik_core_pkg_get_handler      | histogram | Time taken in a [public package](server_rest_api.md#public-package-url) method                 |
 | eik_core_pkg_log_handler      | histogram | Time taken in a [package version overview](server_rest_api.md#package-version-overview) method |

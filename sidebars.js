@@ -32,6 +32,9 @@ module.exports = {
     'CI Setup': [
       'ci',
       'travis'
+    ],
+    'Reference': [
+      'reference/eik-cli'
     ]
   },
 };

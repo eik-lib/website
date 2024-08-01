@@ -3,9 +3,13 @@ module.exports = {
 	sidebar: [
 		{
 			type: "category",
-			label: "Overview",
+			label: "Introduction",
 			collapsed: false,
-			items: ["overview", "overview_concepts", "overview_workflow"],
+			items: [
+				"introduction/introduction",
+				"introduction/workflow",
+				"introduction/concepts",
+			],
 		},
 		{
 			type: "category",

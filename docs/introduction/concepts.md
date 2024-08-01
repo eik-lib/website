@@ -1,32 +1,35 @@
 ---
-id: overview_concepts
-title: Concepts
-sidebar_label: Concepts
+title: Package types
+sidebar_label: Package types
 ---
 
-Eik is for serving ESM and CSS but we use the term packages when we refer what is uploaded to an Eik server. A package can contain any set of files which are considered to be static assets on a web site. Despite being agnostic in its opinion about what a package can contain, Eik does have a package type definition which comes into play when organizing assets.
+Eik differentiates between three types of packages:
 
-## Package Types
+- `npm` are shared dependencies
+- `maps` are import maps
+- `pkg` are applications
 
-Eik differentiates between the types of packages it hosts. These are: Packages, NPM Packages and Import Maps. On the server, these different types live under separate URL namespaces to avoid conflicts with each other. 
+On the server these different types live under separate namespaces to avoid naming conflicts.
 
-### Eik Packages
+### `npm`
 
-Eik packages are normally produced by websites and web applications. Such a package typically consists of bundled application code which, most of the time, does not really make much sense to publish as a module to a public repository such as NPM.
+The `npm` namespace is designed for modules from the [npm repository](https://www.npmjs.com/).
 
-Packages live under the [/pkg/](server_rest_api.md#packages) namespace on an Eik server.
-
-### NPM Packages
-
-NPM packages are modules replicated from the [NPM repository](https://www.npmjs.com/) with the intention that they be loadable by browsers. This is similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do, with the exception that Eik does not proxy NPM modules as Unpkg and Pika do. Eik has taken a different approach and it is necessary to manually publish modules from NPM to Eik as well as do any transpiling from (for example) CommonJS to ESM as a manual process before publishing.
+This is somewhat similar to what [unpkg](https://unpkg.com/) and [pika](https://www.pika.dev/) do, however Eik does not act as a proxy. Instead, you must manually publish modules from npm to Eik, as well as do any transpiling to ESM before publishing.
 
 NPM Packages live under the [/npm/](server_rest_api.md#npm-packages) namespace on an Eik server.
 
-### Import Maps
+### `maps`
 
 Import Maps are handled as single JSON files in Eik and not treated as a package. It's only possible to upload a single file and not a group of files like it is when uploading packages.
 
 Import Maps live under the [/map/](server_rest_api.md#import-maps) namespace on a Eik server.
+
+### `pkg`
+
+Eik packages are normally produced by websites and web applications. Such a package typically consists of bundled application code which, most of the time, does not really make much sense to publish as a module to a public repository such as NPM.
+
+Packages live under the [/pkg/](server_rest_api.md#packages) namespace on an Eik server.
 
 ## Naming and versioning
 
@@ -34,16 +37,16 @@ A package intended to be published to an Eik server should follow the [NPM modul
 
 - package name length should be greater than zero
 - all characters in a package name must be lowercase i.e., no uppercase or mixed case names are allowed
-- package name *can* consist of hyphens
-- package name *must not* contain non-url-safe characters (since name ends up being part of a URL)
-- package name *should not* start with `.` or `_`
-- package name *should not* contain leading or trailing spaces
-- package name *should not* contain any of the following characters: `~)('!*`
-- package name *cannot* be the same as a node.js/io.js core module nor a reserved/blacklisted name. For example, the following names are invalid:
-    + http
-    + stream
-    + node_modules
-    + favicon.ico
+- package name _can_ consist of hyphens
+- package name _must not_ contain non-url-safe characters (since name ends up being part of a URL)
+- package name _should not_ start with `.` or `_`
+- package name _should not_ contain leading or trailing spaces
+- package name _should not_ contain any of the following characters: `~)('!*`
+- package name _cannot_ be the same as a node.js/io.js core module nor a reserved/blacklisted name. For example, the following names are invalid:
+  - http
+  - stream
+  - node_modules
+  - favicon.ico
 - package name length cannot exceed 214
 
 All packages published to an Eik server is immutable and versioned with [Semantic Versioning](https://semver.org/). This makes it possible to differentiate between what are considered smaller changes to a package which should not break behaviour in a dependency from changes which can be breaking.
@@ -54,7 +57,7 @@ Since packages are immutable, the Eik server will set an infinite HTTP cache con
 
 Aliasing can be applied to all packages and is a way of having a static URL reference, which can change, to a version of a package. Aliases are mutable and can be set to point to different versions of a package. The alias URL will do a redirect to the full version that it is set to point to.
 
-Lets say we publish `lit-html`  version `1.1.1`  as an NPM package to an Eik server. It will then live on the following URL:
+Lets say we publish `lit-html` version `1.1.1` as an NPM package to an Eik server. It will then live on the following URL:
 
 ```sh
 https://eik-server.com/npm/lit-html/1.1.1/

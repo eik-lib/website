@@ -22,6 +22,10 @@ module.exports = {
 						from: "/docs/overview_eik_json",
 						to: "/docs/reference/eik-json",
 					},
+					{
+						from: "/docs/overview",
+						to: "/docs/introduction/overview",
+					},
 				],
 			},
 		],
@@ -51,7 +55,7 @@ module.exports = {
 			},
 			items: [
 				{
-					to: "docs/overview",
+					to: "/docs/introduction/",
 					activeBasePath: "docs",
 					label: "Documentation",
 					position: "left",

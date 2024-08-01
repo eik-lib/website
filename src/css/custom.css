@@ -7,30 +7,34 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --eik-brand-color: #f7c800;
-  --eik-brand-color-darker: #deb400;
-  --eik-brand-color-lighter: #ffd41d;
+	--eik-brand-color: #f7c800;
+	--eik-brand-color-darker: #deb400;
+	--eik-brand-color-lighter: #ffd41d;
+}
+
+body {
+	tab-size: 2;
 }
 
 .hero--primary {
-  --ifm-hero-background-color: var(--eik-brand-color);
+	--ifm-hero-background-color: var(--eik-brand-color);
 }
 
 :where(.button--primary) {
-  --ifm-button-background-color: var(--eik-brand-color);
-  --ifm-button-border-color: var(--eik-brand-color);
+	--ifm-button-background-color: var(--eik-brand-color);
+	--ifm-button-border-color: var(--eik-brand-color);
 }
 
 .button--primary.button--active,
 .button--primary:active,
 :where(.button--primary):not(.button--outline):hover {
-  --ifm-button-background-color: var(--eik-brand-color-darker);
-  --ifm-button-border-color: var(--eik-brand-color-darker);
+	--ifm-button-background-color: var(--eik-brand-color-darker);
+	--ifm-button-border-color: var(--eik-brand-color-darker);
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+	background-color: rgb(72, 77, 91);
+	display: block;
+	margin: 0 calc(-1 * var(--ifm-pre-padding));
+	padding: 0 var(--ifm-pre-padding);
 }

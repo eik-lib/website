@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - name: npm run deploy
+        run: |
+          git config --global user.email "trygve-lie@users.noreply.github.com"
+          git config --global user.name "trygve-lie"
+          echo "machine github.com login trygve-lie password ${{ secrets.GIT_TOKEN }}" > ~/.netrc
+          npm run deploy
+        env:
+          CI: true
+          GIT_USER: trygve-lie
+          DEPLOYMENT_BRANCH: main

@@ -4,14 +4,21 @@ title: Publishing to Eik
 sidebar_label: Publishing to Eik
 ---
 
-Before you continue
+This document explains how to get started publishing a new module to an existing [Eik server](/docs/server/) using the [Eik CLI](/docs/reference/eik-cli/).
 
-## Configure Eik
+The guide assumes you have the `eik` command available in your shell. See [Install and run commands](/docs/reference/eik-cli/#install-and-run-commands) for other options.
 
-Generate an `eik.json` file in the current directory:
+## Configuration
+
+The Eik CLI needs to know what files to publish and where to publish them. To do so it looks for either:
+
+- An `eik.json` file in the same directory as `package.json`
+- The `"eik"` key in `package.json`
+
+To generate an `eik.json` file in the current directory run `eik init`.
 
 ```sh
-npx @eik/cli init
+eik init
 ```
 
 Set the URL to your Eik server as the `server` property. See [the server docs](/docs/server) if you need to set up a server.
@@ -35,7 +42,7 @@ asset files or directories in your project relative to the `eik.json` file.
 Run publish to publish your assets to the server
 
 ```sh
-npx @eik/cli publish
+eik publish
 ```
 
 ## Next steps
@@ -123,7 +130,7 @@ Taking the previous example 1 step further, before we saw that we could globally
 We can now set a major semver alias for this version:
 
 ```sh
-npx @eik/cli alias lodash 4.17.21 4
+eik alias lodash 4.17.21 4
 ```
 
 We can now change our import statement to:
@@ -165,7 +172,7 @@ Given the following import map file `import-map.json`
 The following command will upload the import map file `./import-map.json` in the current directory using the name `my-import-map` and the version `1.0.0`
 
 ```sh
-npx @eik/cli map my-import-map 1.0.0 ./import-map.json
+eik map my-import-map 1.0.0 ./import-map.json
 ```
 
 Given the following line now added to `eik.json`
@@ -188,5 +195,5 @@ returns information in JSON format.
 #### Example
 
 ```sh
-npx @eik/cli meta lodash 4.17.21
+eik meta lodash 4.17.21
 ```

@@ -1,26 +1,4 @@
 {
-  "extends": [
-    "config:base",
-    "group:linters"
-  ],
-  "packageRules": [{
-    "depTypeList": ["dependencies"],
-    "schedule": ["before 4am on monday"],
-    "automerge": true,
-    "major": {
-      "automerge": false
-    }
-  },
-  {
-    "depTypeList": ["devDependencies"],
-    "schedule": ["before 4am on monday"],
-    "automerge": true,
-    "major": {
-      "automerge": false
-    }
-  },
-  {
-    "groupName": "docusaurus release packages",
-    "packagePatterns": ["^@docusaurus/"]
-  }]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>eik-lib/renovate-presets:top-level-module"]
 }

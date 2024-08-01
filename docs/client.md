@@ -12,7 +12,7 @@ The guide assumes you have the `eik` command available in your shell. See [Insta
 
 The Eik CLI needs to know what files to publish and where to publish them. To do so it looks for either:
 
-- An `eik.json` file in the same directory as `package.json`
+- An [`eik.json`](/docs/reference/eik-json) file in the same directory as `package.json`
 - The `"eik"` key in `package.json`
 
 To generate an `eik.json` file in the current directory run `eik init`.
@@ -30,10 +30,10 @@ asset files or directories in your project relative to the `eik.json` file.
 
 ```json
 {
-  "name": "my-app",
-  "version": "1.0.0",
-  "server": "https://assets.myserver.com",
-  "files": "./public"
+	"name": "my-app",
+	"version": "1.0.0",
+	"server": "https://assets.myserver.com",
+	"files": "./public"
 }
 ```
 
@@ -60,24 +60,24 @@ To do so you would need two things:
 
 ```json
 {
-  "name": "@my-org/lodash",
-  "version": "4.17.21",
-  "type": "module",
-  "scripts": {
-    "build": "node ./esbuild.js"
-  },
-  "dependencies": {
-    "lodash": "4.17.21"
-  },
-  "devDependencies": {
-    "esbuild": "0.23.0"
-  },
-  "eik": {
-    "name": "lodash",
-    "type": "npm",
-    "server": "https://assets.my-org.com",
-    "files": "dist"
-  }
+	"name": "@my-org/lodash",
+	"version": "4.17.21",
+	"type": "module",
+	"scripts": {
+		"build": "node ./esbuild.js"
+	},
+	"dependencies": {
+		"lodash": "4.17.21"
+	},
+	"devDependencies": {
+		"esbuild": "0.23.0"
+	},
+	"eik": {
+		"name": "lodash",
+		"type": "npm",
+		"server": "https://assets.my-org.com",
+		"files": "dist"
+	}
 }
 ```
 
@@ -91,13 +91,13 @@ import esbuild from "esbuild";
 const { resolve } = createRequire(import.meta.url);
 
 await esbuild.build({
-  entryPoints: [resolve("lodash")],
-  bundle: true,
-  minify: true,
-  format: "esm",
-  outfile: "dist/index.js",
-  target: ["es2017"],
-  sourcemap: true,
+	entryPoints: [resolve("lodash")],
+	bundle: true,
+	minify: true,
+	format: "esm",
+	outfile: "dist/index.js",
+	target: ["es2017"],
+	sourcemap: true,
 });
 ```
 
@@ -162,10 +162,10 @@ Given the following import map file `import-map.json`
 
 ```json
 {
-  "imports": {
-    "lit-html": "https://assets.my-org.com/lit-html/v1/index.js",
-    "lodash": "https://assets.my-org.com/lodash/v4/index.js"
-  }
+	"imports": {
+		"lit-html": "https://assets.my-org.com/lit-html/v1/index.js",
+		"lodash": "https://assets.my-org.com/lodash/v4/index.js"
+	}
 }
 ```
 
@@ -179,7 +179,7 @@ Given the following line now added to `eik.json`
 
 ```json
 {
-  "import-map": ["https://assets.my-org.com/map/my-import-map/1.0.0"]
+	"import-map": ["https://assets.my-org.com/map/my-import-map/1.0.0"]
 }
 ```
 

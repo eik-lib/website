@@ -3,18 +3,28 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "docusaurus start --no-open",
     "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy"
+    "deploy": "docusaurus deploy",
+    "dev": "docusaurus start --no-open",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "docusaurus serve --no-open"
   },
   "dependencies": {
-    "@docusaurus/core": "3.1.1",
-    "@docusaurus/plugin-client-redirects": "^3.4.0",
-    "@docusaurus/preset-classic": "3.1.1",
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/plugin-client-redirects": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
     "classnames": "2.5.1",
+    "docusaurus-lunr-search": "3.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@eik/eslint-config": "1.0.0",
+    "@eik/prettier-config": "1.0.1",
+    "eslint": "9.8.0",
+    "eslint-plugin-react": "7.35.0",
+    "prettier": "3.3.3"
   },
   "browserslist": {
     "production": [

@@ -1,29 +1,26 @@
-# Website
+# eik.dev
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repo holds the code and docs for the documentation website at [eik.dev](https://eik.dev/).
+It is built using [Docusaurus](https://docusaurus.io/).
 
-### Installation
+## Commands
 
-```
-npm install
-```
+All commands are run from the root of the project.
 
-### Local Development
+| Command            | Action                                              |
+| :----------------- | :-------------------------------------------------- |
+| `npm install`      | Installs dependencies                               |
+| `npm run dev`      | Starts local dev server at `localhost:8080`         |
+| `npm run build`    | Build your production site to `./build/`            |
+| `npm start`        | Preview your build locally at `localhost:8080`      |
+| `npm run deploy`   | Run by GitHub Actions to deploy to GitHub Pages     |
+| `npm run lint`     | Run ESLint + Prettier                               |
+| `npm run lint:fix` | Fix ESLint and Prettier issues that are autofixable |
 
-```
-npm start
-```
+## Contributing
 
-This command starts a local development server. Most changes are reflected live without having to restart the server.
+Contributions are welcome 🧡
 
-### Build
+If you change the URL of a page, please add a redirect rule to `docusaurus.config.js`.
 
-```
-npm run build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Handled by GitHub Actions on merge to the `source` branch.
+PRs should target the `source` branch. The `main` branch is where the built website is deployed from.

@@ -33,7 +33,7 @@ function Home() {
 					<Link className="button button--link" to="/docs/server">
 						Hosting an Eik server
 					</Link>
-					<Link className="button button--link" to="/docs/overview">
+					<Link className="button button--link" to="/docs/introduction/">
 						Why Eik?
 					</Link>
 				</div>

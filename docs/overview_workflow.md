@@ -8,7 +8,7 @@ In Eik, Import Maps and aliasing of assets are used to align library versions ac
 
 N.B. Regardless of the strategy one chooses, Eik does not force any structure for how the source is organized or what language it's written in (for example TypeScript). There can also be multiple entry points for the source in your application.
 
-Configuration for which Eik server to use and which import maps to apply etc is defined in [the eik.json file](/docs/overview_eik_json). Depending on the workflow used, there may be a difference in which workflow module(s) use this configuration.
+Configuration for which Eik server to use and which import maps to apply etc is defined in [the eik.json file](/docs/reference/eik-json). Depending on the workflow used, there may be a difference in which workflow module(s) use this configuration.
 
 ## Ahead of time mapping
 
@@ -16,9 +16,9 @@ When working with ahead of time mapping the workflow is as follow:
 
 ![Workflow of ahead of time mapping](/img/workflow_ahead_of_time_mapping.min.svg)
 
-When applying mapping ahead of time there must be a build step regardless if the source needs one or not. It is in this step that import statements in your assets will be rewritten with the mapping values from one or more provided import maps. Eik [supports multiple build tools](/docs/mapping_plugins) by providing plugins for these tools which will do this mapping. 
+When applying mapping ahead of time there must be a build step regardless if the source needs one or not. It is in this step that import statements in your assets will be rewritten with the mapping values from one or more provided import maps. Eik [supports multiple build tools](/docs/mapping_plugins) by providing plugins for these tools which will do this mapping.
 
-When your build process runs, the Eik plugin used with the build tool will fetch the defined import maps from the Eik server defined for the project. When the build process is complete, the built application assets should be stored in one or more output folders. 
+When your build process runs, the Eik plugin used with the build tool will fetch the defined import maps from the Eik server defined for the project. When the build process is complete, the built application assets should be stored in one or more output folders.
 
 The next step in the workflow is uploading the built application assets to the Eik server. This is done by the [Eik client](/docs/client_app_packages).
 
@@ -47,10 +47,10 @@ To apply the mapping the server side part of the application should also pull th
 Absolute URLs to the assets on the Eik server can be built from the fields found in an `eik.json` file:
 
 ```js
-fs.readFile('./eik.json', (err, data) => {
-    if (err) throw err;
-    const eik = JSON.parse(data);
-    console.log(`${eik.server}/pkg/${eik.name}/${eik.version}/file.ext`);
+fs.readFile("./eik.json", (err, data) => {
+	if (err) throw err;
+	const eik = JSON.parse(data);
+	console.log(`${eik.server}/pkg/${eik.name}/${eik.version}/file.ext`);
 });
 ```
 

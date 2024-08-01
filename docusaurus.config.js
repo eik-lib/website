@@ -18,6 +18,10 @@ module.exports = {
 						from: "/docs/client_installation",
 						to: "/docs/reference/eik-cli",
 					},
+					{
+						from: "/docs/overview_eik_json",
+						to: "/docs/reference/eik-json",
+					},
 				],
 			},
 		],

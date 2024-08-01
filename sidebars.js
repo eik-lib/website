@@ -13,7 +13,6 @@ module.exports = {
 			collapsed: false,
 			items: [
 				"client",
-				"client_installation",
 				"client_login",
 				"client_app_packages",
 				"client_npm_packages",

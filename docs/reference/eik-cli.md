@@ -64,9 +64,9 @@ You can also add scripts to `package.json` and run them that way.
 
 ```json
 {
-  "scripts": {
-    "eik:publish": "eik publish"
-  }
+	"scripts": {
+		"eik:publish": "eik publish"
+	}
 }
 ```
 
@@ -96,6 +96,18 @@ You can also get help for each individual command the same way.
 npx @eik/cli init --help
 ```
 
+## Logging in
+
+```sh
+eik login
+```
+
+The login command will ask for a server URL and a server key.
+Server keys are configured on the server and, once entered,
+the client will authenticate with the server and receive back
+a JSON web token which it will save in an `.eikrc` file in the
+users home directory for use in subsequent commands.
+
 ## Programatic usage
 
 If you need to script commands from the Eik CLI, consider importing `@eik/cli` in JavaScript.
@@ -114,11 +126,11 @@ Create or update an alias for a package on the Eik server.
 
 ```js
 const result = await cli.alias({
-  server,
-  name,
-  version,
-  alias,
-  token,
+	server,
+	name,
+	version,
+	alias,
+	token,
 });
 ```
 
@@ -128,9 +140,9 @@ Get integrity information of a published asset.
 
 ```js
 const result = await cli.integrity({
-  server,
-  name,
-  version,
+	server,
+	name,
+	version,
 });
 ```
 
@@ -140,8 +152,8 @@ Log in using a key to get the `token` needed by other commands.
 
 ```js
 const result = await cli.integrity({
-  server,
-  key,
+	server,
+	key,
 });
 ```
 
@@ -151,11 +163,11 @@ Publish a map to the Eik server.
 
 ```js
 const result = await cli.map({
-  server,
-  name,
-  version,
-  file,
-  token,
+	server,
+	name,
+	version,
+	file,
+	token,
 });
 ```
 
@@ -165,9 +177,9 @@ Get metadata about a published asset.
 
 ```js
 const result = await cli.meta({
-  server,
-  name,
-  version,
+	server,
+	name,
+	version,
 });
 ```
 
@@ -177,7 +189,7 @@ Ping the Eik server.
 
 ```js
 const result = await cli.ping({
-  server,
+	server,
 });
 ```
 
@@ -187,11 +199,11 @@ Publish a package to the Eik server.
 
 ```js
 const result = await cli.publish({
-  server,
-  name,
-  version,
-  file,
-  token,
+	server,
+	name,
+	version,
+	file,
+	token,
 });
 ```
 
@@ -201,9 +213,9 @@ Similar to `npm version`, but updates `eik.json`.
 
 ```js
 const result = await cli.version({
-  server,
-  name,
-  version,
-  files,
+	server,
+	name,
+	version,
+	files,
 });
 ```

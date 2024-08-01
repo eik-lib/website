@@ -1,7 +1,7 @@
 ---
 id: client
 title: Publishing to Eik
-sidebar_label: Publishing to Eik
+sidebar_label: Getting started
 ---
 
 This document explains how to get started publishing a new module to an existing [Eik server](/docs/server/) using the [Eik CLI](/docs/reference/eik-cli/).
@@ -39,7 +39,15 @@ asset files or directories in your project relative to the `eik.json` file.
 
 ## Publish
 
-Run publish to publish your assets to the server
+First log in to the Eik server.
+
+```sh
+eik login
+```
+
+You will get a prompt to enter your login key.
+
+Once logged in, run publish to publish your assets to the server.
 
 ```sh
 eik publish

@@ -87,26 +87,62 @@ npx @eik/cli --help
 Run `eik` with `--help` to see a description of all available commands.
 
 ```sh
-npx @eik/cli --help
+eik --help
 ```
 
 You can also get help for each individual command the same way.
 
 ```sh
-npx @eik/cli init --help
+eik init --help
 ```
 
 ## Logging in
+
+Write operations require you to be logged in to the Eik server. To log in, run the `login` command.
 
 ```sh
 eik login
 ```
 
 The login command will ask for a server URL and a server key.
+
 Server keys are configured on the server and, once entered,
 the client will authenticate with the server and receive back
 a JSON web token which it will save in an `.eikrc` file in the
 users home directory for use in subsequent commands.
+
+![Login screenshot](/img/login.png)
+
+### Without the command prompt
+
+It is possible to bypass login prompts by providing the server URL and key via command line flags.
+
+```sh
+eik login --server https://eik.store.com --key YOUR_EIK_KEY
+```
+
+### With multiple Eik servers
+
+It is possible to be authenticated against several Eik servers at once by calling the `eik login` command multiple times and providing different server URLs and keys each time.
+
+```sh
+eik login --server https://eik1.store.com --key YOUR_EIK_KEY
+eik login --server https://eik2.store.com --key YOUR_EIK_KEY
+```
+
+### Once logged in
+
+So long as the client is logged in to a single server, all subsequent commands will know which server to use and provide credentials automatically.
+
+```sh
+eik publish
+```
+
+_N.B._ If the client is authenticated with more than one server, it may be necessary to tell the client which server to use when using commands since the client will not decide which authenticated server to give precedence to. The `--server` (or `-s` for short) flag can be used to do this.
+
+```sh
+eik publish --server https://eik.store.com
+```
 
 ## Programatic usage
 

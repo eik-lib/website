@@ -23,17 +23,22 @@ module.exports = {
 			label: "Managing the Eik server",
 			items: [
 				"server/server",
-				"server/js-api",
-				"server/sink",
+				"server/storage",
 				"server/http-api",
-				"server/file-structure",
 				"server/metrics",
 			],
 		},
 		{
 			type: "category",
 			label: "Guides",
-			items: ["guides/travis"],
+			collapsed: false,
+			items: [
+				"guides/esbuild",
+				"guides/rollup",
+				"guides/postcss",
+				"guides/github-actions",
+				"guides/travis",
+			],
 		},
 		{
 			type: "category",

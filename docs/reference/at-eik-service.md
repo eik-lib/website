@@ -1,9 +1,8 @@
 ---
-title: Eik server - Programatic API
-sidebar_label: Programatic API
+title: "@eik/service"
 ---
 
-The Eik service is distributed as a [Fastify](https://www.fastify.io/) plugin and has the following programatic API:
+The Eik service is distributed as a [Fastify](https://www.fastify.io/) plugin and has the following programatic API.
 
 ## Constructor
 

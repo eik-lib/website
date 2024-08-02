@@ -1,6 +1,5 @@
 ---
-title: Eik server - Metrics
-sidebar_label: Metrics
+title: Metrics
 ---
 
 The Eik server exposes a [metric stream](https://github.com/metrics-js/client) which emits internal metrics
@@ -60,16 +59,16 @@ metric it is.
 
 The server exposes these metrics:
 
-| Name                          | Type      | Description                                                                                    |
-| ----------------------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| eik_core_auth_post_handler    | histogram | Time taken in a [login](server_rest_api.md#login) method                                       |
-| eik_core_pkg_get_handler      | histogram | Time taken in a [public package](server_rest_api.md#public-package-url) method                 |
-| eik_core_pkg_log_handler      | histogram | Time taken in a [package version overview](server_rest_api.md#package-version-overview) method |
-| eik_core_pkg_put_handler      | histogram | Time taken in a [upload package](server_rest_api.md#upload-a-package) method                   |
-| eik_core_versions_get_handler | histogram | Time taken in a [latest package versions](server_rest_api.md#latest-package-versions) method   |
-| eik_core_alias_get_handler    | histogram | Time taken in a [public alias](server_rest_api.md#public-alias-url) method                     |
-| eik_core_alias_put_handler    | histogram | Time taken in a [create alias](server_rest_api.md#create-alias) method                         |
-| eik_core_alias_post_handler   | histogram | Time taken in a [update alias](server_rest_api.md#update-alias) method                         |
-| eik_core_alias_del_handler    | histogram | Time taken in a [delete alias](server_rest_api.md#delete-alias) method                         |
-| eik_core_map_get_handler      | histogram | Time taken in a [public import maps](server_rest_api.md#public-import-maps-url) method         |
-| eik_core_map_put_handler      | histogram | Time taken in a [upload import maps](server_rest_api.md#upload-an-import-map) method           |
+| Name                          | Type      | Description                                                                             |
+| ----------------------------- | --------- | --------------------------------------------------------------------------------------- |
+| eik_core_auth_post_handler    | histogram | Time taken in a [login](http-api.md#login) method                                       |
+| eik_core_pkg_get_handler      | histogram | Time taken in a [public package](http-api.md#public-package-url) method                 |
+| eik_core_pkg_log_handler      | histogram | Time taken in a [package version overview](http-api.md#package-version-overview) method |
+| eik_core_pkg_put_handler      | histogram | Time taken in a [upload package](http-api.md#upload-a-package) method                   |
+| eik_core_versions_get_handler | histogram | Time taken in a [latest package versions](http-api.md#latest-package-versions) method   |
+| eik_core_alias_get_handler    | histogram | Time taken in a [public alias](http-api.md#public-alias-url) method                     |
+| eik_core_alias_put_handler    | histogram | Time taken in a [create alias](http-api.md#create-alias) method                         |
+| eik_core_alias_post_handler   | histogram | Time taken in a [update alias](http-api.md#update-alias) method                         |
+| eik_core_alias_del_handler    | histogram | Time taken in a [delete alias](http-api.md#delete-alias) method                         |
+| eik_core_map_get_handler      | histogram | Time taken in a [public import maps](http-api.md#public-import-maps-url) method         |
+| eik_core_map_put_handler      | histogram | Time taken in a [upload import maps](http-api.md#upload-an-import-map) method           |

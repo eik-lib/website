@@ -1,6 +1,5 @@
 ---
-title: Eik server - Sink
-sidebar_label: Sink
+title: Storage sinks
 ---
 
 The Eik server has a file sink concept which caters for the posibillity to write files to, and read files from different storage backends by swapping out sink modules in the server. Because each sink implements the same public API, it is possible to use one sink in one environment and a different sink in another.
@@ -19,17 +18,49 @@ By default all files are stored in the default OS temp folder. Do note that file
 SINK_PATH=/var/persistent/storage/eik node server.js
 ```
 
+You can also import `@eik/sink-file-system` and configure the sink that way.
+
+```js
+import Service from "@eik/service";
+import Sink from "@eik/sink-file-system";
+
+const sink = new Sink({
+	sinkFsRootPath: path.join(process.cwd(), ".eik", "storage"),
+});
+
+const service = new Service({ sink });
+```
+
 ### In memory
 
-The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests against.
+The in memory sink will write files to and from memory. Files written to this sink will disappear when the Eik server is restarted. This sink is handy for spinning up an Eik server to run tests.
 
 To use it, set the `SINK_TYPE` environment variable to `mem`.
 
+You can also import `@eik/sink-memory` and configure the sink that way.
+
+```js
+import Service from "@eik/service";
+import Sink from "@eik/sink-memory";
+
+const sink = new Sink();
+
+const service = new Service({ sink });
+```
+
 ## Custom sinks
 
-A custom sink is normally pulled in as a dependent module and passed on to the `customSink` property on the constructor of the @eik/service in a [custom server setup](/docs/server#customized-setup).
+A custom sink is normally pulled in as a dependent module and passed on to the `sink` property on the constructor of the `@eik/service` in a [production setup](/docs/server#production-setup).
 
-Example of using the sink for Google Cloud Storage:
+A custom sink takes its own set of properties, such as authentication keys, so please see the documentation for each sink for what's required.
+
+### Available custom sinks
+
+These custom sinks are available:
+
+- [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
+
+Please feel free to let us know if you have a custom sink you would like to have listed, and use the `eik-sink` topic if you publish on GitHub.
 
 ```js
 import fastify from "fastify";
@@ -37,7 +68,7 @@ import Service from "@eik/service";
 import Sink from "@eik/sink-gcs";
 
 const sink = new Sink();
-const service = new Service({ customSink: sink });
+const service = new Service({ sink });
 
 const app = fastify({
 	ignoreTrailingSlash: true,
@@ -46,22 +77,11 @@ const app = fastify({
 app.register(service.api());
 ```
 
-A custom sink normally takes its own set of properties, such as authentication keys etc, so please see the documentation for each sink for what's required.
-
-### Available custom sinks
-
-These custom sinks are available:
-
-- [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
-- [Memory](https://github.com/eik-lib/sink-memory) (like the built-in, but usable with the `customSink` option rather than an environment variable)
-
-Please feel free to let us know if you have a custom sink you would like to have listed.
-
 ## Implementing a custom sink
 
-Implementing a custom sink is fairly stright forward. A custom sink must extend the [Eik sink interface](https://github.com/eik-lib/sink) and implement all the methods in the public API and its public properties. If this is not done, the custom sink will not be usable in the Eik server since validation depends upon the extension of the interface.
+A custom sink must extend the [Eik sink interface](https://github.com/eik-lib/sink) and implement all the methods in the public API and its public properties. If this is not done, the custom sink will not be usable in the Eik server since validation depends upon the extension of the interface.
 
-The [Google Cloud Storage sink](https://github.com/eik-lib/sink-gcs) is a good example to look at when implementing a custom sink.
+The [existing sinks](https://github.com/topics/eik-sink) are good examples to look at when implementing a custom sink.
 
 ### Constructor
 

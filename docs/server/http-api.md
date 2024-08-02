@@ -1,5 +1,4 @@
 ---
-id: server_rest_api
 title: Eik server - REST API
 sidebar_label: REST API
 ---
@@ -12,9 +11,9 @@ Authentication is needed to execute multiple API calls in the REST API.
 
 ### Endpoint Summary Table
 
-| Name                         | Verb | Endpoint              | Form Fields |
-| ---------------------------- | ---- | --------------------- | ----------- |
-| [Login](#login)              | POST  | `/auth/login`        | `key`       |
+| Name            | Verb | Endpoint      | Form Fields |
+| --------------- | ---- | ------------- | ----------- |
+| [Login](#login) | POST | `/auth/login` | `key`       |
 
 ### Login
 
@@ -28,18 +27,18 @@ https://:assetServerUrl:port/auth/login
 
 Form parameters:
 
--   `key` an authentication key
+- `key` an authentication key
 
 Status codes:
 
--   `200` if user is authorized
--   `401` if user is not authorized
+- `200` if user is authorized
+- `401` if user is not authorized
 
 Success response: A jwt token
 
 ```json
 {
-    "token": "..."
+	"token": "..."
 }
 ```
 
@@ -75,14 +74,14 @@ https://:assetServerUrl:port/pkg/:name/:version/:extras
 
 URL parameters:
 
--   `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
--   `:extras` whildcard pathname to any file in the package
+- `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:extras` whildcard pathname to any file in the package
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -102,27 +101,27 @@ https://:assetServerUrl:port/pkg/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Form parameters:
 
--   `package` a `tar` or `tar.gz` containing the files of the package
+- `package` a `tar` or `tar.gz` containing the files of the package
 
 HTTP headers:
 
--   `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `303` if package is successfully uploaded. `location` is root of module
--   `400` if validation in URL parameters or form fields fails
--   `401` if user is not authorized
--   `409` if package already exists or version in a major range is not newer than previous version in a major range
--   `413` if package is too large
--   `415` if file format of the uploaded file is unsupported
--   `422` if a entry in the uploaded file could not be parsed or errored
--   `502` if package could not be written to the sink
+- `303` if package is successfully uploaded. `location` is root of module
+- `400` if validation in URL parameters or form fields fails
+- `401` if user is not authorized
+- `409` if package already exists or version in a major range is not newer than previous version in a major range
+- `413` if package is too large
+- `415` if file format of the uploaded file is unsupported
+- `422` if a entry in the uploaded file could not be parsed or errored
+- `502` if package could not be written to the sink
 
 Example:
 
@@ -142,12 +141,12 @@ https://:assetServerUrl:port/pkg/:name
 
 URL parameters:
 
--   `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -167,13 +166,13 @@ https://:assetServerUrl:port/pkg/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the package. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -207,14 +206,14 @@ https://:assetServerUrl:port/npm/:name/:version/:extras
 
 URL parameters:
 
--   `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
--   `:extras` wildcard pathname to any file in the NPM package
+- `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:extras` wildcard pathname to any file in the NPM package
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -234,27 +233,27 @@ https://:assetServerUrl:port/npm/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Form parameters:
 
--   `package` a `tar` or `tar.gz` containing the files of the NPM package
+- `package` a `tar` or `tar.gz` containing the files of the NPM package
 
 HTTP headers:
 
--   `Authorization` a JWT authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a JWT authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `303` if NPM package is successfully uploaded. `location` is root of module
--   `400` if validation in URL parameters or form fields fails
--   `401` if user is not authorized
--   `409` if NPM package already exist or version in a major range is not newer than previous version in a major range
--   `413` if package is too large
--   `415` if file format of the uploaded file is unsupported
--   `422` if a entry in the uploaded file could not be parsed or errored
--   `502` if NPM package could not be written to the sink
+- `303` if NPM package is successfully uploaded. `location` is root of module
+- `400` if validation in URL parameters or form fields fails
+- `401` if user is not authorized
+- `409` if NPM package already exist or version in a major range is not newer than previous version in a major range
+- `413` if package is too large
+- `415` if file format of the uploaded file is unsupported
+- `422` if a entry in the uploaded file could not be parsed or errored
+- `502` if NPM package could not be written to the sink
 
 Example:
 
@@ -274,12 +273,12 @@ https://:assetServerUrl:port/npm/:name
 
 URL parameters:
 
--   `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -299,13 +298,13 @@ https://:assetServerUrl:port/npm/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the NPM package. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the NPM package. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -337,13 +336,13 @@ https://:assetServerUrl:port/map/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the import map. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Status codes:
 
--   `200` if import map is successfully retrieved
--   `404` if import map is not found
+- `200` if import map is successfully retrieved
+- `404` if import map is not found
 
 Example:
 
@@ -363,25 +362,25 @@ https://:assetServerUrl:port/map/:name/:version
 
 URL parameters:
 
--   `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:version` is the version of the import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:version` is the version of the import map. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Form parameters:
 
--   `map` a `json` file (the import map)
+- `map` a `json` file (the import map)
 
 HTTP headers:
 
--   `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `303` if import map is successfully uploaded. `location` is [Public Import Map URL](#public-import-map-url)
--   `400` if validation in URL parameters or form fields fails
--   `401` if user is not authorized
--   `409` if import map already exist
--   `415` if file format of the uploaded import map is unsupported
--   `502` if import map could not be written to the sink
+- `303` if import map is successfully uploaded. `location` is [Public Import Map URL](#public-import-map-url)
+- `400` if validation in URL parameters or form fields fails
+- `401` if user is not authorized
+- `409` if import map already exist
+- `415` if file format of the uploaded import map is unsupported
+- `502` if import map could not be written to the sink
 
 Example:
 
@@ -401,12 +400,12 @@ https://:assetServerUrl:port/map/:name
 
 URL parameters:
 
--   `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:name` is the name of the import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
 
 Status codes:
 
--   `200` if file is successfully retrieved
--   `404` if file is not found
+- `200` if file is successfully retrieved
+- `404` if file is not found
 
 Example:
 
@@ -417,7 +416,6 @@ curl -X GET http://localhost:4001/map/buzz
 ## Aliases
 
 An alias is a shorthand between a major version of a package / import map and the set exact version of the package / import map.
-
 
 ### Endpoint Summary Table
 
@@ -440,15 +438,15 @@ https://:assetServerUrl:port/:type/:name/v:alias/:extras
 
 URL parameters:
 
--   `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
--   `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
--   `:extras` whildcard pathname to any file in a package. Does not apply to import maps.
+- `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
+- `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:extras` whildcard pathname to any file in a package. Does not apply to import maps.
 
 Status codes:
 
--   `302` if alias exist
--   `404` if alias is not found
+- `302` if alias exist
+- `404` if alias is not found
 
 Example:
 
@@ -469,25 +467,25 @@ https://:assetServerUrl:port/:type/:name/v:alias
 
 URL parameters:
 
--   `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
--   `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
+- `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Form parameters:
 
--   `:version` full version of the package to be aliased
+- `:version` full version of the package to be aliased
 
 HTTP headers:
 
--   `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `303` if alias is successfully created. `location` points to the alias
--   `400` if validation in URL parameters or form fields fails
--   `401` if user is not authorized
--   `409` if alias already exist
--   `502` if alias could not be altered by the sink
+- `303` if alias is successfully created. `location` points to the alias
+- `400` if validation in URL parameters or form fields fails
+- `401` if user is not authorized
+- `409` if alias already exist
+- `502` if alias could not be altered by the sink
 
 Example:
 
@@ -508,24 +506,24 @@ https://:assetServerUrl:port/:type/:name/v:alias
 
 URL parameters:
 
--   `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
--   `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
+- `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
 
 Form parameters:
 
--   `:version` full version of the package to be aliased
+- `:version` full version of the package to be aliased
 
 HTTP headers:
 
--   `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `303` if alias is successfully created. `location` points to the alias
--   `401` if user is not authorized
--   `404` if alias does not exist
--   `502` if alias could not be altered by the sink
+- `303` if alias is successfully created. `location` points to the alias
+- `401` if user is not authorized
+- `404` if alias does not exist
+- `502` if alias could not be altered by the sink
 
 Example:
 
@@ -546,20 +544,20 @@ https://:assetServerUrl:port/:type/:name/v:alias
 
 URL parameters:
 
--   `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
--   `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
--   `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
+- `:type` is the type to retrieve from. Validator: `pkg`, `npm` or `map`.
+- `:name` is the name of the package / import map. Validator: Comply with [npm package names](https://github.com/npm/validate-npm-package-name).
+- `:alias` is the major version of the package / import map. Validator: Comply with [semver validation regex](https://semver.org/).
 
 HTTP headers:
 
--   `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
+- `Authorization` a jwt authorization bearer with the token retrieved from a successful [authentication](#login)
 
 Status codes:
 
--   `204` if alias is successfully deleted
--   `401` if user is not authorized
--   `404` if alias does not exist
--   `502` if alias could not be altered by the sink
+- `204` if alias is successfully deleted
+- `401` if user is not authorized
+- `404` if alias does not exist
+- `502` if alias could not be altered by the sink
 
 Example:
 

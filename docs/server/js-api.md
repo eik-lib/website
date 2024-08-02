@@ -1,5 +1,4 @@
 ---
-id: server_api
 title: Eik server - Programatic API
 sidebar_label: Programatic API
 ---
@@ -57,7 +56,7 @@ const service = new Service({ customSink: sink });
 
 // Set up Fastify
 const app = fastify({
-  ignoreTrailingSlash: true,
+	ignoreTrailingSlash: true,
 });
 
 // Register the Eik service in Fastify
@@ -76,11 +75,11 @@ We recommend executing the health check before the service begins accepting HTTP
 
 ```js
 const run = async () => {
-  await service.health();
-  await app.listen(
-    service.config.get("http.port"),
-    service.config.get("http.address"),
-  );
+	await service.health();
+	await app.listen(
+		service.config.get("http.port"),
+		service.config.get("http.address"),
+	);
 };
 run();
 ```

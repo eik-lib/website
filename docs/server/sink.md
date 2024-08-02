@@ -1,5 +1,4 @@
 ---
-id: server_sink
 title: Eik server - Sink
 sidebar_label: Sink
 ---
@@ -41,7 +40,7 @@ const sink = new Sink();
 const service = new Service({ customSink: sink });
 
 const app = fastify({
-  ignoreTrailingSlash: true,
+	ignoreTrailingSlash: true,
 });
 
 app.register(service.api());
@@ -72,14 +71,14 @@ A sink must be a `class` which extends the [Eik sink interface](https://github.c
 import Sink from "@eik/sink";
 
 class SinkCustom extends Sink {
-  constructor() {
-    super();
-  }
-  write() {}
-  read() {}
-  delete() {}
-  exist() {}
-  get metrics() {}
+	constructor() {
+		super();
+	}
+	write() {}
+	read() {}
+	delete() {}
+	exist() {}
+	get metrics() {}
 }
 ```
 

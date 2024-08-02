@@ -1,5 +1,4 @@
 ---
-id: server_metrics
 title: Eik server - Metrics
 sidebar_label: Metrics
 ---
@@ -35,7 +34,7 @@ import fastify from "fastify";
 const service = new Service();
 
 const metricsConsumer = new MetricsConsumer({
-  client: prometheus,
+	client: prometheus,
 });
 
 service.metrics.pipe(metricsConsumer);
@@ -44,12 +43,12 @@ const app = fastify();
 app.register(service.api());
 
 app.get("/_/metrics", (request, reply) => {
-  reply.type(metricsConsumer.registry.contentType);
-  reply.send(metricsConsumer.registry.metrics());
+	reply.type(metricsConsumer.registry.contentType);
+	reply.send(metricsConsumer.registry.metrics());
 });
 
 const run = async () => {
-  await app.listen(8080, "0.0.0.0");
+	await app.listen(8080, "0.0.0.0");
 };
 run();
 ```

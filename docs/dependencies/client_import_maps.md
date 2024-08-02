@@ -1,6 +1,5 @@
 ---
-title: Import Maps
-sidebar_label: Import Maps
+title: Import maps
 ---
 
 Common dependencies can be separated out of your application bundles by the use of import maps.

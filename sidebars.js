@@ -5,20 +5,17 @@ module.exports = {
 			type: "category",
 			label: "Introduction",
 			collapsed: false,
-			items: [
-				"introduction/introduction",
-				"introduction/workflow",
-				"introduction/concepts",
-			],
+			items: ["introduction/introduction", "introduction/workflow"],
 		},
 		{
 			type: "category",
 			label: "Managing dependencies",
 			collapsed: false,
 			items: [
+				"dependencies/introduction",
+				"dependencies/npm",
 				"dependencies/client",
 				"dependencies/client_login",
-				"dependencies/client_npm_packages",
 				"dependencies/client_import_maps",
 				"dependencies/client_putting_it_all_together",
 				"dependencies/mapping_import_map",

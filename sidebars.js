@@ -14,18 +14,13 @@ module.exports = {
 			items: [
 				"dependencies/introduction",
 				"dependencies/npm",
-				"dependencies/client",
-				"dependencies/client_login",
-				"dependencies/client_import_maps",
-				"dependencies/client_putting_it_all_together",
-				"dependencies/mapping_import_map",
-				"dependencies/mapping_browser",
-				"dependencies/mapping_plugins",
+				"dependencies/aliases",
+				"dependencies/import-maps",
 			],
 		},
 		{
 			type: "category",
-			label: "Eik server",
+			label: "Managing the Eik server",
 			items: [
 				"server/server",
 				"server/js-api",

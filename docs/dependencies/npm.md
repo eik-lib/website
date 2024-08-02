@@ -57,7 +57,13 @@ Open the newly created `eik.json` and fill out the required fields.
 }
 ```
 
-You should also use import maps (we'll get to those) if your dependency has dependencies of its own that are hosted on Eik.
+:::tip
+
+If your organisation doesn't have a running Eik server yet, hop on over to [the server documentation](/docs/server).
+
+:::
+
+You should also use [import maps] if your dependency has dependencies of its own that are hosted on Eik.
 
 Now, what to put in `"files"`? Technically there's nothing stopping you from pointing `eik.json` to files inside `node_modules`. If your dependency is ESM and ready to run in the browser, that's totally valid.
 
@@ -75,7 +81,7 @@ In many cases though, you're going to need a build step.
 
 ### Build an ESM version
 
-As with application code, you should build npm packages for Eik using a [build tool with an Eik plugin](/docs/mapping_plugins) so you can take advantage of import maps. In this example we'll be using [esbuild](https://esbuild.github.io/) with the [Eik esbuild plugin](https://github.com/eik-lib/esbuild-plugin#readme).
+As with application code, you should build npm packages for Eik using a build tool with an Eik plugin so you can take advantage of [import maps]. In this example we'll be using [esbuild](https://esbuild.github.io/) with the [Eik esbuild plugin](https://github.com/eik-lib/esbuild-plugin#readme).
 
 ```
 npm install --save-dev esbuild @eik/esbuild-plugin
@@ -136,7 +142,7 @@ Let's update the `"files"` field in `eik.json` to include the files we built.
 	"type": "npm",
 	"version": "4.17.21",
 	"server": "https://eik.store.com",
-	"files": "./dist"
+	"files": "./dist/"
 }
 ```
 
@@ -151,14 +157,65 @@ At this point the shared ESM version of lodash should be available on `https://e
 
 :::tip
 
-You should keep `package.json`, `eik.json` and the build script in version control (for example `git`) so it's quicker to do updates.
+You should keep `package.json`, `eik.json` and the build script in version control so you don't have to recreate this setup when there are updates.
 
 :::
 
-### Get information about a published package
+## Get information about a published package
 
 To view publish information, you can use the `eik meta` command.
 
 ```sh
 eik meta lodash
 ```
+
+## Updating a published package
+
+New versions of the module need to be published to the Eik server, either manually or with automation like Renovate or Dependabot. Whether you choose to automate or have a manual process, these are the steps to update a module.
+
+1. Update the dependency in `package.json` and install
+2. Update the version number in `eik.json`
+3. Run the build script
+4. Publish to the Eik server
+
+Keeping with our `lodash` example, say it's been updated to `4.18.0`. First you would update the dependency in `package.json`.
+
+```diff
+{
+	"dependencies": {
+-		"lodash": "4.17.21"
++		"lodash": "4.18.0"
+	},
+}
+```
+
+Then similarly update the version number in `eik.json`.
+
+```diff
+{
+-	"version": "4.17.21",
++	"version": "4.18.0",
+}
+```
+
+Run `npm install` to download the updated module, then rerun the build with `npm run build`.
+
+```sh
+npm install
+npm run build
+```
+
+Commit the updated files.
+
+Now you can publish the updated module to Eik.
+
+```sh
+eik login --key YOUR_EIK_KEY
+eik publish
+```
+
+## Next steps
+
+Now that you have seen how to publish different versions of a shared dependency to Eik it's time to set up an alias.
+
+[import maps]: /docs/dependencies/import-maps

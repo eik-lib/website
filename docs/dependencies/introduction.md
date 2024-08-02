@@ -1,5 +1,5 @@
 ---
-title: Managing dependencies
+title: Package types
 ---
 
 Previously you learned how to [start using Eik in an application](/docs/introduction/workflow), including how to do import mapping so shared dependencies only get downloaded, parsed and run once. For this to work, though, there must be shared dependencies available on the Eik server.

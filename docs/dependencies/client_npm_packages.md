@@ -1,5 +1,4 @@
 ---
-id: client_npm_packages
 title: ESM Friendly NPM Packages
 sidebar_label: NPM Packages
 ---
@@ -16,11 +15,11 @@ While not strictly necessary, to avoid clashes with your own app packages, Eik p
 
 ```json
 {
-    "name": "lit",
-    "server": "https://assets.myserver.com",
-    "version": "1.0.0",
-    "type": "npm",
-    "files": "./public"
+	"name": "lit",
+	"server": "https://assets.myserver.com",
+	"version": "1.0.0",
+	"type": "npm",
+	"files": "./public"
 }
 ```
 
@@ -45,7 +44,7 @@ https://myeikserver.com/npm/lit/1.0.0/index.js
 #### ESM Imports
 
 ```js
-import lodash from 'https://myeikserver.com/npm/lit/1.0.0/index.js'
+import lodash from "https://myeikserver.com/npm/lit/1.0.0/index.js";
 ```
 
 ## Accessing installed NPM packages
@@ -57,4 +56,3 @@ To view publish information, you can use the `eik meta` command.
 ```sh
 eik meta lit
 ```
-

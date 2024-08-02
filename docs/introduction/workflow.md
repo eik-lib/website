@@ -45,7 +45,7 @@ Open `eik.json` and fill in these details:
 }
 ```
 
-You'll probably find your organisation's import maps in a shared repository.
+You'll probably find your organisation's import maps in a shared repository. See [Managing dependencies](/docs/dependencies/import-maps/) if you don't have any import maps yet.
 
 ## Build-time import mapping
 

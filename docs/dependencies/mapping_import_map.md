@@ -1,5 +1,4 @@
 ---
-id: mapping_import_map
 title: Import Map
 sidebar_label: Import Map
 ---
@@ -11,28 +10,28 @@ Import Maps are a fairly new concept and will hopefully be supported in browsers
 In other words; in an ESM we can import a module like so:
 
 ```js
-import {html, render} from 'lit-html';
+import { html, render } from "lit-html";
 ```
 
 Then an Import Map can be loaded as following in the browser:
 
 ```html
 <script type="importmap">
-{
-  "imports": {
-    "lit-html": "https://cdn.eik-server.com/npm/lit-html/v1/lit-html.js",
-  }
-}
+	{
+		"imports": {
+			"lit-html": "https://cdn.eik-server.com/npm/lit-html/v1/lit-html.js"
+		}
+	}
 </script>
 ```
 
 When the Import Map is applied, our code will act as we have written:
 
 ```js
-import * as lit from 'https://cdn.eik-server.com/npm/lit-html/v1/lit-html.js'
+import * as lit from "https://cdn.eik-server.com/npm/lit-html/v1/lit-html.js";
 ```
 
-Browser support for Import Maps is currently (October 2020) limited. There are polyfills available for Import Maps but its fully possible to apply Import Map to modules ahead of time through build tools. 
+Browser support for Import Maps is currently (October 2020) limited. There are polyfills available for Import Maps but its fully possible to apply Import Map to modules ahead of time through build tools.
 
 Eik does not dictate which strategy, a polyfill or ahead of time, is used for import mapping modules but we recommend that an organization aligns itself with the same strategy across its teams.
 

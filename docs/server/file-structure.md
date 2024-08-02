@@ -1,5 +1,4 @@
 ---
-id: server_file_structure
 title: Eik server - File structure
 sidebar_label: File structure
 ---
@@ -32,11 +31,11 @@ The EIK server stores files in the following structure:
 
 Parameters:
 
--   `:root` is the root folder for everything.
--   `:org` is the name of an organisation.
--   `:name` is the name of a package.
--   `:version` is the full semver version of a package.
--   `:major` is the major semver version of a full semver version of a package.
+- `:root` is the root folder for everything.
+- `:org` is the name of an organisation.
+- `:name` is the name of a package.
+- `:version` is the full semver version of a package.
+- `:major` is the major semver version of a full semver version of a package.
 
 ## Packages
 
@@ -71,6 +70,6 @@ package or import map.
 
 This alias mapping is stored alongside the version of a package or import map version:
 
--   Package alias path: `/:root/:org/pkg/:name/:major.alias.json`
--   NPM package alias path: `/:root/:org/npm/:name/:major.alias.json`
--   Import map alias path: `/:root/:org/map/:name/:major.alias.json`
+- Package alias path: `/:root/:org/pkg/:name/:major.alias.json`
+- NPM package alias path: `/:root/:org/npm/:name/:major.alias.json`
+- Import map alias path: `/:root/:org/map/:name/:major.alias.json`

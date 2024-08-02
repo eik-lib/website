@@ -1,5 +1,4 @@
 ---
-id: client
 title: Publishing to Eik
 sidebar_label: Getting started
 ---

@@ -1,7 +1,5 @@
 ---
-id: travis
-title: Travis
-sidebar_label: Travis
+title: Publish to Eik on Travis
 ---
 
 Publishing to an Eik server from a Travis CI build can be achieved with a few commands.
@@ -22,13 +20,13 @@ The following gives an example of how to run version and publish commands from `
 ```yml
 language: node_js
 node_js:
-  - 14
+  - 20
 before_script:
   - npm i -g @eik/cli
 script:
   - eik login -k $EIK_SERVER_KEY
   - eik version
-  - eik package
+  - eik publish
 ```
 
 If you have a build step that you need to run before publish, you could just insert that into the `script` section as shown.
@@ -38,7 +36,7 @@ script:
   - <build command here>
   - eik login -k $EIK_SERVER_KEY
   - eik version
-  - eik package
+  - eik publish
 ```
 
 ## Create a commit script
@@ -77,7 +75,7 @@ git push origin $BRANCH
 script:
   - eik login -k $EIK_SERVER_KEY
   - eik version
-  - eik package
+  - eik publish
   - ./commit.sh
 ```
 

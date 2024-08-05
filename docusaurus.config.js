@@ -15,16 +15,92 @@ module.exports = {
 			{
 				redirects: [
 					{
-						from: "/docs/client_installation",
-						to: "/docs/reference/eik-cli",
+						from: "/docs/overview",
+						to: "/docs/introduction",
+					},
+					{
+						from: "/docs/overview_concepts",
+						to: "/docs/dependencies/introduction",
+					},
+					{
+						from: "/docs/overview_workflow",
+						to: "/docs/introduction/workflow",
 					},
 					{
 						from: "/docs/overview_eik_json",
 						to: "/docs/reference/eik-json",
 					},
 					{
-						from: "/docs/overview",
-						to: "/docs/introduction/overview",
+						from: "/docs/client",
+						to: "/docs/introduction/workflow",
+					},
+					{
+						from: "/docs/client_installation",
+						to: "/docs/reference/at-eik-cli",
+					},
+					{
+						from: "/docs/client_login",
+						to: "/docs/reference/at-eik-cli",
+					},
+					{
+						from: "/docs/client_app_packages",
+						to: "/docs/introduction/workflow",
+					},
+					{
+						from: "/docs/client_npm_packages",
+						to: "/docs/dependencies/npm",
+					},
+					{
+						from: "/docs/client_import_maps",
+						to: "/docs/dependencies/import-maps",
+					},
+					{
+						from: "/docs/client_aliases",
+						to: "/docs/dependencies/aliases",
+					},
+					{
+						from: "/docs/client_putting_it_all_together",
+						to: "/docs/introduction/workflow",
+					},
+					{
+						from: "/docs/mapping_import_map",
+						to: "/docs/dependencies/import-maps",
+					},
+					{
+						from: "/docs/mapping_browser",
+						to: "/docs/introduction#import-mapping",
+					},
+					{
+						from: "/docs/mapping_plugins",
+						to: "/docs/introduction/workflow#build-time-import-mapping",
+					},
+					{
+						from: "/docs/server_api",
+						to: "/docs/reference/at-eik-service",
+					},
+					{
+						from: "/docs/server_sink",
+						to: "/docs/server/storage",
+					},
+					{
+						from: "/docs/server_rest_api",
+						to: "/docs/server/http-api",
+					},
+					{
+						from: "/docs/server_file_structure",
+						to: "/docs/server/storage#internal-storage-structure",
+					},
+					{
+						from: "/docs/server_metrics",
+						to: "/docs/server/metrics",
+					},
+					{
+						from: "/docs/ci",
+						to: "/docs/guides/github-actions",
+					},
+					{
+						from: "/docs/travis",
+						to: "/docs/guides/travis",
 					},
 				],
 			},

@@ -87,7 +87,7 @@ eik map-alias store 1.1.0 1 --server https://eik.store.com
 
 ## Use your new import map
 
-Applications can now update their `eik.json` config to use the new import map. As long as their build tool is [configured with an Eik plugin](/docs/dependencies/mapping_plugins), that plugin will handle fetching the import map from the server and do the proper import mapping at build-time.
+Applications can now update their `eik.json` config to use the new import map. As long as their build tool is configured with an Eik plugin, that plugin will handle fetching the import map from the server and do the proper import mapping at build-time. Check out the Guides section for several examples.
 
 ```json
 {

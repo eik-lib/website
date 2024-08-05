@@ -30,10 +30,10 @@ A sink must implement the following API:
 
 ### write(filePath, contentType)
 
-| argument    | default | type     | required | details                                                                                             |
-| ----------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath    | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
-| contentType | `null`  | `string` | `true`   | Content type of the file                                                                            |
+| argument    | default | type     | required | details                                                                                                                 |
+| ----------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| filePath    | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server/storage#internal-storage-structure) in Eik |
+| contentType | `null`  | `string` | `true`   | Content type of the file                                                                                                |
 
 This method is called when a file is to be written to storage. The method must return a `Promise` and resolve with a `WritableStream` when the storage is ready to be written too. The server will pipe the byte stream of the file to this stream. Upon any errors, the promise should reject with an `Error` object
 
@@ -56,9 +56,9 @@ export class SinkCustom extends Sink {
 
 ### read(filePath)
 
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
+| argument | default | type     | required | details                                                                                                                 |
+| -------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server/storage#internal-storage-structure) in Eik |
 
 This method is called when a file is to be read from storage. The method must return a `Promise` and resolve with a `ReadableStream` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
 
@@ -81,17 +81,17 @@ export class SinkCustom extends Sink {
 
 ### delete(filePath)
 
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
+| argument | default | type     | required | details                                                                                                                 |
+| -------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server/storage#internal-storage-structure) in Eik |
 
 This method is called when a file is to be deleted from storage. The method must return a `Promise` and resolve with no value when the file is deleted from storage. If any errors occur, the promise should reject with an `Error` object
 
 ### exist(filePath)
 
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
+| argument | default | type     | required | details                                                                                                                 |
+| -------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server/storage#internal-storage-structure) in Eik |
 
 This method is called to check if a file exists in storage. The method must return a `Promise` and resolve with no value if the file exists in storage. If the file does not exist the promise should reject with no error object. Upon any errors, the promise should reject with an `Error` object.
 
@@ -101,7 +101,7 @@ A sink must implement the following properties:
 
 ### .metrics
 
-A getter for a [metric stream](https://github.com/metrics-js/client). The metric stream can be used to emit metrics from the sink into [the overall metric stream](/docs/server_metrics) in the server.
+A getter for a [metric stream](https://github.com/metrics-js/client). The metric stream can be used to emit metrics from the sink into [the overall metric stream](/docs/server/metrics) in the server.
 
 Example:
 

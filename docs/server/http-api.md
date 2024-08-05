@@ -323,7 +323,7 @@ Import maps are versioned and are immutable.
 | [Public Import Map URL](#public-import-map-url) | GET  | `/map/:name/:version` |             |
 | [Upload an Import Map](#upload-an-import-map)   | PUT  | `/map/:name/:version` | `map`       |
 
-### Public Import Maps URL
+### Public Import Map URL
 
 **Method:** `GET`
 

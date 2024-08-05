@@ -14,7 +14,7 @@ When we left [our `lodash` example](/docs/dependencies/npm) we had
 version `4.17.21` published to the URL
 `https://eik.store.com/npm/lodash/4.17.21/index.js`.
 
-The `alias` command in the [Eik CLI](/docs/reference/eik-cli)
+The `alias` command in the [Eik CLI](/docs/reference/at-eik-cli)
 creates a URL that redirects to a specific version of a library.
 
 ```sh

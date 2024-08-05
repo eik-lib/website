@@ -67,7 +67,7 @@ Going back to the user journey for `site.com`, imagine that:
 
 At this point we're back to square one. Each page visit means downloading, parsing and executing Lit.
 
-We can tell from the [semantic version](https://semver.org/) numbers that they could all use `lit@1.2.0` and be fine. This is where [aliases](/docs/client_aliases) come in.
+We can tell from the [semantic version](https://semver.org/) numbers that they could all use `lit@1.2.0` and be fine. This is where [aliases](/docs/dependencies/aliases) come in.
 
 Instead of importing specific versions, Eik encourages the use of aliases to share the same major semantic version between applications.
 
@@ -125,7 +125,7 @@ import * as mylib from "https://eik-server.com/pkg/mylib/v3/main.js";
 
 #### Sharing the import maps themselves on Eik
 
-You can [publish import maps to Eik](/docs/client_import_maps) in a similar way to dependencies and application code. Maps are versioned and immutable, and can be aliased in the same way other assets can.
+You can [publish import maps to Eik](/docs/dependencies/import-maps) in a similar way to dependencies and application code. Maps are versioned and immutable, and can be aliased in the same way other assets can.
 
 Import maps on Eik look similar to those in the browser, with the bare import as a key on the left and its absolute value on the right:
 
@@ -139,7 +139,7 @@ Import maps on Eik look similar to those in the browser, with the bare import as
 
 #### Build-time import mapping
 
-Depending on your requirements for browser support, using import maps in the browser may not be feasible, which is why Eik includes tools to do this [import mapping at build-time](/docs/mapping_plugins).
+Depending on your requirements for browser support, using import maps in the browser may not be feasible, which is why Eik includes tools to do this import mapping at build-time. Check out the Guides section for several examples.
 
 These build tools look up the configured import maps shared on the Eik server and replace bare imports with absolute imports pointing to the Eik server.
 

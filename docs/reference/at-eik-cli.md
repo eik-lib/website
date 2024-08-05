@@ -84,7 +84,7 @@ npx @eik/cli --help
 
 ## Available commands
 
-Run `eik` with `--help` to see a description of all available commands in your shell.
+Run `eik` with `--help` to see a description of all available commands and their aliases in your shell.
 
 ```sh
 eik --help
@@ -94,6 +94,34 @@ You can also get help for each individual command the same way.
 
 ```sh
 eik init --help
+```
+
+### alias
+
+Create or update an [alias for a package, npm package or import map](/docs/dependencies/aliases/) as identified by its name and version.
+
+A package with the given name and version must already exist on the Eik server. The alias should be the semver major part of the package version. Eg. for a package of version 5.4.3, you should use 5 as the alias. The alias type (npm, map, package) is detected from `eik.json` in the current working directory.
+
+```sh
+eik alias <name> <version> <alias>
+```
+
+Replaces `package-alias`, `map-alias` and `npm-alias` from version `3.0.0` onward.
+
+### init
+
+Creates a new default [`eik.json`] and saves it to the current working directory.
+
+```sh
+eik init
+```
+
+### integrity
+
+Retrieve file integrity information for package name and version defined in [`eik.json`], then populate `integrity.json` file with this information [for use in subresource integrity](/docs/introduction/workflow#linking-to-your-assets-from-html).
+
+```sh
+eik integrity [name] [version]
 ```
 
 ### login
@@ -142,6 +170,52 @@ _N.B._ If the client is authenticated with more than one server, it may be neces
 
 ```sh
 eik publish --server https://eik.store.com
+```
+
+### map-alias
+
+See [alias](#alias)
+
+### meta
+
+Retrieve meta information by package, map or npm name.
+
+If a given name exists in several types (package and map for example), results will be returned and displayed from all matching types.
+
+```sh
+eik meta <name>
+```
+
+### npm-alias
+
+See [alias](#alias)
+
+### package-alias
+
+See [alias](#alias)
+
+### ping
+
+Ping an Eik server to check that it is responding.
+
+```sh
+eik ping [server]
+```
+
+### publish
+
+Publish a package to an Eik server. Reads configuration from [`eik.json`] or `package.json`.
+
+```sh
+eik publish
+```
+
+### version
+
+Compares local files with files on server and increments the `"version"` field in [`eik.json`] if necessary.
+
+```sh
+eik version [level]
 ```
 
 ## Programatic usage
@@ -255,3 +329,5 @@ const result = await cli.version({
 	files,
 });
 ```
+
+[`eik.json`]: /docs/reference/eik-json/

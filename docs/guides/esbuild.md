@@ -65,6 +65,6 @@ Now you can run a production build using the Eik plugin by running this command.
 npm run build
 ```
 
-## Advanced options
+## Advanced usage
 
 See the [plugin documentation](https://github.com/eik-lib/esbuild-plugin#api) for advanced options on loading import maps.

@@ -1,5 +1,5 @@
 ---
-title: "@eik/sink API reference"
+title: "@eik/sink reference"
 sidebar_label: "@eik/sink"
 ---
 

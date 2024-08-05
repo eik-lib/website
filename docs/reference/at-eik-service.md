@@ -1,5 +1,6 @@
 ---
-title: "@eik/service"
+title: "@eik/service reference"
+sidebar_label: "@eik/service"
 ---
 
 The Eik service is distributed as a [Fastify](https://www.fastify.io/) plugin and has the following programatic API.

@@ -18,7 +18,7 @@ It's worth mentioning at this stage that Eik differentiates between three types 
 - `map`
 - `package`
 
-You'll see this distinction in `eik.json` and in the URL where your package gets published. Each package type has its own namespace. This is to avoid accidental naming collisions between, say, the `npm` module `lit` and the import map `lit`.
+You'll see this distinction in [`eik.json`](/docs/reference/eik-json/) and in the URL where your package gets published. Each package type has its own namespace. This is to avoid accidental naming collisions between, say, the `npm` module `lit` and the import map `lit`.
 
 Application code should be published to the `package` namespace. This is also the default, if no other type is configured in `eik.json`.
 

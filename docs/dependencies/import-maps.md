@@ -94,8 +94,8 @@ Applications can now update their `eik.json` config to use the new import map. A
 	"name": "my-app",
 	"version": "1.0.0",
 	"server": "https://eik.store.com",
-	"files": ["./public"],
-	"import-maps": ["https://eik.store.com/map/store/v1"]
+	"files": "./public",
+	"import-map": ["https://eik.store.com/map/store/v1"]
 }
 ```
 

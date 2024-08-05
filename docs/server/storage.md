@@ -2,21 +2,24 @@
 title: Storage sinks
 ---
 
-The Eik server has a file sink concept which caters for the posibillity to write files to, and read files from different storage backends by swapping out sink modules in the server. Because each sink implements the same public API, it is possible to use one sink in one environment and a different sink in another.
+Eik uses a [sink interface](/docs/reference/at-eik-sink/) for storage. This design makes it possible to drop in different storage backends, for instance switching between local file storage for development and a cloud storage provider for production.
 
 ## Built in sinks
 
-To make it easy to start up an Eik server, the server is shipped with a couple of built in sinks. The file system sink is the default sink in use when a server is started without specifying a sink.
+`@eik/service` ships with two built in sinks, intended for local development and testing:
+
+- File system
+- Memory
 
 ### File system
 
 This is the default sink when you start the Eik server. The file system sink will write files to and from the local file system.
 
+:::warning
+
 By default all files are stored in the default OS temp folder. Do note that files stored in the default OS temp folder will, on most OSes, be deleted without warning by the OS at some point. To configure a different folder, use the `SINK_PATH` environment variable.
 
-```sh
-SINK_PATH=/var/persistent/storage/eik node server.js
-```
+:::
 
 You can also import `@eik/sink-file-system` and configure the sink that way.
 
@@ -60,14 +63,20 @@ These custom sinks are available:
 
 - [Google Cloud Storage](https://github.com/eik-lib/sink-gcs)
 
-Please feel free to let us know if you have a custom sink you would like to have listed, and use the `eik-sink` topic if you publish on GitHub.
+Feel free to open a pull request to list a custom sink you've made, and use the [`eik-sink` topic](https://github.com/topics/eik-sink) if you publish on GitHub.
 
 ```js
 import fastify from "fastify";
 import Service from "@eik/service";
 import Sink from "@eik/sink-gcs";
 
-const sink = new Sink();
+const sink = new Sink({
+	credentials: {
+		client_email: "an@email.address",
+		private_key: "[ ...snip... ]",
+		projectId: "myProject",
+	},
+});
 const service = new Service({ sink });
 
 const app = fastify({
@@ -77,162 +86,79 @@ const app = fastify({
 app.register(service.api());
 ```
 
-## Implementing a custom sink
+### Making a custom sink
 
-A custom sink must extend the [Eik sink interface](https://github.com/eik-lib/sink) and implement all the methods in the public API and its public properties. If this is not done, the custom sink will not be usable in the Eik server since validation depends upon the extension of the interface.
+A custom sink must extend the [Eik sink interface](/docs/reference/at-eik-sink/) and implement all the methods in the public API and its public properties.
 
-The [existing sinks](https://github.com/topics/eik-sink) are good examples to look at when implementing a custom sink.
+## Internal storage structure
 
-### Constructor
+The Eik server stores files in the following structure inside the storage sink.
 
-A sink must be a `class` which extends the [Eik sink interface](https://github.com/eik-lib/sink).
-
-```js
-import Sink from "@eik/sink";
-
-class SinkCustom extends Sink {
-	constructor() {
-		super();
-	}
-	write() {}
-	read() {}
-	delete() {}
-	exist() {}
-	get metrics() {}
-}
+```sh
+:root
+└── :org
+    ├── map
+    │   └── :name
+    │       ├── :version.import-map.json
+    │       ├── :major.alias.json
+    │       └── versions.json
+    ├── pkg
+    │   └── :name
+    │       ├── :version
+    │       │   ├── *
+    │       ├── :version.package.json
+    │       ├── :major.alias.json
+    │       └── versions.json
+    └── npm
+        └── :name
+            ├── :version
+            │   ├── *
+            ├── :version.package.json
+            ├── :major.alias.json
+            └── versions.json
 ```
 
-### API
+Parameters:
 
-A sink must implement the following API:
+- `:root` is the root folder for everything.
+- `:org` is the name of an organisation.
+- `:name` is the name of a package.
+- `:version` is the full semver version of a package.
+- `:major` is the major semver version of a full semver version of a package.
 
-#### write(filePath, contentType)
+### Packages
 
-| argument    | default | type     | required | details                                                                                             |
-| ----------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath    | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
-| contentType | `null`  | `string` | `true`   | Content type of the file                                                                            |
+Packages are stored under `/:root/:org/pkg/:name/:version/` and the structure of a package is
+arbitrary and untouched during upload by the service.
 
-This method is called when a file is to be written to storage. The method must return a `Promise` and resolve with a `WritableStream` when the storage is ready to be written too. The server will pipe the byte stream of the file to this stream. Upon any errors, the promise should reject with an `Error` object
+The file structure of a package is stored in a package file at `/:root/:org/pkg/:name/:version.package.json`.
 
-```js
-import { Writable } from 'node:stream';
-import Sink from '@eik/sink';
+### npm
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    write() {
-        return new Promise(resolve, reject) {
-            const to = new Writable();
-            resolve(to);
-        }
-    }
-}
-```
+NPM packages are packages from the NPM registry that are then published to Eik as a "copy". Packages from
+the NPM registry are published under this namespace to avoid name collision with other packages.
 
-#### read(filePath)
+NPM packages are stored under `/:root/:org/npm/:name/:version/` and the structure of a package is
+arbitrary and is not changed during upload by the service.
 
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
+The file structure of an NPM package is stored in a package meta file at `/:root/:org/pkg/:name/:version.package.json`.
 
-This method is called when a file is to be read from storage. The method must return a `Promise` and resolve with a `ReadableStream` when the storage is ready to be read from. Upon any errors, the promise should reject with an `Error` object
+### Import maps
 
-```js
-import { Readable } from 'node:stream';
-import Sink from '@eik/sink';
+Import maps are stored under `/:root/:org/map/:name/:version.import-map.json`. The filename of
+import maps is strict and conforms to the version number it's given with a `.json` extension.
 
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    read() {
-        return new Promise(resolve, reject) {
-            const to = new Readable();
-            resolve(to);
-        }
-    }
-}
-```
+The filename of import maps prior to uploading to the service can be anything. The service will
+convert the file name according to the parameters given when uploading it.
 
-#### delete(filePath)
+### Aliases
 
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
+Packages, NPM packages and import map versions can be aliased. An alias is a semver major version of a
+full semver version and is a way to map a major version to a given full semver version of a
+package or import map.
 
-This method is called when a file is to be deleted from storage. The method must return a `Promise` and resolve with no value when the file is deleted from storage. If any errors occur, the promise should reject with an `Error` object
+This alias mapping is stored alongside the version of a package or import map version:
 
-#### exist(filePath)
-
-| argument | default | type     | required | details                                                                                             |
-| -------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| filePath | `null`  | `string` | `true`   | Pathname of the file relative to `root` in the [file structure](/docs/server_file_structure) in Eik |
-
-This method is called to check if a file exists in storage. The method must return a `Promise` and resolve with no value if the file exists in storage. If the file does not exist the promise should reject with no error object. Upon any errors, the promise should reject with an `Error` object.
-
-### Properties
-
-A sink must implement the following properties:
-
-#### .metrics
-
-A getter for a [metric stream](https://github.com/metrics-js/client). The metric stream can be used to emit metrics from the sink into [the overall metric stream](/docs/server_metrics) in the server.
-
-Example:
-
-```js
-import Metrics from @metrics/client';
-import Sink from @eik/sink';
-
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-        this._metrics = new Metrics();
-        this._counter = this._metrics.counter({
-            name: 'eik_custom_sink',
-            description: 'Counter measuring access to the custom sink',
-        });
-    }
-    write(filePath, contentType) {
-        return new Promise(resolve, reject) {
-            this._counter.inc();
-
-        }
-    }
-}
-```
-
-### Validation
-
-We recommend you validate the arguments for all methods. The [Eik sink interface](https://github.com/eik-lib/sink) contain static methods to do so which can be used when implementing a sink:
-
-```js
-import Sink from @eik/sink';
-
-const SinkCustom = class SinkCustom extends Sink {
-    constructor() {
-        super();
-    }
-    write(filePath, contentType) {
-        return new Promise(resolve, reject) {
-            try {
-                super.constructor.validateFilePath(filePath);
-                super.constructor.validateContentType(contentType);
-            } catch (error) {
-                reject(error);
-                return;
-            }
-
-        }
-    }
-}
-```
-
-### Security
-
-A sink should take care of protecting against [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal). It should not be possible to access files outside the `root` of the file structure in Eik by passing in a hostile pathname through the REST API of Eik. Each `filePath` argument on each method should be checked for such.
-
-Please see OWASPs guide on preventing [Path Traversal](https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include.md).
+- Package alias path: `/:root/:org/pkg/:name/:major.alias.json`
+- NPM package alias path: `/:root/:org/npm/:name/:major.alias.json`
+- Import map alias path: `/:root/:org/map/:name/:major.alias.json`

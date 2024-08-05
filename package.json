@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "docusaurus build",
+    "clean": "rimraf node_modules .docusaurus build",
     "deploy": "docusaurus deploy",
     "dev": "docusaurus start --no-open",
     "lint": "eslint .",
@@ -24,7 +25,8 @@
     "@eik/prettier-config": "1.0.1",
     "eslint": "9.8.0",
     "eslint-plugin-react": "7.35.0",
-    "prettier": "3.3.3"
+    "prettier": "3.3.3",
+    "rimraf": "6.0.1"
   },
   "browserslist": {
     "production": [

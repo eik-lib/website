@@ -40,8 +40,8 @@ Open `eik.json` and fill in these details:
 	"name": "my-app",
 	"version": "1.0.0",
 	"server": "https://eik.store.com",
-	"files": ["./public"],
-	"import-maps": ["https://eik.store.com/map/store/v1"]
+	"files": "./public",
+	"import-map": ["https://eik.store.com/map/store/v1"]
 }
 ```
 
@@ -120,8 +120,8 @@ Here's our example `eik.json` again.
 	"server": "https://eik.store.com",
 	"name": "my-app",
 	"version": "1.0.0",
-	"files": ["./public"],
-	"import-maps": ["https://eik.store.com/map/store/v1"]
+	"files": "./public",
+	"import-map": ["https://eik.store.com/map/store/v1"]
 }
 ```
 

@@ -16,11 +16,3 @@ All commands are run from the root of the project.
 | `npm run deploy`   | Run by GitHub Actions to deploy to GitHub Pages     |
 | `npm run lint`     | Run ESLint + Prettier                               |
 | `npm run lint:fix` | Fix ESLint and Prettier issues that are autofixable |
-
-## Contributing
-
-Contributions are welcome 🧡
-
-If you change the URL of a page, please add a redirect rule to `docusaurus.config.js`.
-
-PRs should target the `source` branch. The `main` branch is where the built website is deployed from.

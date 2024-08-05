@@ -66,5 +66,5 @@ The server exposes these metrics.
 | eik_core_alias_put_handler    | histogram | Time taken in a [create alias](http-api.md#create-alias) method                         |
 | eik_core_alias_post_handler   | histogram | Time taken in a [update alias](http-api.md#update-alias) method                         |
 | eik_core_alias_del_handler    | histogram | Time taken in a [delete alias](http-api.md#delete-alias) method                         |
-| eik_core_map_get_handler      | histogram | Time taken in a [public import maps](http-api.md#public-import-maps-url) method         |
+| eik_core_map_get_handler      | histogram | Time taken in a [public import maps](http-api.md#public-import-map-url) method          |
 | eik_core_map_put_handler      | histogram | Time taken in a [upload import maps](http-api.md#upload-an-import-map) method           |

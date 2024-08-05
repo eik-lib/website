@@ -19,7 +19,7 @@ If your organisation doesn't have a running Eik server yet, hop on over to [the 
 
 :::
 
-To use Eik, first we need an `eik.json` configuration file. Use the [Eik CLI](/docs/client) to generate one in your current directory. It should be in the same directory as `package.json`.
+To use Eik, first we need an `eik.json` configuration file. Use the [Eik CLI](/docs/reference/at-eik-cli) to generate one in your current directory. It should be in the same directory as `package.json`.
 
 ```sh
 npx @eik/cli init
@@ -59,14 +59,14 @@ As support for import maps in the browser matures you may want to do build-time 
 
 ![Workflow of build-time import mapping, from source code to running in the browser.](/img/workflow_ahead_of_time_mapping.min.svg)
 
-To apply import maps at build-time you need a build tool. Eik includes [plugins for common build tools](/docs/mapping_plugins), and they all work much the same way.
+To apply import maps at build-time you need a build tool. Eik includes plugins for common build tools, and they all work much the same way.
 
 - Look for [eik.json](#preparing-to-use-eik) to find the URL of the Eik server.
 - Fetch the configured import maps from the Eik server.
 - Attach to the build process in some way.
 - When a bare import is discovered that matches an import map, replace that import with the Eik URL.
 
-When the build is done you should see references to your Eik server in the built JavaScript.
+See the Guides section for several examples. When the build is done you should see references to your Eik server in the built JavaScript.
 
 ## Publish your application to Eik
 
@@ -78,7 +78,7 @@ Strictly speaking, this is optional. You can host your client-side assets elsewh
 - You can reuse the same HTTP/2 connection for dependencies and application code.
 - Your application code is versioned and immutable, and can be cached "forever".
 
-You can upload using the [Eik CLI](/docs/client), or using [Semantic Release](https://github.com/eik-lib/semantic-release) (which versions automatically). This example uses the CLI.
+You can upload using the [Eik CLI](/docs/reference/at-eik-cli), or using [Semantic Release](https://github.com/eik-lib/semantic-release) (which versions automatically). This example uses the CLI.
 
 First, update the version in `eik.json`.
 

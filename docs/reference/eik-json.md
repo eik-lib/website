@@ -57,7 +57,7 @@ It is also possible to have Eik use the `package.json` `name` and `version` fiel
 
 ## Generating an eik.json file
 
-The Eik [client](client.md) provides a scaffolding tool that can be used to generate an `eik.json` file in the current directory.
+The [Eik CLI](/docs/reference/at-eik-cli/) includes a scaffolding tool that can be used to generate an `eik.json` file in the current directory.
 
 ```sh
 eik init
@@ -84,7 +84,7 @@ Once generated, it's necessary to add information about the Eik server URL for t
 
 Defines the value that will be used on the Eik server to configure the namespace for the project. This should be unique to an organisation.
 
-See [application packages](/docs/client_app_packages) for more information.
+See [storage sink](/docs/server/storage#internal-storage-structure) for more information.
 
 ### version
 
@@ -99,8 +99,6 @@ Defines current Eik package version using [semver](https://semver.org/). This mu
 ```
 
 You can manually update this value or use the `eik version` command to automate the process.
-
-See [application packages](/docs/client_app_packages) for more information.
 
 ### server
 
@@ -166,8 +164,6 @@ files: {
 
 Keys (eg. "scripts.js") define publish locations on the Eik server and values (eg. "./path/to/esm.js") define the local file entrypoint locations. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
 
-See [application packages](/docs/client_app_packages) for more information.
-
 ### import-map
 
 - optional
@@ -191,7 +187,7 @@ or
 }
 ```
 
-See [import maps](/docs/client_import_maps) for more information.
+See [import maps](/docs/dependencies/import-maps) for more information.
 
 ### out
 
@@ -214,8 +210,6 @@ Can be used to configure the app's Eik build directory. By default this value is
 
 Defines the value that will be used on the Eik server to configure the namespace for the project. This should be unique to an organisation.
 
-See [application packages](/docs/client_app_packages) for more information.
-
 ### version
 
 - required
@@ -229,8 +223,6 @@ Defines current Eik package version using [semver](https://semver.org/). This mu
 ```
 
 You can manually update this value or use the `eik version` command to automate the process.
-
-See [application packages](/docs/client_app_packages) for more information.
 
 ### server
 
@@ -296,8 +288,6 @@ files: {
 
 Keys (eg. "scripts.js") define publish locations on the Eik server and values (eg. "./path/to/esm.js") define the local file entrypoint locations. This aligns somewhat loosely with [ESM package entrypoints](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html#esm_package_entry_points) in Node.js
 
-See [application packages](/docs/client_app_packages) for more information.
-
 ### import-map
 
 - optional
@@ -321,7 +311,7 @@ or
 }
 ```
 
-See [import maps](/docs/client_import_maps) for more information.
+See [import maps](/docs/dependencies/import-maps) for more information.
 
 ### out
 

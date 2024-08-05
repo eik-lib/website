@@ -22,9 +22,9 @@ language: node_js
 node_js:
   - 20
 before_script:
-  - npm i -g @eik/cli
+  - npm install --global @eik/cli@^2
 script:
-  - eik login -k $EIK_SERVER_KEY
+  - eik login --key $EIK_SERVER_KEY
   - eik version
   - eik publish
 ```
@@ -34,7 +34,7 @@ If you have a build step that you need to run before publish, you could just ins
 ```yml
 script:
   - <build command here>
-  - eik login -k $EIK_SERVER_KEY
+  - eik login --key $EIK_SERVER_KEY
   - eik version
   - eik publish
 ```

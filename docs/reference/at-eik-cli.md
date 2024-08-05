@@ -1,5 +1,5 @@
 ---
-title: "@eik/cli API reference"
+title: "@eik/cli reference"
 sidebar_label: "@eik/cli"
 ---
 
@@ -84,7 +84,7 @@ npx @eik/cli --help
 
 ## Available commands
 
-Run `eik` with `--help` to see a description of all available commands.
+Run `eik` with `--help` to see a description of all available commands in your shell.
 
 ```sh
 eik --help
@@ -96,7 +96,7 @@ You can also get help for each individual command the same way.
 eik init --help
 ```
 
-## Logging in
+### login
 
 Write operations require you to be logged in to the Eik server. To log in, run the `login` command.
 
@@ -113,7 +113,7 @@ users home directory for use in subsequent commands.
 
 ![Login screenshot](/img/login.png)
 
-### Without the command prompt
+#### Log in without the command prompt
 
 It is possible to bypass login prompts by providing the server URL and key via command line flags.
 
@@ -121,7 +121,7 @@ It is possible to bypass login prompts by providing the server URL and key via c
 eik login --server https://eik.store.com --key YOUR_EIK_KEY
 ```
 
-### With multiple Eik servers
+#### Log in with multiple Eik servers
 
 It is possible to be authenticated against several Eik servers at once by calling the `eik login` command multiple times and providing different server URLs and keys each time.
 
@@ -130,7 +130,7 @@ eik login --server https://eik1.store.com --key YOUR_EIK_KEY
 eik login --server https://eik2.store.com --key YOUR_EIK_KEY
 ```
 
-### Once logged in
+#### Once logged in
 
 So long as the client is logged in to a single server, all subsequent commands will know which server to use and provide credentials automatically.
 

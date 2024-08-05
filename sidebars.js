@@ -37,6 +37,7 @@ module.exports = {
 				"guides/esbuild",
 				"guides/rollup",
 				"guides/postcss",
+				"guides/webpack",
 				"guides/github-actions",
 				"guides/travis",
 			],

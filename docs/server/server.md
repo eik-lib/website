@@ -24,9 +24,9 @@ By default all uploads are stored in a temporary directory that will be lost whe
 
 ## Production setup
 
-`@eik/service` also includes a [Fastify](https://www.fastify.dev/) plugin. This makes it flexible and easy to set up a production Eik service.
+`@eik/service` also includes a [Fastify](https://www.fastify.dev/) plugin, so you can configure and extend the Eik service to fit your needs.
 
-In this example we set up an Eik server using the local file system to store uploads. If you need other another storage solution [you can use or implement a different sink](/docs/server/sink).
+In this example we set up an Eik server using the local file system for storage. [Use or implement a different sink](/docs/server/storage/) if you need other another storage solution.
 
 Create a new project and install the required dependencies
 

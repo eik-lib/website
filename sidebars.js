@@ -21,6 +21,7 @@ module.exports = {
 		{
 			type: "category",
 			label: "Managing the Eik server",
+			collapsed: false,
 			items: [
 				"server/server",
 				"server/storage",

@@ -2,27 +2,18 @@
 title: Metrics
 ---
 
-The Eik server exposes a [metric stream](https://github.com/metrics-js/client) which emits internal metrics
-on the server. These metrics are intended to give numbers on how the server as an application is behaving and
-performing and is an important tool in the toolbox for monitoring the servers health status. These metrics do
-not provide statistics on assets uploaded to the asset server.
-
-The metrics the server provides are not bound to any particular metric system so it's possible to provide the metrics to
-any monitoring system as preferred. The metric stream emits a set of generic metric objects that can be altered and
-piped as desired.
-
-Please see [@metrics/client](https://github.com/metrics-js/client) for examples of how to consume these metrics in
-your preferred monitoring system.
+`@eik/service` exposes a [metrics stream](https://metrics-js.github.io/) that can give insight on how the server is performing.
 
 ## Usage
 
-The `@eik/service` module exposes a `.metric` property. This property holds a plain Node.js object stream which
-emits the metrics as objects on the stream.
+You access the metrics stream on the `.metric` property of the Eik service. In this example we'll set up an endpoint so [Prometheus](https://prometheus.io/) can periodically fetch the metrics.
 
-This stream can be piped into a metrics consumer or any other Node.js writable / transform stream for further
-processing.
+:::tip
 
-Example of metrics being piped into a prometheus consumer:
+The metrics stream isn't tied specifically to Prometheus.
+See [the MetricsJS documentation](https://metrics-js.github.io/introduction/getting-started/#create-a-consumer) to learn how to consume these metrics if you don't use Prometheus.
+
+:::
 
 ```js
 import MetricsConsumer from "@metrics/prometheus-consumer";
@@ -47,17 +38,22 @@ app.get("/_/metrics", (request, reply) => {
 });
 
 const run = async () => {
-	await app.listen(8080, "0.0.0.0");
+	await service.health();
+	await app.listen({
+		port: service.config.get("http.port"),
+		host: service.config.get("http.address"),
+	});
 };
+
 run();
 ```
 
-## Metrics
+## Available metrics
 
 Each metric provided by the server has a unique `name` and a `type` defining what type (counter, histogram, etc) of
 metric it is.
 
-The server exposes these metrics:
+The server exposes these metrics.
 
 | Name                          | Type      | Description                                                                             |
 | ----------------------------- | --------- | --------------------------------------------------------------------------------------- |

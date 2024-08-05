@@ -27,10 +27,13 @@ function Home() {
 				<h1 className="hero__title">{siteConfig.title}</h1>
 				<p className="hero__subtitle">{siteConfig.tagline}</p>
 				<div className={styles.indexCtas}>
-					<Link className="button button--primary" to="/docs/client">
+					<Link
+						className="button button--primary"
+						to="/docs/introduction/workflow/"
+					>
 						Publishing to Eik
 					</Link>
-					<Link className="button button--link" to="/docs/server">
+					<Link className="button button--link" to="/docs/server/">
 						Hosting an Eik server
 					</Link>
 					<Link className="button button--link" to="/docs/introduction/">

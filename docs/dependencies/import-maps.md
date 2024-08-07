@@ -20,7 +20,7 @@ https://eik.store.com/npm/lodash/v4/index.js
 
 Let's put that alias URL in an import map.
 
-Eik import maps look quite similar to [browser native import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), with one major difference. Eik import maps have an `"imports"` key at the root level.
+Eik import maps use the same syntax as [import maps in the browser](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), though without the `<script>` tag.
 
 ```json
 {

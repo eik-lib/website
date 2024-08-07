@@ -34,6 +34,7 @@ module.exports = {
 			label: "Guides",
 			collapsed: false,
 			items: [
+				"guides/browser-importmap",
 				"guides/esbuild",
 				"guides/rollup",
 				"guides/postcss",

@@ -31,14 +31,30 @@ function Home() {
 						className="button button--primary"
 						to="/docs/introduction/workflow/"
 					>
-						Publishing to Eik
+						Get started using Eik
 					</Link>
-					<Link className="button button--link" to="/docs/server/">
-						Hosting an Eik server
-					</Link>
-					<Link className="button button--link" to="/docs/introduction/">
-						Why Eik?
-					</Link>
+				</div>
+				<p className={styles.pitch}>
+					Eik provides{" "}
+					<Link to="/docs/introduction/#the-problem-eik-solves">
+						performant code reuse
+					</Link>{" "}
+					in multi-page and micro-frontend web applications by leveraging both
+					the browser and ES module caches . Host shared ES modules in a central
+					location and use semantically versioned aliases to shorten JavaScript
+					load and execution times.
+				</p>
+				<img
+					alt="An illustration of a user journey across three pages all using the same version of Lit hosted on Eik, leveraging the browser and ES module cache"
+					src="/img/overview_page_to_page_same_versions.min.svg"
+				/>
+				<p className={styles.pitch}>
+					Click the links below to learn more about the problem Eik solves and
+					how to host your own Eik server.
+				</p>
+				<div className={styles.learnMoreCtas}>
+					<Link to="/docs/introduction/">Introduction to Eik</Link>
+					<Link to="/docs/server/">Setting up an Eik server</Link>
 				</div>
 			</div>
 		</Layout>

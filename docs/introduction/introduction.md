@@ -1,6 +1,5 @@
 ---
-title: Eik
-sidebar_label: Introducing Eik
+title: Introduction to Eik
 ---
 
 Eik is an asset server designed for performant serving of
@@ -13,24 +12,24 @@ By hosting ES modules on a central server the browser can leverage both the brow
 
 A common architecture for web applications is to have separate applications serving different pathnames. These typically have client-side JavaScript, and may often share the same dependencies.
 
-![An illustrated user journey across three pages on site.com](/img/overview_page_to_page_flow.min.svg)
+![An illustrated user journey across three pages on store.com](/img/overview_page_to_page_flow.min.svg)
 
-Take the illustrated user journey for `site.com` above.
+Take the illustrated user journey for `store.com` above.
 
-- `site.com` is one application
-- `site.com/shop` is another
-- `site.com/checkout` is a third
+- `store.com` is one application
+- `store.com/shop` is another
+- `store.com/checkout` is a third
 
 A user will normally arrive at the front page, move to browsing the shop and then finish at the checkout.
 
-Let's say the applications on `site.com` are using [Lit](https://lit.dev) for templating in the browser. Without Eik, all three applications ship with their own version of Lit. The browser needs to download, parse and execute Lit three times.
+Let's say the applications on `store.com` are using [Lit](https://lit.dev) for templating in the browser. Without Eik, all three applications ship with their own version of Lit. The browser needs to download, parse and execute Lit three times.
 
 ## Sharing ES modules with Eik
 
-Sticking with our `site.com` example, if all three applications import Lit from Eik instead of shipping their own, the user's browser can cache the HTTP request between page views.
+Sticking with our `store.com` example, if all three applications import Lit from Eik instead of shipping their own, the user's browser can cache the HTTP request between page views.
 
 ```js
-import Lit from "https://eik.site.com/npm/lit/1.0.0/index.js";
+import Lit from "https://eik.store.com/npm/lit/1.0.0/index.js";
 ```
 
 :::tip
@@ -55,15 +54,15 @@ The ES module cache is mostly relevant for micro-frontend architectures (where m
 
 ## Further improving performance with aliases
 
-Now that our three apps on `site.com` all use Eik to import Lit we run into a different problem: version management.
+Now that our three apps on `store.com` all use Eik to import Lit we run into a different problem: version management.
 
 ![Example user journey where the three apps use slightly different versions of lit](/img/overview_page_to_page_diff_versions.min.svg)
 
-Going back to the user journey for `site.com`, imagine that:
+Going back to the user journey for `store.com`, imagine that:
 
-- `site.com` loads `lit@1.2.0`
-- `site.com/shop` loads `lit@1.1.1`
-- `site.com/checkout` loads `lit@1.1.2`
+- `store.com` loads `lit@1.2.0`
+- `store.com/shop` loads `lit@1.1.1`
+- `store.com/checkout` loads `lit@1.1.2`
 
 At this point we're back to square one. Each page visit means downloading, parsing and executing Lit.
 
@@ -72,7 +71,7 @@ We can tell from the [semantic version](https://semver.org/) numbers that they c
 Instead of importing specific versions, Eik encourages the use of aliases to share the same major semantic version between applications.
 
 ```js
-import Lit from "https://eik.site.com/npm/lit/v1/index.js";
+import Lit from "https://eik.store.com/npm/lit/v1/index.js";
 ```
 
 ![The same user journey as before, but using Eik aliases to share the same version](/img/overview_page_to_page_same_versions.min.svg)

@@ -106,7 +106,7 @@ The examples above assumes you installed the Eik CLI using `npm install --global
 
 :::
 
-The Eik server will calculate integrity hashes, and the CLI stores these in `./.eik/integrity.json`. These hashes can be used for [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+You might want to automate publishing to Eik on a continuous integration service. [This guide explains how to publish to Eik using GitHub Actions](/docs/guides/github-actions).
 
 ## Linking to your assets from HTML
 

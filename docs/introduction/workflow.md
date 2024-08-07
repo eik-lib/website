@@ -1,6 +1,5 @@
 ---
-title: Getting started using Eik
-sidebar_label: Getting started using Eik
+title: Get started using Eik
 ---
 
 In the [introduction](/docs/introduction/) you learned:

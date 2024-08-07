@@ -118,7 +118,9 @@ import * as mylib from "https://eik-server.com/pkg/mylib/v3/main.js";
 ```html
 <script type="importmap">
 	{
-		"lit-html": "https://eik.store.com/npm/lit/v1/index.js"
+		"imports": {
+			"lit-html": "https://eik.store.com/npm/lit/v1/index.js"
+		}
 	}
 </script>
 ```
@@ -127,7 +129,7 @@ import * as mylib from "https://eik-server.com/pkg/mylib/v3/main.js";
 
 You can [publish import maps to Eik](/docs/dependencies/import-maps) in a similar way to dependencies and application code. Maps are versioned and immutable, and can be aliased in the same way other assets can.
 
-Import maps on Eik look similar to those in the browser, with the bare import as a key on the left and its absolute value on the right:
+Import maps on Eik look similar to those in the browser, only without the `<script>` tag. The bare import as a key on the left and its absolute value on the right:
 
 ```json
 {

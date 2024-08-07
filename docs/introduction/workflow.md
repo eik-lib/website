@@ -135,7 +135,7 @@ Say our `./public` directory has a file `app.js`. After publishing we can refere
 
 ### `@eik/node-client`
 
-You likely want to use a different URL when developing, and only point to Eik in production. Since this is a common operation, Eik includes a [module for Node apps that helps generate these links](https://github.com/eik-lib/node-client#readme).
+You likely want to use a different URL when developing, and only point to Eik in production. Since this is a common operation, Eik includes a [module for Node apps that helps generate these links](/docs/reference/at-eik-node-client).
 
 ```js
 import Eik from "@eik/node-client";

@@ -16,13 +16,15 @@ const service = new Service(options);
 
 ### options (optional)
 
-| option               | default                  | type     | details                                                                                   |
-| -------------------- | ------------------------ | -------- | ----------------------------------------------------------------------------------------- |
-| sink                 | `null`                   | `object` | The [storage sink] you would like to use.                                                 |
-| logger               | `null`                   | `object` | An instance of the [pino logger](https://getpino.io/).                                    |
-| customSink           | `null`                   | `object` | Deprecated. Use `sink`.                                                                   |
-| aliasCacheControl    | `"public, max-age=1200"` | `string` | Cache-Control header to respond with when getting an [alias](/docs/dependencies/aliases). |
-| notFoundCacheControl | `"public, max-age=5"`    | `string` | Cache-Control header to respond with when returning 404 Not Found.                        |
+| option               | default                  | type     | details                                                                                                                                 |
+| -------------------- | ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| sink                 | `null`                   | `object` | The [storage sink] you would like to use.                                                                                               |
+| logger               | `null`                   | `object` | An instance of the [pino logger](https://getpino.io/).                                                                                  |
+| customSink           | `null`                   | `object` | Deprecated. Use `sink`.                                                                                                                 |
+| aliasCacheControl    | `"public, max-age=1200"` | `string` | Cache-Control header to respond with when getting an [alias](/docs/dependencies/aliases).                                               |
+| notFoundCacheControl | `"public, max-age=5"`    | `string` | Cache-Control header to respond with when returning 404 Not Found.                                                                      |
+| pkgMaxFileSize       | `10_000_000`             | `number` | The limit in bytes before [PUT /pkg/:name/:version](/docs/server/http-api#upload-a-package) starts returning 413 Content Too Large.     |
+| mapMaxFileSize       | `1_000_000`              | `number` | The limit in bytes before [PUT /map/:name/:version](/docs/server/http-api#upload-an-import-map) starts returning 413 Content Too Large. |
 
 ## API
 

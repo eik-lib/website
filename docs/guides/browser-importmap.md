@@ -6,7 +6,7 @@ This document describes how to do [import mapping in the browser](https://develo
 
 :::tip
 
-Check [browser support for import maps](https://caniuse.com/mdn-html_elements_script_type_importmap) before you decide to use this approach. Eik has several plugins to do [import mapping at build-time](/docs/introduction/workflow#build-time-import-mapping) in order to support browsers that don't natively support import maps.
+Check [browser support for import maps](https://caniuse.com/mdn-html_elements_script_type_importmap) (or use a [polyfill](https://github.com/guybedford/es-module-shims#readme)) before you decide to use this approach. Eik has several plugins to do [import mapping at build-time](/docs/introduction/workflow#build-time-import-mapping) in order to support browsers that don't natively support import maps.
 
 :::
 

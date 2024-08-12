@@ -39,7 +39,7 @@ import fastify from "fastify";
 import Service from "@eik/service";
 
 // Set up the Eik service as a plugin
-const service = new Service({ customSink: sink });
+const service = new Service({ sink });
 
 // Set up Fastify
 const app = fastify({

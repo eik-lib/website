@@ -113,8 +113,7 @@ module.exports = {
 			({
 				docs: {
 					sidebarPath: require.resolve("./sidebars.js"),
-					editUrl:
-						"https://github.com/eik-lib/eik-lib.github.io/tree/source/docs",
+					editUrl: "https://github.com/eik-lib/eik-lib.github.io/tree/source",
 				},
 				theme: {
 					customCss: require.resolve("./src/css/custom.css"),

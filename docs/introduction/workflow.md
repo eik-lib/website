@@ -50,7 +50,7 @@ You'll probably find your organisation's import maps in a shared repository. See
 
 :::tip
 
-If all your target browsers [support import maps natively](https://caniuse.com/mdn-html_elements_script_type_importmap) you can skip this section and use [import mapping in the browser](/docs/guides/browser-importmap) instead.
+If all your target browsers [support import maps natively](https://caniuse.com/mdn-html_elements_script_type_importmap) (or you use a [polyfill](https://github.com/guybedford/es-module-shims#readme)) you can skip this section and use [import mapping in the browser](/docs/guides/browser-importmap) instead.
 
 :::
 

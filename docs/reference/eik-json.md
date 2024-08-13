@@ -98,6 +98,12 @@ You can manually update this value or use the [`eik version` command](/docs/refe
 }
 ```
 
+### type
+
+- optional (default `package`)
+
+Defines the [package type](/docs/dependencies/introduction). Must be one of `package`, `npm` or `map`. Setting this value changes the URL publish namespace between `/pkg` (default), `/npm` and `/map`.
+
 ### server
 
 - required

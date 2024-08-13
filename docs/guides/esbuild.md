@@ -1,8 +1,8 @@
 ---
-title: Using Eik with ESBuild
+title: Using Eik with esbuild
 ---
 
-This guide describes how to configure [ESBuild](https://esbuild.github.io/) to use [build-time import mapping](/docs/introduction/workflow#build-time-import-mapping). The guide assumes you have an `eik.json` containing at least one [`"import-map"`](/docs/reference/eik-json#import-map).
+This guide describes how to configure [esbuild](https://esbuild.github.io/) to use [build-time import mapping](/docs/introduction/workflow#build-time-import-mapping). The guide assumes you have an `eik.json` containing at least one [`"import-map"`](/docs/reference/eik-json#import-map).
 
 ## Getting started
 

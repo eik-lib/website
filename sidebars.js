@@ -14,6 +14,7 @@ module.exports = {
 			items: [
 				"dependencies/introduction",
 				"dependencies/npm",
+				"dependencies/images",
 				"dependencies/aliases",
 				"dependencies/import-maps",
 			],

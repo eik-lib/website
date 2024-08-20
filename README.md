@@ -10,9 +10,9 @@ All commands are run from the root of the project.
 | Command            | Action                                              |
 | :----------------- | :-------------------------------------------------- |
 | `npm install`      | Installs dependencies                               |
-| `npm run dev`      | Starts local dev server at `localhost:8080`         |
+| `npm run dev`      | Starts local dev server at `localhost:3000`         |
 | `npm run build`    | Build your production site to `./build/`            |
-| `npm start`        | Preview your build locally at `localhost:8080`      |
+| `npm start`        | Preview your build locally at `localhost:3000`      |
 | `npm run deploy`   | Run by GitHub Actions to deploy to GitHub Pages     |
 | `npm run lint`     | Run ESLint + Prettier                               |
 | `npm run lint:fix` | Fix ESLint and Prettier issues that are autofixable |

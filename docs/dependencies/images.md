@@ -51,7 +51,7 @@ If your organisation doesn't have a running Eik server yet, hop on over to [the 
 
 The `files` key should be set to a directory containing image files to publish. Eik does not discriminate file types so if you wish to upload videos and other types of media, this will also work.
 
-### Publish the built ESM
+### Publish the images
 
 Let's update the `"files"` field in `eik.json` to include an images folder in our imaginary project.
 
@@ -90,7 +90,7 @@ eik meta my-images
 
 ## Updating a published package
 
-New versions of the module need to be published to the Eik server, either manually or with automation like Renovate or Dependabot. Whether you choose to automate or have a manual process, these are the steps to update a module.
+New versions of the image package need to be published to the Eik server, either manually or with automation like Renovate or Dependabot. Whether you choose to automate or have a manual process, these are the steps to update a module.
 
 1. Add, remove or update images in your images directory
 2. Update the version number in `eik.json`

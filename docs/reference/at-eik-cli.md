@@ -98,9 +98,9 @@ eik init --help
 
 ### alias
 
-Create or update an [alias for a package, npm package or import map](/docs/dependencies/aliases/) as identified by its name and version.
+Create or update an [alias for a package, npm package, image or import map](/docs/dependencies/aliases/) as identified by its name, version and type.
 
-A package with the given name and version must already exist on the Eik server. The alias should be the semver major part of the package version. Eg. for a package of version 5.4.3, you should use 5 as the alias. The alias type (npm, map, package) is detected from `eik.json` in the current working directory.
+A package with the given name and version must already exist on the Eik server. The alias should be the semver major part of the package version. Eg. for a package of version 5.4.3, you should use 5 as the alias. The alias type (npm, map, package, image) is detected from `eik.json` in the current working directory.
 
 ```sh
 eik alias <name> <version> <alias>
@@ -174,6 +174,8 @@ eik publish --server https://eik.store.com
 
 ### map-alias
 
+This command is deprecated, use `eik alias`
+
 See [alias](#alias)
 
 ### meta
@@ -188,9 +190,13 @@ eik meta <name>
 
 ### npm-alias
 
+This command is deprecated, use `eik alias`
+
 See [alias](#alias)
 
 ### package-alias
+
+This command is deprecated, use `eik alias`
 
 See [alias](#alias)
 
@@ -241,6 +247,7 @@ const result = await cli.alias({
 	version,
 	alias,
 	token,
+	type,
 });
 ```
 
@@ -314,6 +321,7 @@ const result = await cli.publish({
 	version,
 	file,
 	token,
+	type,
 });
 ```
 
@@ -327,6 +335,7 @@ const result = await cli.version({
 	name,
 	version,
 	files,
+	type,
 });
 ```
 

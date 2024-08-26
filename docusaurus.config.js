@@ -14,6 +14,12 @@ module.exports = {
 			"@docusaurus/plugin-client-redirects",
 			{
 				redirects: [
+					// Shortcuts
+					{
+						from: "/cli",
+						to: "/docs/reference/at-eik-cli",
+					},
+					// Redirect old links
 					{
 						from: "/docs/overview",
 						to: "/docs/introduction",

@@ -24,7 +24,7 @@ To use Eik, first we need an `eik.json` configuration file. Use the [Eik CLI](/d
 npx @eik/cli init
 ```
 
-If you prefer, you can also [configure Eik in `package.json`](/docs/reference/eik-json#defining-eik-configuration-in-a-packagejson-file). We'll assume you use `eik.json` for the rest of this guide, but whenever these docs mention `eik.json` it applies to `"eik"` in `package.json` as well.
+If you prefer, you can also [configure Eik in `package.json`](/docs/reference/eik-json#using-packagejson). We'll assume you use `eik.json` for the rest of this guide, but whenever these docs mention `eik.json` it applies to `"eik"` in `package.json` as well.
 
 Open `eik.json` and fill in these details:
 

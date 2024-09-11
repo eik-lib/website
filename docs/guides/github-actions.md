@@ -80,7 +80,10 @@ jobs:
 
 ### Automatically increment the patch version number
 
-If you don't really care about the version number you can use the `eik version` command to increment the version number on CI. Remember to commit the updated `eik.json` back to your repository.
+If you don't really care about the version number you can use the `eik version` command to increment the version number on CI.
+The version will only be updated if the CLI detects there are changes to the files.
+
+Remember to commit the updated `eik.json` back to your repository.
 
 ```yaml
 name: Publish to Eik
@@ -106,15 +109,15 @@ jobs:
       - name: Publish to Eik
         run: |
           eik login --key ${{secrets.EIK_TOKEN}}
-          eik version
+          eik version || true
           eik publish
 
-      - name: Commit updated eik.json
+      - name: Commit updated eik.json if version changed
+        # git diff --quiet will exit with code 0 if there are no changes.
+        # if there _are_ changes (a new version), the right-hand side of || will run
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add eik.json
-          git commit --message "chore: update version number in eik.json [skip ci]"
-          git push origin HEAD
+          git diff --quiet || (git commit --all --message "chore: update version number in eik.json [skip ci]" && git push origin HEAD)
         shell: bash
 ```

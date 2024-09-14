@@ -70,7 +70,7 @@ jobs:
           node-version: 20
 
       # you can also add @eik/cli to your devDependencies
-      - run: npm install --global @eik/cli@^2
+      - run: npm install --global @eik/cli@^3
 
       - name: Publish to Eik
         run: |
@@ -104,7 +104,7 @@ jobs:
           node-version: 20
 
       # you can also add @eik/cli to your devDependencies
-      - run: npm install --global @eik/cli@^2
+      - run: npm install --global @eik/cli@^3
 
       - name: Publish to Eik
         run: |

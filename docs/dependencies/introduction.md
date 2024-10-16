@@ -12,15 +12,18 @@ In the Managing dependencies section you'll learn how to:
 
 ## Eik package types
 
-It's worth mentioning at this stage that Eik differentiates between three types of packages:
+It's worth mentioning at this stage that Eik differentiates between these types of packages:
 
 - `npm`
 - `map`
 - `package`
+- `image`
 
 You'll see this distinction in [`eik.json`](/docs/reference/eik-json/) and in the URL where your package gets published. Each package type has its own namespace. This is to avoid accidental naming collisions between, say, the `npm` module `lit` and the import map `lit`.
 
 Application code should be published to the `package` namespace. This is also the default, if no other type is configured in `eik.json`.
+
+Long-lived static assets like images should be in an `image` package, separate from frequently-changing application code.
 
 ## Naming and versioning packages
 

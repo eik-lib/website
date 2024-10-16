@@ -41,6 +41,7 @@ module.exports = {
 				"guides/postcss",
 				"guides/webpack",
 				"guides/github-actions",
+				"guides/github-actions-images",
 				"guides/travis",
 			],
 		},

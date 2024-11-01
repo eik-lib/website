@@ -23,7 +23,7 @@
   "devDependencies": {
     "@eik/eslint-config": "1.0.4",
     "@eik/prettier-config": "1.0.1",
-    "eslint": "9.11.1",
+    "eslint": "9.13.0",
     "eslint-plugin-react": "7.37.2",
     "prettier": "3.3.3",
     "rimraf": "6.0.1"

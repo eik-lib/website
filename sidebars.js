@@ -37,8 +37,9 @@ module.exports = {
 			items: [
 				"guides/browser-importmap",
 				"guides/esbuild",
-				"guides/rollup",
 				"guides/postcss",
+				"guides/rollup",
+				"guides/vite",
 				"guides/webpack",
 				"guides/github-actions",
 				"guides/github-actions-images",

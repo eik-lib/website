@@ -53,20 +53,4 @@ See the [plugin documentation](https://github.com/eik-lib/rollup-plugin#descript
 
 ## Vite compatibility
 
-You can [use this Rollup plugin in your Vite build](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility) should you need to.
-
-```js
-import eik from "@eik/rollup-plugin";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-	plugins: [
-		{
-			...eik(),
-			enforce: "pre",
-      // only apply plugin for client code, while building
-			apply: (_config, { command, isSsrBuild }) => command === "build" && !isSsrBuild,
-		},
-  ],
-};
-```
+See [Using Eik with Vite](/docs/guides/vite/).
